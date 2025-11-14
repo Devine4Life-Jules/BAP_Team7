@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Draggable Map</title>
+  <style>
+    html, body {
+      margin: 0;
+      height: 100%;
+      overflow: hidden; /* no scrollbars */
+    }
+
+    #viewport {
+      width: 100vw;
+      height: 100vh;
+      background: #111;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #map {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform-origin: 0 0;
+      background: radial-gradient(circle, #333 1px, transparent 1px);
+      background-size: 50px 50px;
+      width: 3000px;
+      height: 3000px;
+    }
+
+    .node {
+      position: absolute;
+      background: #4caf50;
+      color: white;
+      padding: 10px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+      transition: all 0.2s ease;
+    }
+
+    .node.hovering {
+      background: #ffeb3b;
+      color: #000;
+      box-shadow: 0 0 20px rgba(255,235,59,0.8), inset 0 0 10px rgba(255,235,59,0.3);
+      transform: scale(1.1);
+    }
+
+    #crosshair {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      z-index: 1000;
+    }
+
+    #crosshair::before {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 2px;
+      background: rgba(255, 255, 255, 0.5);
+      left: -10px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    #crosshair::after {
+      content: '';
+      position: absolute;
+      width: 2px;
+      height: 20px;
+      background: rgba(255, 255, 255, 0.5);
+      left: 50%;
+      top: -10px;
+      transform: translateX(-50%);
+    }
+
+    #filterOverlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      display: none;
+      z-index: 999;
+      pointer-events: none;
+    }
+
+    #filterOverlay.active {
+      display: block;
+      pointer-events: auto;
+    }
+
+    .filterMenu {
+      position: fixed;
+      top: 0;
+      width: 300px;
+      height: 100%;
+      background: #1a1a1a;
+      border: 2px solid #444;
+      overflow-y: auto;
+      display: none;
+      flex-direction: column;
+      z-index: 1001;
+    }
+
+    .filterMenu.active {
+      display: flex;
+    }
+
+    #filterMenuLeft {
+      left: 0;
+      border-right: 2px solid #4caf50;
+    }
+
+    #filterMenuRight {
+      right: 0;
+      border-left: 2px solid #ff9800;
+    }
+
+    .filterMenu h2 {
+      color: #fff;
+      padding: 15px;
+      margin: 0;
+      border-bottom: 2px solid #666;
+      font-size: 18px;
+    }
+
+    #filterMenuLeft h2 {
+      color: #4caf50;
+      border-bottom-color: #4caf50;
+    }
+
+    #filterMenuRight h2 {
+      color: #ff9800;
+      border-bottom-color: #ff9800;
+    }
+
+    .filterItems {
+      flex: 1;
+      overflow-y: auto;
+    }
+
+    .filterItem {
+      padding: 12px 15px;
+      border-bottom: 1px solid #333;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #ccc;
+    }
+
+    .filterItem:hover {
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .filterItem.selected {
+      background: rgba(255, 255, 255, 0.1);
+      border-left: 4px solid #ffeb3b;
+      padding-left: 11px;
+    }
+
+    #filterMenuLeft .filterItem.selected {
+      border-left-color: #4caf50;
+    }
+
+    #filterMenuRight .filterItem.selected {
+      border-left-color: #ff9800;
+    }
+
+    .filterItem.active {
+      color: #fff;
+      font-weight: bold;
+    }
+
+    #filterMenuLeft .filterItem.active {
+      color: #4caf50;
+    }
+
+    #filterMenuRight .filterItem.active {
+      color: #ff9800;
+    }
+
+    .filterCheckbox {
+      width: 16px;
+      height: 16px;
+      border: 2px solid #666;
+      border-radius: 3px;
+      display: inline-block;
+      position: relative;
+    }
+
+    .filterItem.active .filterCheckbox {
+      background: #4caf50;
+      border-color: #4caf50;
+    }
+
+    #filterMenuRight .filterItem.active .filterCheckbox {
+      background: #ff9800;
+      border-color: #ff9800;
+    }
+
+    .filterHint {
+      padding: 10px 15px;
+      font-size: 12px;
+      color: #666;
+      border-top: 1px solid #333;
+      text-align: center;
+    }
+
+    #detailModal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      display: none;
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #detailModal.active {
+      display: flex;
+    }
+
+    #detailContent {
+      background: #1a1a1a;
+      border: 2px solid #4caf50;
+      border-radius: 10px;
+      padding: 30px;
+      max-width: 500px;
+      width: 90%;
+      max-height: 80vh;
+      overflow-y: auto;
+      box-shadow: 0 0 30px rgba(76, 175, 80, 0.5);
+      animation: slideIn 0.3s ease;
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: scale(0.9);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    #detailContent h1 {
+      color: #4caf50;
+      margin-top: 0;
+      margin-bottom: 20px;
+      font-size: 28px;
+    }
+
+    #detailContent p {
+      color: #ccc;
+      line-height: 1.6;
+      margin: 10px 0;
+    }
+
+    #detailContent .detail-section {
+      margin: 20px 0;
+      padding: 15px;
+      background: rgba(76, 175, 80, 0.1);
+      border-left: 3px solid #4caf50;
+      border-radius: 5px;
+    }
+
+    #detailContent .detail-section h3 {
+      color: #4caf50;
+      margin: 0 0 10px 0;
+    }
+
+    #closeDetail {
+      background: #4caf50;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 20px;
+      transition: all 0.2s ease;
+    }
+
+    #closeDetail:hover {
+      background: #45a049;
+      box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
+    }
+
+    #contactModal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      display: none;
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #contactModal.active {
+      display: flex;
+    }
+
+    #contactContent {
+      background: #1a1a1a;
+      border: 2px solid #ff9800;
+      border-radius: 10px;
+      padding: 30px;
+      max-width: 450px;
+      width: 90%;
+      box-shadow: 0 0 30px rgba(255, 152, 0, 0.5);
+      animation: slideIn 0.3s ease;
+    }
+
+    #contactContent h1 {
+      color: #ff9800;
+      margin-top: 0;
+      margin-bottom: 25px;
+      font-size: 24px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      color: #ccc;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 10px;
+      background: #2a2a2a;
+      border: 1px solid #444;
+      border-radius: 5px;
+      color: #fff;
+      font-size: 14px;
+      box-sizing: border-box;
+      transition: all 0.2s ease;
+    }
+
+    .form-group input:focus {
+      outline: none;
+      border-color: #ff9800;
+      box-shadow: 0 0 10px rgba(255, 152, 0, 0.3);
+    }
+
+    .form-buttons {
+      display: flex;
+      gap: 10px;
+      margin-top: 25px;
+    }
+
+    .form-buttons button {
+      flex: 1;
+      padding: 12px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    #submitContact {
+      background: #ff9800;
+      color: white;
+    }
+
+    #submitContact:hover {
+      background: #e68900;
+      box-shadow: 0 0 10px rgba(255, 152, 0, 0.5);
+    }
+
+    #cancelContact {
+      background: #444;
+      color: #ccc;
+    }
+
+    #cancelContact:hover {
+      background: #555;
+    }
+
+    .form-success {
+      color: #4caf50;
+      text-align: center;
+      padding: 20px;
+      font-weight: bold;
+    }
+
+    #qrModal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      display: none;
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #qrModal.active {
+      display: flex;
+    }
+
+    #qrContent {
+      background: #1a1a1a;
+      border: 2px solid #ff9800;
+      border-radius: 10px;
+      padding: 30px;
+      text-align: center;
+      box-shadow: 0 0 30px rgba(255, 152, 0, 0.5);
+      animation: slideIn 0.3s ease;
+    }
+
+    #qrContent h1 {
+      color: #ff9800;
+      margin-top: 0;
+      margin-bottom: 20px;
+      font-size: 24px;
+    }
+
+    #qrCode {
+      width: 300px;
+      height: 300px;
+      background: white;
+      padding: 10px;
+      margin: 20px auto;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      font-weight: bold;
+      color: #333;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #qrCode svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .qr-hint {
+      color: #ccc;
+      font-size: 14px;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+  <div id="viewport">
+    <div id="crosshair"></div>
+    <div id="map">
+    </div>
+  </div>
+
+  <!-- Filter Menus -->
+  <div id="filterOverlay"></div>
+  
+  <div id="filterMenuLeft" class="filterMenu">
+    <h2>Filters</h2>
+    <div class="filterItems">
+      <div class="filterItem" data-filter="type"><span class="filterCheckbox"></span>Digitaal</div>
+      <div class="filterItem" data-filter="color"><span class="filterCheckbox"></span>Ecologish</div>
+      <div class="filterItem" data-filter="size"><span class="filterCheckbox"></span>Gezond</div>
+      <div class="filterItem" data-filter="priority"><span class="filterCheckbox"></span>Leren</div>
+      <div class="filterItem" data-filter="status"><span class="filterCheckbox"></span>Sociaal</div>
+    </div>
+    <div class="filterHint">↑↓ Scroll • SPACE Toggle</div>
+  </div>
+
+  <div id="filterMenuRight" class="filterMenu">
+    <h2>Search</h2>
+    <div class="filterItems">
+      <div class="filterItem" data-filter="keyword"><span class="filterCheckbox"></span>Active Health</div>
+      <div class="filterItem" data-filter="date"><span class="filterCheckbox"></span>Arch & D</div>
+      <div class="filterItem" data-filter="author"><span class="filterCheckbox"></span>Bedrijf & Org</div>
+      <div class="filterItem" data-filter="category"><span class="filterCheckbox"></span>Business & Media</div>
+      <div class="filterItem" data-filter="region"><span class="filterCheckbox"></span>Design, Tech, Arts</div>
+      <div class="filterItem" data-filter="region"><span class="filterCheckbox"></span>DAE</div>
+      <div class="filterItem" data-filter="region"><span class="filterCheckbox"></span>IT</div>
+      <div class="filterItem" data-filter="region"><span class="filterCheckbox"></span>Life Sciences</div>
+      <div class="filterItem" data-filter="region"><span class="filterCheckbox"></span>Mens en Welzijn</div>
+      <div class="filterItem" data-filter="region"><span class="filterCheckbox"></span>School of E</div>
+      <div class="filterItem" data-filter="region"><span class="filterCheckbox"></span>School of N</div>
+      <div class="filterItem" data-filter="region"><span class="filterCheckbox"></span>SMART</div>
+      <div class="filterItem" data-filter="region"><span class="filterCheckbox"></span>SAW</div>
+
+    </div>
+    <div class="filterHint">↑↓ Scroll • SPACE Toggle</div>
+  </div>
+
+  <!-- Detail Modal -->
+  <div id="detailModal">
+    <div id="detailContent">
+      <h1 id="detailTitle">Node Title</h1>
+      <div class="detail-section">
+        <h3>Description</h3>
+        <p id="detailDescription">This is a detail view of the selected node.</p>
+      </div>
+      <div class="detail-section">
+        <h3>Coordinates</h3>
+        <p id="detailCoords">Position information</p>
+      </div>
+      <div class="detail-section">
+        <h3>Information</h3>
+        <p id="detailInfo">Additional node information</p>
+      </div>
+      <button id="closeDetail">Close (ESC)</button>
+    </div>
+  </div>
+
+  <!-- Contact Modal -->
+  <div id="contactModal">
+    <div id="contactContent">
+      <h1>QR Code</h1>
+      <div id="qrCode">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <!-- Top-left position marker -->
+          <rect x="5" y="5" width="20" height="20" fill="black"/>
+          <rect x="7" y="7" width="16" height="16" fill="white"/>
+          <rect x="9" y="9" width="12" height="12" fill="black"/>
+          
+          <!-- Top-right position marker -->
+          <rect x="75" y="5" width="20" height="20" fill="black"/>
+          <rect x="77" y="7" width="16" height="16" fill="white"/>
+          <rect x="79" y="9" width="12" height="12" fill="black"/>
+          
+          <!-- Bottom-left position marker -->
+          <rect x="5" y="75" width="20" height="20" fill="black"/>
+          <rect x="7" y="77" width="16" height="16" fill="white"/>
+          <rect x="9" y="79" width="12" height="12" fill="black"/>
+          
+          <!-- Dummy QR pattern -->
+          <rect x="30" y="30" width="4" height="4" fill="black"/>
+          <rect x="40" y="30" width="4" height="4" fill="black"/>
+          <rect x="50" y="30" width="4" height="4" fill="black"/>
+          <rect x="60" y="30" width="4" height="4" fill="black"/>
+          
+          <rect x="30" y="40" width="4" height="4" fill="black"/>
+          <rect x="40" y="40" width="4" height="4" fill="black"/>
+          <rect x="50" y="40" width="4" height="4" fill="black"/>
+          <rect x="60" y="40" width="4" height="4" fill="black"/>
+          
+          <rect x="30" y="50" width="4" height="4" fill="black"/>
+          <rect x="35" y="50" width="4" height="4" fill="black"/>
+          <rect x="45" y="50" width="4" height="4" fill="black"/>
+          <rect x="55" y="50" width="4" height="4" fill="black"/>
+          <rect x="60" y="50" width="4" height="4" fill="black"/>
+          
+          <rect x="30" y="60" width="4" height="4" fill="black"/>
+          <rect x="40" y="60" width="4" height="4" fill="black"/>
+          <rect x="55" y="60" width="4" height="4" fill="black"/>
+          <rect x="60" y="60" width="4" height="4" fill="black"/>
+        </svg>
+      </div>
+      <p class="qr-hint">Press ESC or click to close</p>
+    </div>
+  </div>
+
+  <script>
+    const map = document.getElementById("map");
+    const viewport = document.getElementById("viewport");
+
+    let offsetX = 0, offsetY = 0;
+    let scale = 1;
+    const moveSpeed = 5; // pixels per frame
+    const hoverDistance = 30; // pixels to consider a node "hovering"
+
+    // Track which keys are currently pressed
+    const keysPressed = {};
+
+    // Filter mode state
+    let filterMode = false;
+    let currentMenu = "left"; // "left" or "right"
+    const filterMenuLeft = document.getElementById("filterMenuLeft");
+    const filterMenuRight = document.getElementById("filterMenuRight");
+    const filterOverlay = document.getElementById("filterOverlay");
+    let selectedItemLeft = 0;
+    let selectedItemRight = 0;
+
+    // Detail modal state
+    let detailModalOpen = false;
+    let hoveredNode = null;
+    const detailModal = document.getElementById("detailModal");
+    const closeDetailBtn = document.getElementById("closeDetail");
+
+    // Contact modal state
+    let contactModalOpen = false;
+    const contactModal = document.getElementById("contactModal");
+    const contactForm = document.getElementById("contactForm");
+    const cancelContactBtn = document.getElementById("cancelContact");
+    const contactSuccess = document.getElementById("contactSuccess");
+
+    // Open contact modal
+    function openContactModal() {
+      contactModal.classList.add("active");
+      contactModalOpen = true;
+    }
+
+    // Close contact modal
+    function closeContactModal() {
+      contactModal.classList.remove("active");
+      contactModalOpen = false;
+    }
+
+    // Node data
+    const nodeData = {
+      "Start": {
+        description: "The starting point of your journey",
+        coords: "400, 400",
+        info: "This is where everything begins. A crucial landmark in the system."
+      },
+      "Another Node": {
+        description: "A waypoint or intermediate location",
+        coords: "1200, 800",
+        info: "Contains important data and connections to other nodes."
+      },
+      "End": {
+        description: "The destination or final point",
+        coords: "600, 1600",
+        info: "The goal of your navigation. Process completion point."
+      }
+    };
+
+    // Science article data
+    const scienceArticles = [
+      { title: "AI in Digital Health", category1: "Digitaal", category2: "Active Health" },
+      { title: "Smart Cities Architecture", category1: "Digitaal", category2: "Design, Tech, Arts" },
+      { title: "Cloud Computing Basics", category1: "Digitaal", category2: "IT" },
+      { title: "Blockchain Technology", category1: "Digitaal", category2: "IT" },
+      { title: "Data Privacy Protection", category1: "Digitaal", category2: "Business & Media" },
+      { title: "IoT Applications", category1: "Digitaal", category2: "IT" },
+      { title: "5G Networks", category1: "Digitaal", category2: "Design, Tech, Arts" },
+      { title: "Cybersecurity Threats", category1: "Digitaal", category2: "IT" },
+      { title: "Machine Learning Models", category1: "Digitaal", category2: "IT" },
+      { title: "Digital Marketing", category1: "Digitaal", category2: "Business & Media" },
+      { title: "Renewable Energy Systems", category1: "Ecologish", category2: "Life Sciences" },
+      { title: "Carbon Footprint Analysis", category1: "Ecologish", category2: "Life Sciences" },
+      { title: "Ocean Acidification", category1: "Ecologish", category2: "Life Sciences" },
+      { title: "Forest Conservation", category1: "Ecologish", category2: "Life Sciences" },
+      { title: "Sustainable Agriculture", category1: "Ecologish", category2: "Life Sciences" },
+      { title: "Climate Change Impact", category1: "Ecologish", category2: "Life Sciences" },
+      { title: "Biodiversity Protection", category1: "Ecologish", category2: "Life Sciences" },
+      { title: "Water Resources Management", category1: "Ecologish", category2: "SMART" },
+      { title: "Pollution Reduction", category1: "Ecologish", category2: "Life Sciences" },
+      { title: "Ecosystem Restoration", category1: "Ecologish", category2: "Life Sciences" },
+      { title: "Exercise Benefits", category1: "Gezond", category2: "Active Health" },
+      { title: "Nutrition Science", category1: "Gezond", category2: "Active Health" },
+      { title: "Mental Health Support", category1: "Gezond", category2: "Mens en Welzijn" },
+      { title: "Sleep Research", category1: "Gezond", category2: "Active Health" },
+      { title: "Disease Prevention", category1: "Gezond", category2: "Active Health" },
+      { title: "Fitness Tracking", category1: "Gezond", category2: "Design, Tech, Arts" },
+      { title: "Medical Breakthroughs", category1: "Gezond", category2: "Life Sciences" },
+      { title: "Stress Management", category1: "Gezond", category2: "Mens en Welzijn" },
+      { title: "Immunology Studies", category1: "Gezond", category2: "Life Sciences" },
+      { title: "Wellness Programs", category1: "Gezond", category2: "Active Health" },
+      { title: "Learning Psychology", category1: "Leren", category2: "School of E" },
+      { title: "Educational Technology", category1: "Leren", category2: "IT" },
+      { title: "Critical Thinking Skills", category1: "Leren", category2: "School of E" },
+      { title: "Language Acquisition", category1: "Leren", category2: "School of E" },
+      { title: "STEM Education", category1: "Leren", category2: "School of N" },
+      { title: "Online Learning Platforms", category1: "Leren", category2: "IT" },
+      { title: "Cognitive Development", category1: "Leren", category2: "School of E" },
+      { title: "Assessment Methods", category1: "Leren", category2: "School of E" },
+      { title: "Neuroscience of Learning", category1: "Leren", category2: "School of N" },
+      { title: "Curriculum Design", category1: "Leren", category2: "School of E" },
+      { title: "Social Network Effects", category1: "Sociaal", category2: "Business & Media" },
+      { title: "Community Building", category1: "Sociaal", category2: "Mens en Welzijn" },
+      { title: "Cultural Diversity", category1: "Sociaal", category2: "Business & Media" },
+      { title: "Relationship Studies", category1: "Sociaal", category2: "Mens en Welzijn" },
+      { title: "Urban Community Design", category1: "Sociaal", category2: "Arch & D" },
+      { title: "Communication Theory", category1: "Sociaal", category2: "Business & Media" },
+      { title: "Organizational Behavior", category1: "Sociaal", category2: "Bedrijf & Org" },
+      { title: "Conflict Resolution", category1: "Sociaal", category2: "Mens en Welzijn" },
+      { title: "Social Justice Issues", category1: "Sociaal", category2: "Business & Media" },
+      { title: "Team Dynamics", category1: "Sociaal", category2: "Bedrijf & Org" },
+      { title: "Active Living Movement", category1: "Gezond", category2: "Active Health" },
+      { title: "Wearable Health Tech", category1: "Digitaal", category2: "Design, Tech, Arts" },
+      { title: "AI Ethics Framework", category1: "Digitaal", category2: "Business & Media" },
+      { title: "Digital Art Creation", category1: "Digitaal", category2: "Design, Tech, Arts" },
+      { title: "Web Development Trends", category1: "Digitaal", category2: "IT" },
+      { title: "Sustainable Cities", category1: "Ecologish", category2: "Arch & D" },
+      { title: "Green Building Design", category1: "Ecologish", category2: "Arch & D" },
+      { title: "Eco-friendly Materials", category1: "Ecologish", category2: "DAE" },
+      { title: "Recycling Innovation", category1: "Ecologish", category2: "DAE" },
+      { title: "Bioenergy Production", category1: "Ecologish", category2: "SMART" },
+      { title: "Genetic Engineering", category1: "Gezond", category2: "Life Sciences" },
+      { title: "Pharmaceutical Research", category1: "Gezond", category2: "Life Sciences" },
+      { title: "Vaccine Development", category1: "Gezond", category2: "Life Sciences" },
+      { title: "Personalized Medicine", category1: "Gezond", category2: "Life Sciences" },
+      { title: "Telemedicine Services", category1: "Gezond", category2: "IT" },
+      { title: "Game-based Learning", category1: "Leren", category2: "Design, Tech, Arts" },
+      { title: "Artificial Intelligence Education", category1: "Leren", category2: "IT" },
+      { title: "Universal Design Principles", category1: "Leren", category2: "Design, Tech, Arts" },
+      { title: "Adaptive Learning Systems", category1: "Leren", category2: "IT" },
+      { title: "Teacher Training Programs", category1: "Leren", category2: "School of E" },
+      { title: "Public Health Campaigns", category1: "Sociaal", category2: "Active Health" },
+      { title: "Social Entrepreneurship", category1: "Sociaal", category2: "Bedrijf & Org" },
+      { title: "Global Cooperation", category1: "Sociaal", category2: "Business & Media" },
+      { title: "Inclusive Design", category1: "Sociaal", category2: "Design, Tech, Arts" },
+      { title: "Migration Studies", category1: "Sociaal", category2: "Mens en Welzijn" },
+      { title: "Virtual Reality Applications", category1: "Digitaal", category2: "Design, Tech, Arts" },
+      { title: "Quantum Computing", category1: "Digitaal", category2: "IT" },
+      { title: "API Development", category1: "Digitaal", category2: "IT" },
+      { title: "Software Architecture", category1: "Digitaal", category2: "IT" },
+      { title: "Database Management", category1: "Digitaal", category2: "IT" },
+      { title: "Organic Farming Methods", category1: "Ecologish", category2: "Life Sciences" },
+      { title: "Plastic Alternatives", category1: "Ecologish", category2: "DAE" },
+      { title: "Solar Energy Efficiency", category1: "Ecologish", category2: "SMART" },
+      { title: "Wind Power Generation", category1: "Ecologish", category2: "SMART" },
+      { title: "Marine Conservation", category1: "Ecologish", category2: "Life Sciences" },
+      { title: "Metabolic Health", category1: "Gezond", category2: "Active Health" },
+      { title: "Mental Resilience", category1: "Gezond", category2: "Mens en Welzijn" },
+      { title: "Preventive Care", category1: "Gezond", category2: "Active Health" },
+      { title: "Pain Management", category1: "Gezond", category2: "Life Sciences" },
+      { title: "Rehabilitation Therapy", category1: "Gezond", category2: "Active Health" },
+      { title: "Literacy Development", category1: "Leren", category2: "School of E" },
+      { title: "Mathematics Education", category1: "Leren", category2: "School of N" },
+      { title: "Science Communication", category1: "Leren", category2: "School of N" },
+      { title: "Research Methodologies", category1: "Leren", category2: "School of E" },
+      { title: "Project-based Learning", category1: "Leren", category2: "Design, Tech, Arts" },
+      { title: "Social Policy Development", category1: "Sociaal", category2: "Bedrijf & Org" },
+      { title: "Community Health", category1: "Sociaal", category2: "Active Health" },
+      { title: "Cultural Exchange", category1: "Sociaal", category2: "SAW" },
+      { title: "Artistic Collaboration", category1: "Sociaal", category2: "SAW" },
+      { title: "Leadership Development", category1: "Sociaal", category2: "Bedrijf & Org" }
+    ];
+
+    // Active filters tracking
+    const activeFilters = {
+      left: new Set(),
+      right: new Set()
+    };
+
+    // Generate nodes on map
+    function generateNodes() {
+      scienceArticles.forEach((article, index) => {
+        const node = document.createElement("div");
+        node.className = "node";
+        node.textContent = article.title;
+        node.dataset.category1 = article.category1;
+        node.dataset.category2 = article.category2;
+        
+        // Distribute nodes across the map
+        const angle = (index / scienceArticles.length) * Math.PI * 2;
+        const distance = 300 + (index % 5) * 150;
+        const x = 1500 + Math.cos(angle) * distance;
+        const y = 1500 + Math.sin(angle) * distance;
+        
+        node.style.top = y + "px";
+        node.style.left = x + "px";
+        
+        map.appendChild(node);
+      });
+    }
+
+    // Update node visibility based on filters
+    function updateNodeVisibility() {
+      const nodes = document.querySelectorAll(".node");
+      nodes.forEach(node => {
+        const cat1 = node.dataset.category1;
+        const cat2 = node.dataset.category2;
+        
+        if (activeFilters.left.size === 0 && activeFilters.right.size === 0) {
+          node.style.display = "block";
+        } else {
+          const matchesLeft = activeFilters.left.size === 0 || activeFilters.left.has(cat1);
+          const matchesRight = activeFilters.right.size === 0 || activeFilters.right.has(cat2);
+          node.style.display = (matchesLeft && matchesRight) ? "block" : "none";
+        }
+      });
+    }
+
+    // Update filters when toggled
+    function updateActiveFilters() {
+      activeFilters.left.clear();
+      activeFilters.right.clear();
+      
+      const leftItems = getFilterItems("left");
+      leftItems.forEach(item => {
+        if (item.classList.contains("active")) {
+          activeFilters.left.add(item.textContent.trim());
+        }
+      });
+      
+      const rightItems = getFilterItems("right");
+      rightItems.forEach(item => {
+        if (item.classList.contains("active")) {
+          activeFilters.right.add(item.textContent.trim());
+        }
+      });
+      
+      updateNodeVisibility();
+      updateRightFilterVisibility();
+    }
+
+    // Update visibility of right filter options based on left filter
+    function updateRightFilterVisibility() {
+      const leftCategory = Array.from(activeFilters.left)[0]; // Get the active left filter
+      const rightItems = getFilterItems("right");
+      
+      rightItems.forEach(item => {
+        const rightCategory = item.textContent.trim();
+        
+        // Check if any article exists with this combination
+        const hasOverlap = scienceArticles.some(article => 
+          article.category1 === leftCategory && article.category2 === rightCategory
+        );
+        
+        if (hasOverlap) {
+          item.style.display = "block";
+        } else {
+          item.style.display = "none";
+          item.classList.remove("active"); // Also deactivate if hidden
+        }
+      });
+    }
+
+    // Open detail modal
+    function openDetailModal(nodeElement) {
+      const nodeTitle = nodeElement.textContent;
+      const data = nodeData[nodeTitle] || {
+        description: "No description available",
+        coords: nodeElement.style.left + ", " + nodeElement.style.top,
+        info: "Node information not available"
+      };
+
+      document.getElementById("detailTitle").textContent = nodeTitle;
+      document.getElementById("detailDescription").textContent = data.description;
+      document.getElementById("detailCoords").textContent = "Position: " + data.coords;
+      document.getElementById("detailInfo").textContent = data.info;
+
+      detailModal.classList.add("active");
+      detailModalOpen = true;
+    }
+
+    // Close detail modal
+    function closeDetailModal() {
+      detailModal.classList.remove("active");
+      detailModalOpen = false;
+      hoveredNode = null;
+    }
+    function getFilterItems(menu) {
+      if (menu === "left") {
+        return filterMenuLeft.querySelectorAll(".filterItem");
+      } else {
+        return filterMenuRight.querySelectorAll(".filterItem");
+      }
+    }
+
+    // Update selected item visual
+    function updateSelection() {
+      const leftItems = getFilterItems("left");
+      const rightItems = getFilterItems("right");
+
+      leftItems.forEach((item, idx) => {
+        item.classList.toggle("selected", idx === selectedItemLeft && currentMenu === "left");
+      });
+
+      rightItems.forEach((item, idx) => {
+        item.classList.toggle("selected", idx === selectedItemRight && currentMenu === "right");
+      });
+    }
+
+    // Enter filter mode
+    function enterFilterMode() {
+      filterMode = true;
+      currentMenu = "left";
+      selectedItemLeft = 0;
+      selectedItemRight = 0;
+      filterOverlay.classList.add("active");
+      filterMenuLeft.classList.add("active");
+      filterMenuRight.classList.add("active");
+      updateSelection();
+      
+      // Activate the first item in left menu by default
+      const leftItems = getFilterItems("left");
+      if (leftItems.length > 0 && !leftItems[0].classList.contains("active")) {
+        leftItems[0].classList.add("active");
+        updateActiveFilters();
+      }
+    }
+
+    // Exit filter mode
+    function exitFilterMode() {
+      filterMode = false;
+      filterOverlay.classList.remove("active");
+      filterMenuLeft.classList.remove("active");
+      filterMenuRight.classList.remove("active");
+    }
+
+    // Toggle filter item activation
+    function toggleFilterItem() {
+      const items = getFilterItems(currentMenu);
+      const selectedIdx = currentMenu === "left" ? selectedItemLeft : selectedItemRight;
+      const item = items[selectedIdx];
+      if (item) {
+        item.classList.toggle("active");
+        updateActiveFilters(); // Update node visibility when filter toggled
+      }
+    }
+
+    // Key press handler
+    window.addEventListener("keydown", e => {
+      const key = e.key.toLowerCase();
+      keysPressed[key] = true;
+
+      // Filter mode controls
+      if (filterMode) {
+        e.preventDefault();
+
+        if (key === "arrowleft" && currentMenu === "right") {
+          currentMenu = "left";
+          updateSelection();
+        } else if (key === "arrowright" && currentMenu === "left") {
+          currentMenu = "right";
+          updateSelection();
+        } else if (key === "arrowup") {
+          const items = getFilterItems(currentMenu);
+          if (currentMenu === "left") {
+            selectedItemLeft = Math.max(0, selectedItemLeft - 1);
+            // Automatically activate the selected item on left menu
+            const leftItems = getFilterItems("left");
+            leftItems.forEach((item, idx) => {
+              item.classList.toggle("active", idx === selectedItemLeft);
+            });
+            updateActiveFilters();
+          } else {
+            selectedItemRight = Math.max(0, selectedItemRight - 1);
+          }
+          updateSelection();
+          // Scroll into view
+          const items2 = getFilterItems(currentMenu);
+          items2[currentMenu === "left" ? selectedItemLeft : selectedItemRight]?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        } else if (key === "arrowdown") {
+          const items = getFilterItems(currentMenu);
+          if (currentMenu === "left") {
+            selectedItemLeft = Math.min(items.length - 1, selectedItemLeft + 1);
+            // Automatically activate the selected item on left menu
+            const leftItems = getFilterItems("left");
+            leftItems.forEach((item, idx) => {
+              item.classList.toggle("active", idx === selectedItemLeft);
+            });
+            updateActiveFilters();
+          } else {
+            selectedItemRight = Math.min(items.length - 1, selectedItemRight + 1);
+          }
+          updateSelection();
+          // Scroll into view
+          const items2 = getFilterItems(currentMenu);
+          items2[currentMenu === "left" ? selectedItemLeft : selectedItemRight]?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        } else if (key === " ") {
+          // Right menu uses space to toggle, left menu is automatic
+          if (currentMenu === "right") {
+            toggleFilterItem();
+          }
+        } else if (key === "f") {
+          exitFilterMode();
+        }
+      } else {
+        // Normal mode controls
+        if (key === "f") {
+          enterFilterMode();
+          e.preventDefault();
+        } else if (key === " ") {
+          if (hoveredNode) {
+            // Open detail when space is pressed and a node is hovered
+            e.preventDefault();
+            openDetailModal(hoveredNode);
+          } else if (!filterMode && !detailModalOpen && !contactModalOpen) {
+            // Center map when space is pressed with no node selected
+            e.preventDefault();
+            offsetX = 0;
+            offsetY = 0;
+            scale = 1;
+            updateTransform();
+          }
+        } else if (key === "escape" && detailModalOpen) {
+          closeDetailModal();
+        } else if (key === "c" && !detailModalOpen && !filterMode && !contactModalOpen) {
+          // Open contact form when C is pressed
+          e.preventDefault();
+          openContactModal();
+        } else if (key === "c" && contactModalOpen) {
+          // Close contact form when C is pressed again
+          e.preventDefault();
+          closeContactModal();
+        } else if (key === "escape" && contactModalOpen) {
+          closeContactModal();
+        }
+      }
+    });
+
+    window.addEventListener("keyup", e => {
+      keysPressed[e.key.toLowerCase()] = false;
+    });
+
+    // Close detail modal button
+    closeDetailBtn.addEventListener("click", closeDetailModal);
+
+    // Close detail modal when clicking overlay
+    detailModal.addEventListener("click", (e) => {
+      if (e.target === detailModal) {
+        closeDetailModal();
+      }
+    });
+
+    // Handle ESC key to close detail modal
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && detailModalOpen) {
+        closeDetailModal();
+      }
+    });
+
+    // Contact modal handlers (QR code)
+    contactModal.addEventListener("click", (e) => {
+      if (e.target === contactModal) {
+        closeContactModal();
+      }
+    });
+
+    // Handle ESC key to close contact modal
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && contactModalOpen) {
+        closeContactModal();
+      }
+    });
+
+    // Animation loop for movement
+    function animationLoop() {
+      let moved = false;
+
+      // Don't move map if in filter mode
+      if (!filterMode) {
+        if (keysPressed["arrowup"] || keysPressed["w"]) {
+          offsetY += moveSpeed;
+          moved = true;
+        }
+        if (keysPressed["arrowdown"] || keysPressed["s"]) {
+          offsetY -= moveSpeed;
+          moved = true;
+        }
+        if (keysPressed["arrowleft"] || keysPressed["a"]) {
+          offsetX += moveSpeed;
+          moved = true;
+        }
+        if (keysPressed["arrowright"] || keysPressed["d"]) {
+          offsetX -= moveSpeed;
+          moved = true;
+        }
+      }
+
+      if (moved) {
+        updateTransform();
+        checkNodeHovers();
+      }
+
+      requestAnimationFrame(animationLoop);
+    }
+
+    // Check which nodes are near the center crosshair
+    function checkNodeHovers() {
+      const nodes = document.querySelectorAll(".node");
+      const centerX = viewport.clientWidth / 2;
+      const centerY = viewport.clientHeight / 2;
+
+      hoveredNode = null;
+
+      nodes.forEach(node => {
+        const rect = node.getBoundingClientRect();
+        const nodeCenterX = rect.left + rect.width / 2;
+        const nodeCenterY = rect.top + rect.height / 2;
+
+        const distX = nodeCenterX - centerX;
+        const distY = nodeCenterY - centerY;
+        const distance = Math.sqrt(distX * distX + distY * distY);
+
+        if (distance < hoverDistance) {
+          node.classList.add("hovering");
+          hoveredNode = node; // Track the hovered node
+        } else {
+          node.classList.remove("hovering");
+        }
+      });
+    }
+
+    viewport.addEventListener("wheel", e => {
+      e.preventDefault();
+      const zoomIntensity = 0.1;
+      const wheel = e.deltaY < 0 ? 1 : -1;
+      const zoom = Math.exp(wheel * zoomIntensity);
+
+      const rect = viewport.getBoundingClientRect();
+      const cx = e.clientX - rect.left;
+      const cy = e.clientY - rect.top;
+
+      offsetX = cx - zoom * (cx - offsetX);
+      offsetY = cy - zoom * (cy - offsetY);
+      scale *= zoom;
+
+      updateTransform();
+    });
+
+    function updateTransform() {
+      map.style.transform = `translate(${offsetX}px, ${offsetY}px) scale(${scale})`;
+    }
+
+    // Generate nodes and start the animation loop
+    generateNodes();
+    animationLoop();
+  </script>
+</body>
+</html>

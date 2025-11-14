@@ -1,0 +1,15 @@
+{
+  "name": "experiment",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "serve": "http-server -p  1336 build -c-1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "workbox-cli": "^7.3.0"
+  }
+}
