@@ -1,13 +1,26 @@
-import { Link } from "preact-router";
+
+import { useEffect } from "preact/hooks";
+import { route } from 'preact-router';
+
 
 function Screen2 () {
+    useEffect(() => {
+      function handleKey(e) {
+        if (e.code === "Space") {
+          route('/screen3');
+        };
+        if (e.code === "Backspace") {
+            route('/');
+        }
+      }
+  
+      window.addEventListener('keydown', handleKey);
+  
+      return () => window.removeEventListener('keydown', handleKey);
+    },);  
     return(
         <div>
             "hello screen 2"
-            <div>
-                <Link href="/">back </Link>
-                <Link href="/screen3">next</Link>
-            </div>
         </div>
     )
 }
