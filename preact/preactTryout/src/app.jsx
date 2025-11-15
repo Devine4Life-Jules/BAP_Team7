@@ -6,7 +6,7 @@ import Screen1 from './pages/onboarding/screen1'
 import Screen2 from './pages/onboarding/screen2'
 import Screen3 from './pages/onboarding/screen3'
 import Map from './pages/map'
-import Detail from './pages/Detail'
+import Article from './pages/Article'
 import { Router } from 'preact-router';
 import './app.css'
 
@@ -21,7 +21,7 @@ export function App() {
         <Screen2 path="/screen2"/>
         <Screen3 path="/screen3"/>
         <Map path="/map" />
-        <Detail path="/detail" />
+        <Article path="/article/:id" />
       </Router> 
 
     </>

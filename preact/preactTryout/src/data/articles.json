@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "title": "5G-Pilot Zeevaart",
+    "Project Manager": "Ine Van der Cruyssen",
+    "Areas of expertise:": "Tech & IT",
+    "themes": "cyber security",
+    "kernwoorden": "5g, ar/vr/xr, ai",
+    "text":"This project harnesses 5G technology for unmanned navigation on inland waterways, focusing on semi-autonomous inland navigation with support through 5G connectivity. Howest is exploring the possibilities of a 360° camera and VR applications on the boat & will conduct field tests. Following successful test runs in 2018 on the River Yser, the partner Seafar aims to further develop this concept. A major challenge in our rural region is ensuring stable network connectivity to guarantee the safety of remote control. 5G connectivity can strengthen the three necessary elements (coverage, bandwidth, and latency). Semi-autonomous navigation has the potential to stimulate and streamline freight transport on waterways. Especially in the Westhoek, there are small waterways suitable for semi-autonomous inland navigation. The goal of this research is the development of a reliable communication system between the control center and the automated ship. Howest is responsible for developing and validating the VR immersive experience of, for, and with the captain. It explores the possibilities of a 360-degree camera and VR applications on the boat. Finally, Howest conducts real-life tests to ensure proper functioning and examines, among other things, the effects of a VR headset on the captain. The use of autonomous vessels offers numerous future possibilities for (small-scale) inland navigation: lower operational costs, higher safety, reduced risk of human errors, lower fuel costs, maintenance optimization, addressing labor shortages (shortage of captains and crew), etc. Thanks to the project, inland navigation in the Westhoek, and by extension, Flanders, can once again become a significant economic player."
+  },
+  {
+    "id": 2,
+    "title": "Offshore for Sure",
+    "Project Manager": " Kurt Schoenmaekers",
+    "Areas of expertise:": "Tech & IT",
+    "themes": "cyber security",
+    "kernwoorden": "energie",
+    "text":"During the Offshore for Sure (O4S) project, innovative energy solutions are being developed. Thanks to its expertise in cybersecurity, Howest contributes to the design of smart and secure maintenance systems. Additionally, Howest will serve as an educational partner. Our coastlines are blessed with abundant energy sources, including tidal and wave energy. Five developers of offshore energy solutions are joining forces in the Offshore for Sure project, supported by experts from Belgium and the Netherlands. Addressing the need for a carbon-free energy system with reduced dependence on gas is a concern at local, regional, national, and European levels. We feel the urgency to accelerate our innovations and collaboratively create conditions for scaling up, making a significant contribution to a sustainable energy transition, which will also occur offshore. The goal is to accelerate the regional energy transition and promote the sustainable blue economy by demonstrating five offshore renewable energy solutions through a collaboration between Belgian and Dutch technology developers, service providers, NGOs, and knowledge institutions.sThe projects encompass innovative solutions and a clear plan for deployment in the fields of tidal energy, wave energy, offshore floating solar energy, and energy storage. Howest will primarily contribute to the design of smart and secure maintenance systems due to its expertise in cybersecurity. Furthermore, Howest is engaged as an educational partner in initiatives such as student exchanges, organizing guest lectures, site visits, and summer training programs."
+  }
+]
