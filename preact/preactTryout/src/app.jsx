@@ -5,6 +5,8 @@ import viteLogo from '/vite.svg'
 import Screen1 from './pages/onboarding/screen1'
 import Screen2 from './pages/onboarding/screen2'
 import Screen3 from './pages/onboarding/screen3'
+import Map from './pages/map'
+import Detail from './pages/Detail'
 import { Router } from 'preact-router';
 import './app.css'
 
@@ -18,6 +20,8 @@ export function App() {
         <Screen1 path="/"/>
         <Screen2 path="/screen2"/>
         <Screen3 path="/screen3"/>
+        <Map path="/map" />
+        <Detail path="/detail" />
       </Router> 
 
     </>

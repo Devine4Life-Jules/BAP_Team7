@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>orbit</title>
+  </head>
+  <body>
+    <div x-data="{login: false}">
+      <button @click="login = !login"><template x-if="!login"><span>log in</span></template><template x-if="login"><span>log out</span></template></button>
+      <div x-show="login">
+        <p>welcome back</p>
+      </div>
+      <div x-show="!login">
+        <p>please log in to continue</p>
+      </div>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
