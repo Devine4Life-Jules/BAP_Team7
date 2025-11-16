@@ -1,12 +1,12 @@
 import articles from '../data/articles.json'
 import { useEffect } from 'preact/hooks'
-import route from 'preact-router'
+import { route } from 'preact-router'
 
 export default function Article({id}){
 
     useEffect(() => {
         function handleKey(e) {
-            if (e.code === 'BackSpace') {
+            if (e.code === 'Backspace') {
                 route(`/map`);
             };
         }
