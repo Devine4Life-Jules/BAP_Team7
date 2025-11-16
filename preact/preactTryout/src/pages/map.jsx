@@ -49,7 +49,7 @@ export default function Map() {
             </div>
             <div>
                 {articles.map(article => (
-                    <Planet key={article.id} id={article.id} title={article.title} bgColor="green"/>
+                    <Planet key={article.id} id={article.id} title={article.title} projectManager={article.projectManager} areasOfExpertise={article.areasOfExpertise} themes={article.themes} kernwoorden={article.kernwoorden} text={article.text} bgColor="green"/>
                 ))}
             </div>
         </div>
