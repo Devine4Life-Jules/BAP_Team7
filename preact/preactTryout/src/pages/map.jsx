@@ -3,8 +3,26 @@ import Planet from "../components/Planet"
 import FilterPlanet from '../components/FilterPlanet'
 import './map.css'
 import articles from '../data/articles.json'
+import { route } from 'preact-router'
 
 export default function Map() {
+
+
+        useEffect(() => {
+        function handleKey(e) {
+            if (e.code === 'Backspace') {
+                route(`/`);
+            };
+        }
+
+    window.addEventListener('keydown', handleKey);
+
+    return () => window.removeEventListener('keydown', handleKey);
+    }, []);
+
+
+
+
     const [selectedIndex, setSelectedIndex] = useState(6)
     
     const filterPlanets = [
