@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'preact/hooks'
+import { useState, useEffect, useMemo } from 'preact/hooks'
 import Planet from "../components/Planet"
 import FilterPlanet from '../components/FilterPlanet'
 import './map.css'
@@ -9,7 +9,7 @@ export default function Map() {
     
     const filterPlanets = [
         { id:"planet1" ,title: "life sciences", bgColor: "red" },
-        { id:"planet2" ,title: "informatie & technologie", bgColor: "blue" },
+        { id:"planet2" ,title: "informatie & technologie", bgColor: "red" },
         { id:"planet3" ,title: "Design Technology & Art", bgColor: "red" },
         { id:"planet4" ,title: "buissness & media", bgColor: "red" },
         { id:"planet5" ,title: "Bedrijf & Organisatie", bgColor: "red" },
@@ -22,21 +22,41 @@ export default function Map() {
         { id:"planet12" ,title: "Social Agogisch Werk", bgColor: "red" },
         { id:"planet13" ,title: "Digital Arts & Entertainment", bgColor: "red" },
     ]
+    
+    const PLANET_COUNT = filterPlanets.length
+
+    const selectedFilterPlanet = filterPlanets[selectedIndex]
+    const selectedArea = selectedFilterPlanet.title
+    
+    const filteredArticles = articles.filter(article => 
+        article.areasOfExpertise === selectedArea
+    )
+    
+    const articlePositions = useMemo(() => 
+        filteredArticles.map((_, index) => {
+            const angle = (index / Math.max(filteredArticles.length, 1)) * 360 + Math.random() * 30
+            const radius = 80 + Math.random() * 60
+            const x = Math.cos((angle * Math.PI) / 180) * radius
+            const y = Math.sin((angle * Math.PI) / 180) * radius
+            return { x, y }
+        }),
+        [filteredArticles.length]
+    )
 
     useEffect(() => {
         const handleKeyDown = (event) => {
             if (event.key === 'ArrowDown') {
                 event.preventDefault()
-                setSelectedIndex((prev) => (prev - 1 + filterPlanets.length) % filterPlanets.length)
+                setSelectedIndex((prev) => (prev - 1 + PLANET_COUNT) % PLANET_COUNT)
             } else if (event.key === 'ArrowUp') {
                 event.preventDefault()
-                setSelectedIndex((prev) => (prev + 1) % filterPlanets.length)
+                setSelectedIndex((prev) => (prev + 1) % PLANET_COUNT)
             }
         }
 
         window.addEventListener('keydown', handleKeyDown)
         return () => window.removeEventListener('keydown', handleKeyDown)
-    }, [])
+    }, [PLANET_COUNT])
 
     return(
         <div>
@@ -47,10 +67,15 @@ export default function Map() {
                     </div>
                 ))}
             </div>
-            <div>
-                {articles.map(article => (
-                    <Planet key={article.id} id={article.id} title={article.title} projectManager={article.projectManager} areasOfExpertise={article.areasOfExpertise} themes={article.themes} kernwoorden={article.kernwoorden} text={article.text} bgColor="green"/>
-                ))}
+            <div style={{ position: 'relative', width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                {filteredArticles.map((article, index) => {
+                    const pos = articlePositions[index]
+                    return (
+                        <div key={article.id} style={{ position: 'absolute', left: `calc(50% + ${pos.x}px)`, top: `calc(50% + ${pos.y}px)`, transform: 'translate(-50%, -50%)' }}>
+                            <Planet id={article.id} title={article.title} projectManager={article.projectManager} areasOfExpertise={article.areasOfExpertise} themes={article.themes} kernwoorden={article.kernwoorden} text={article.text} bgColor="green"/>
+                        </div>
+                    )
+                })}
             </div>
         </div>
     )
