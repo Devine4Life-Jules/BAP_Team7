@@ -1,6 +1,21 @@
 import articles from '../data/articles.json'
+import { useEffect } from 'preact/hooks'
+import route from 'preact-router'
 
 export default function Article({id}){
+
+    useEffect(() => {
+        function handleKey(e) {
+            if (e.code === 'BackSpace') {
+                route(`/map`);
+            };
+        }
+
+    window.addEventListener('keydown', handleKey);
+
+    return () => window.removeEventListener('keydown', handleKey);
+    },);
+
     const article = articles.find(a => String(a.id) === String(id))
     
     if (!article) {
