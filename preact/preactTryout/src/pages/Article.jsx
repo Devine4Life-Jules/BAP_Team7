@@ -21,7 +21,7 @@ export default function Article({id}){
     if (!article) {
         return <div>Article not found</div>
     }
-
+ 
     return(
         <div>
             <h2>{article.id} - {article.title}</h2>
