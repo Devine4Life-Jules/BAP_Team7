@@ -8,6 +8,9 @@ const OUTPUT_FILE = "projects.json";
 // ---- Load Excel ----
 const wb = XLSX.readFile(INPUT_FILE);
 
+// Debug: Show all sheet names
+console.log("Available sheets:", Object.keys(wb.Sheets));
+
 // Helper function to trim column names
 const trimColumns = (data) => {
   return data.map(row => {
@@ -21,7 +24,7 @@ const trimColumns = (data) => {
 
 let globaal = XLSX.utils.sheet_to_json(wb.Sheets["Globaal"]);
 let transitie = XLSX.utils.sheet_to_json(wb.Sheets["Transitiedomein"]);
-let abstracts = XLSX.utils.sheet_to_json(wb.Sheets["Abstract_Outcome  "]);
+let abstracts = XLSX.utils.sheet_to_json(wb.Sheets["Abstract_Outcome..."]);
 let keywords = XLSX.utils.sheet_to_json(wb.Sheets["Keywords"]);
 
 // Trim all columns
@@ -36,6 +39,9 @@ console.log("First row sample:", globaal[0]);
 console.log("\nTransitiedomein columns:", Object.keys(transitie[0] || {}));
 console.log("First transitie sample:", transitie[0]);
 console.log("Total transitie rows:", transitie.length);
+console.log("\nAbstracts columns:", Object.keys(abstracts[0] || {}));
+console.log("First abstract sample:", abstracts[0]);
+console.log("Total abstract rows:", abstracts.length);
 
 
 
@@ -53,7 +59,7 @@ const abstractsById = {};
 abstracts.forEach(row => {
   abstractsById[row.ID] = {
     abstract: row.Abstract || "",
-    outcome: row.Outcome || ""
+    teaserAbstract: row.TeaserAbstractForWebsite || ""
   };
 });
 
@@ -85,7 +91,7 @@ const result = globaal.map(row => {
     transitiedomeinen: transitieById[id] || [],
     keywords: keywordsById[id] || [],
     abstract: abstractsById[id]?.abstract || "",
-    outcome: abstractsById[id]?.outcome || ""
+    teaserAbstract: abstractsById[id]?.teaserAbstract || ""
   };
 });
 

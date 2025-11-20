@@ -2,71 +2,72 @@ import { useState, useEffect, useMemo } from 'preact/hooks'
 import Planet from "../components/Planet"
 import FilterPlanet from '../components/FilterPlanet'
 import './map.css'
-import articles from '../data/articles.json'
+import projects from '../data/projects.json'
 import { route } from 'preact-router'
 
 export default function Map() {
-
-
-        useEffect(() => {
-        function handleKey(e) {
-            if (e.code === 'Backspace') {
-                route(`/`);
-            };
-        }
-
-    window.addEventListener('keydown', handleKey);
-
-    return () => window.removeEventListener('keydown', handleKey);
-    }, []);
-
-
-
-
-    const [selectedIndex, setSelectedIndex] = useState(6)
+    const [selectedIndex, setSelectedIndex] = useState(0)
+    
+    const TRANSITION_DOMAINS = ['gezond', 'digitaal', 'ecologisch', 'leren', 'sociaal']
     
     const filterPlanets = [
-        { id:"planet1" ,title: "life sciences", bgColor: "red" },
-        { id:"planet2" ,title: "informatie & technologie", bgColor: "red" },
-        { id:"planet3" ,title: "Design Technology & Art", bgColor: "red" },
-        { id:"planet4" ,title: "buissness & media", bgColor: "red" },
-        { id:"planet5" ,title: "Bedrijf & Organisatie", bgColor: "red" },
-        { id:"planet6" ,title: "Architectuur & Design", bgColor: "red" },
-        { id:"planet7" ,title: "Active Health", bgColor: "red" },
-        { id:"planet8" ,title: "Mens & Welzijn", bgColor: "red" },
-        { id:"planet9" ,title: "School Of Education", bgColor: "red" },
-        { id:"planet10" ,title: "School Of Nursing", bgColor: "red" },
-        { id:"planet11" ,title: "Smart Tech", bgColor: "red" },
-        { id:"planet12" ,title: "Social Agogisch Werk", bgColor: "red" },
-        { id:"planet13" ,title: "Digital Arts & Entertainment", bgColor: "red" },
+        { id:"domain1", title: "gezond", bgColor: "red" },
+        { id:"domain2", title: "digitaal", bgColor: "blue" },
+        { id:"domain3", title: "ecologisch", bgColor: "green" },
+        { id:"domain4", title: "leren", bgColor: "purple" },
+        { id:"domain5", title: "sociaal", bgColor: "orange" },
+        { id:"domain6", title: "overige", bgColor: "gray" },
     ]
     
     const PLANET_COUNT = filterPlanets.length
 
     const selectedFilterPlanet = filterPlanets[selectedIndex]
-    const selectedArea = selectedFilterPlanet.title
+    const selectedDomain = selectedFilterPlanet.title
     
-    const filteredArticles = articles.filter(article => 
-        article.areasOfExpertise === selectedArea
-    )
+    // Filter projects based on selected transitiedomein
+    const filteredProjects = useMemo(() => {
+        return projects.filter(project => {
+            if (selectedDomain === 'overige') {
+                // Projects die geen van de 5 domeinen hebben
+                return !project.transitiedomeinen.some(td => 
+                    TRANSITION_DOMAINS.includes(td.label.toLowerCase())
+                )
+            } else {
+                // Projects die het geselecteerde domein hebben
+                return project.transitiedomeinen.some(td => 
+                    td.label.toLowerCase() === selectedDomain.toLowerCase()
+                )
+            }
+        })
+    }, [selectedDomain])
     
     const articlePositions = useMemo(() => 
-        filteredArticles.map((_, index) => {
-            const angle = (index / Math.max(filteredArticles.length, 1)) * 360 + Math.random() * 30
+        filteredProjects.map((_, index) => {
+            const angle = (index / Math.max(filteredProjects.length, 1)) * 360 + Math.random() * 30
             const radius = 80 + Math.random() * 60
             const x = Math.cos((angle * Math.PI) / 180) * radius
             const y = Math.sin((angle * Math.PI) / 180) * radius
             return { x, y }
         }),
-        [filteredArticles.length]
+        [filteredProjects.length]
     )
 
     useEffect(() => {
+        function handleBackspace(e) {
+            if (e.code === 'Backspace') {
+                route(`/`)
+            }
+        }
+        window.addEventListener('keydown', handleBackspace)
+        return () => window.removeEventListener('keydown', handleBackspace)
+    }, [])
+
+    useEffect(() => {
         const handleKeyDown = (event) => {
-            if (event.key === 'q') {
+            if (event.key === 'ArrowUp') {
                 event.preventDefault()
                 setSelectedIndex((prev) => (prev - 1 + PLANET_COUNT) % PLANET_COUNT)
-            } else if (event.key === 'e') {
+            } else if (event.key === 'ArrowDown') {
                 event.preventDefault()
                 setSelectedIndex((prev) => (prev + 1) % PLANET_COUNT)
             }
@@ -86,11 +87,11 @@ export default function Map() {
                 ))}
             </div>
             <div style={{ position: 'relative', width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                {filteredArticles.map((article, index) => {
+                {filteredProjects.map((project, index) => {
                     const pos = articlePositions[index]
                     return (
-                        <div key={article.id} style={{ position: 'absolute', left: `calc(50% + ${pos.x}px)`, top: `calc(50% + ${pos.y}px)`, transform: 'translate(-50%, -50%)' }}>
-                            <Planet id={article.id} title={article.title} projectManager={article.projectManager} areasOfExpertise={article.areasOfExpertise} themes={article.themes} kernwoorden={article.kernwoorden} text={article.text} bgColor="green"/>
+                        <div key={project.id} style={{ position: 'absolute', left: `calc(50% + ${pos.x}px)`, top: `calc(50% + ${pos.y}px)`, transform: 'translate(-50%, -50%)' }}>
+                            <Planet id={project.id} title={project.ccode} projectManager={project.researchGroup} areasOfExpertise={project.cluster} themes={project.projectType} kernwoorden={project.analyticalCode} text={project.mainFunding} bgColor="green"/>
                         </div>
                     )
                 })}
