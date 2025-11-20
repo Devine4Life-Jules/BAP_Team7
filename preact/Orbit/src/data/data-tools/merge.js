@@ -33,14 +33,20 @@ keywords = trimColumns(keywords);
 // ---- DEBUG: Check column names ----
 console.log("Globaal columns:", Object.keys(globaal[0] || {}));
 console.log("First row sample:", globaal[0]);
+console.log("\nTransitiedomein columns:", Object.keys(transitie[0] || {}));
+console.log("First transitie sample:", transitie[0]);
+console.log("Total transitie rows:", transitie.length);
 
 
 
 // ---- Convert arrays to lookups ----
 const transitieById = {};
 transitie.forEach(row => {
-  if (!transitieById[row.ID]) transitieById[row.ID] = [];
-  transitieById[row.ID].push(row.Transitiedomein);
+  if (!transitieById[row.ProjectID]) transitieById[row.ProjectID] = [];
+  transitieById[row.ProjectID].push({
+    label: row.KeywordLabel,
+    category: row.KeywordCategories
+  });
 });
 
 const abstractsById = {};

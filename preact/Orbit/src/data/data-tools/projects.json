@@ -13,7 +13,32 @@
     "flowPhase": "In afsluit",
     "yearBC": 2020,
     "approvedTimestamp": 43992,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "digital health",
+        "category": "Thema"
+      },
+      {
+        "label": "game ontwikkeling en technologie",
+        "category": "Thema"
+      },
+      {
+        "label": "sport & coaching",
+        "category": "Thema"
+      },
+      {
+        "label": "digitaal",
+        "category": "Transitiedomein"
+      },
+      {
+        "label": "gezond",
+        "category": "Transitiedomein"
+      },
+      {
+        "label": "leren",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -51,7 +76,36 @@
     "flowPhase": "In uitvoering",
     "yearBC": 2020,
     "approvedTimestamp": 43852,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "social creativity",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "digital skills & mediawijsheid",
+        "category": "Thema"
+      },
+      {
+        "label": "marketing & communicatie",
+        "category": "Thema"
+      },
+      {
+        "label": "onderwijs en vorming",
+        "category": "Thema"
+      },
+      {
+        "label": "stem/steam",
+        "category": "Thema"
+      },
+      {
+        "label": "leren",
+        "category": "Transitiedomein"
+      },
+      {
+        "label": "sociaal",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -70,7 +124,16 @@
     "flowPhase": "In afsluit",
     "yearBC": 2020,
     "approvedTimestamp": 43851,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "blockchain",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "digitaal",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -89,7 +152,20 @@
     "flowPhase": "In uitvoering",
     "yearBC": 2021,
     "approvedTimestamp": 44454,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "digital applications",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "game ontwikkeling en technologie",
+        "category": "Thema"
+      },
+      {
+        "label": "ecologisch",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -127,7 +203,12 @@
     "flowPhase": "In afsluit",
     "yearBC": 2022,
     "approvedTimestamp": 44580,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "educatieve technologie",
+        "category": "Thema"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -146,7 +227,20 @@
     "flowPhase": "In afsluit",
     "yearBC": 2021,
     "approvedTimestamp": 44489,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "cybersecurity",
+        "category": "Thema"
+      },
+      {
+        "label": "ai / artificiële intelligentie",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "digitaal",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -184,7 +278,28 @@
     "flowPhase": "In afsluit",
     "yearBC": 2022,
     "approvedTimestamp": 44580,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "educatieve technologie",
+        "category": "Thema"
+      },
+      {
+        "label": "onderwijs en vorming",
+        "category": "Thema"
+      },
+      {
+        "label": "ai / artificiële intelligentie",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "change management",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "leren",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -222,7 +337,24 @@
     "flowPhase": "In uitvoering",
     "yearBC": 2021,
     "approvedTimestamp": 44538,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "game ontwikkeling en technologie",
+        "category": "Thema"
+      },
+      {
+        "label": "ar/vr/xr",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "ecologisch",
+        "category": "Transitiedomein"
+      },
+      {
+        "label": "sociaal",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -241,7 +373,44 @@
     "flowPhase": "In uitvoering",
     "yearBC": 2025,
     "approvedTimestamp": 45917,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "change management",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "living lab",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "supply chain optimalisation",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "wetenschapscommunicatie",
+        "category": "Thema"
+      },
+      {
+        "label": "energie",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "ondernemerschap",
+        "category": "Thema"
+      },
+      {
+        "label": "co-creatie",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "sustainable business",
+        "category": "Thema"
+      },
+      {
+        "label": "ecologisch",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -260,7 +429,24 @@
     "flowPhase": "In afsluit",
     "yearBC": 2024,
     "approvedTimestamp": 45434,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "vital cities",
+        "category": "Thema"
+      },
+      {
+        "label": "ecologisch",
+        "category": "Transitiedomein"
+      },
+      {
+        "label": "gezond",
+        "category": "Transitiedomein"
+      },
+      {
+        "label": "sociaal",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -279,7 +465,20 @@
     "flowPhase": "In afsluit",
     "yearBC": 2024,
     "approvedTimestamp": 45434,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "social creativity",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "sociale interventies met impact",
+        "category": "Thema"
+      },
+      {
+        "label": "sociaal",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -298,7 +497,52 @@
     "flowPhase": "In afsluit",
     "yearBC": 2024,
     "approvedTimestamp": 45434,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "social creativity",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "didactische innovatie",
+        "category": "Thema"
+      },
+      {
+        "label": "digital skills & mediawijsheid",
+        "category": "Thema"
+      },
+      {
+        "label": "innovatieve leeromgevingen",
+        "category": "Thema"
+      },
+      {
+        "label": "onderwijs en vorming",
+        "category": "Thema"
+      },
+      {
+        "label": "stem/steam",
+        "category": "Thema"
+      },
+      {
+        "label": "didactiek",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "product design",
+        "category": "Thema"
+      },
+      {
+        "label": "gezond",
+        "category": "Transitiedomein"
+      },
+      {
+        "label": "leren",
+        "category": "Transitiedomein"
+      },
+      {
+        "label": "leren",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -317,7 +561,68 @@
     "flowPhase": "In afsluit",
     "yearBC": 2024,
     "approvedTimestamp": 45434,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "5g",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "digital applications",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "mixed reality",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "didactische innovatie",
+        "category": "Thema"
+      },
+      {
+        "label": "digital health",
+        "category": "Thema"
+      },
+      {
+        "label": "digital skills & mediawijsheid",
+        "category": "Thema"
+      },
+      {
+        "label": "digital storytelling and influencing",
+        "category": "Thema"
+      },
+      {
+        "label": "educatieve technologie",
+        "category": "Thema"
+      },
+      {
+        "label": "innovatieve leeromgevingen",
+        "category": "Thema"
+      },
+      {
+        "label": "onderwijs en vorming",
+        "category": "Thema"
+      },
+      {
+        "label": "ai / artificiële intelligentie",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "ar/vr/xr",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "blended learning",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "didactiek",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "simulatie onderwijs",
+        "category": "Technologie of methodiek"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -336,7 +641,52 @@
     "flowPhase": "In uitvoering",
     "yearBC": 2024,
     "approvedTimestamp": 45434,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "educatieve technologie",
+        "category": "Thema"
+      },
+      {
+        "label": "onderwijs en vorming",
+        "category": "Thema"
+      },
+      {
+        "label": "palliatieve zorg",
+        "category": "Thema"
+      },
+      {
+        "label": "preventieve gezondheid",
+        "category": "Thema"
+      },
+      {
+        "label": "sociale interventies met impact",
+        "category": "Thema"
+      },
+      {
+        "label": "blended learning",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "didactiek",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "simulatie onderwijs",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "gezond",
+        "category": "Transitiedomein"
+      },
+      {
+        "label": "leren",
+        "category": "Transitiedomein"
+      },
+      {
+        "label": "sociaal",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -355,7 +705,24 @@
     "flowPhase": "In afsluit",
     "yearBC": 2024,
     "approvedTimestamp": 45434,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "onderwijs en vorming",
+        "category": "Thema"
+      },
+      {
+        "label": "welzijn in het onderwijs",
+        "category": "Thema"
+      },
+      {
+        "label": "digitaal",
+        "category": "Transitiedomein"
+      },
+      {
+        "label": "gezond",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -374,7 +741,16 @@
     "flowPhase": "In afsluit",
     "yearBC": 2024,
     "approvedTimestamp": 45434,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "ar/vr/xr",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "digitaal",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -393,7 +769,24 @@
     "flowPhase": "In afsluit",
     "yearBC": 2024,
     "approvedTimestamp": 45434,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "werknemers",
+        "category": "Thema"
+      },
+      {
+        "label": "ondernemerschap",
+        "category": "Thema"
+      },
+      {
+        "label": "hr / human resources",
+        "category": "Thema"
+      },
+      {
+        "label": "gezond",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -431,7 +824,24 @@
     "flowPhase": "In afsluit",
     "yearBC": 2024,
     "approvedTimestamp": 45434,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "social creativity",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "sociale interventies met impact",
+        "category": "Thema"
+      },
+      {
+        "label": "co-creatie",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "sociaal",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -450,7 +860,20 @@
     "flowPhase": "In afsluit",
     "yearBC": 2024,
     "approvedTimestamp": 45434,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "preventieve gezondheid",
+        "category": "Thema"
+      },
+      {
+        "label": "digitaal",
+        "category": "Transitiedomein"
+      },
+      {
+        "label": "gezond",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -469,7 +892,24 @@
     "flowPhase": "In afsluit",
     "yearBC": 2024,
     "approvedTimestamp": 45434,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "preventieve gezondheid",
+        "category": "Thema"
+      },
+      {
+        "label": "microbiële identificatie",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "digitaal",
+        "category": "Transitiedomein"
+      },
+      {
+        "label": "gezond",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -526,7 +966,20 @@
     "flowPhase": "In uitvoering",
     "yearBC": 2024,
     "approvedTimestamp": 45644,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "sociale interventies met impact",
+        "category": "Thema"
+      },
+      {
+        "label": "gezond",
+        "category": "Transitiedomein"
+      },
+      {
+        "label": "sociaal",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -545,7 +998,24 @@
     "flowPhase": "In afsluit",
     "yearBC": 2024,
     "approvedTimestamp": 45644,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "digital applications",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "digitaal",
+        "category": "Transitiedomein"
+      },
+      {
+        "label": "gezond",
+        "category": "Transitiedomein"
+      },
+      {
+        "label": "sociaal",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -564,7 +1034,24 @@
     "flowPhase": "In afsluit",
     "yearBC": 2024,
     "approvedTimestamp": 45644,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "gezonde omgeving",
+        "category": "Thema"
+      },
+      {
+        "label": "sociale interventies met impact",
+        "category": "Thema"
+      },
+      {
+        "label": "gezond",
+        "category": "Transitiedomein"
+      },
+      {
+        "label": "sociaal",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -583,7 +1070,16 @@
     "flowPhase": "In afsluit",
     "yearBC": 2024,
     "approvedTimestamp": 45553,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "leren",
+        "category": "Transitiedomein"
+      },
+      {
+        "label": "sociaal",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -602,7 +1098,20 @@
     "flowPhase": "In afsluit",
     "yearBC": 2024,
     "approvedTimestamp": 45462,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "innovatieve leeromgevingen",
+        "category": "Thema"
+      },
+      {
+        "label": "blended learning",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "leren",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -621,7 +1130,12 @@
     "flowPhase": "In afsluit",
     "yearBC": 2023,
     "approvedTimestamp": 45182,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "sociale interventies met impact",
+        "category": "Thema"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -640,7 +1154,28 @@
     "flowPhase": "In afsluit",
     "yearBC": 2023,
     "approvedTimestamp": 45098,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "didactische innovatie",
+        "category": "Thema"
+      },
+      {
+        "label": "digital skills & mediawijsheid",
+        "category": "Thema"
+      },
+      {
+        "label": "digitale tools",
+        "category": "Thema"
+      },
+      {
+        "label": "marketing & communicatie",
+        "category": "Thema"
+      },
+      {
+        "label": "product design",
+        "category": "Thema"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -659,7 +1194,44 @@
     "flowPhase": "In uitvoering",
     "yearBC": 2023,
     "approvedTimestamp": 45098,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "digital applications",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "didactische innovatie",
+        "category": "Thema"
+      },
+      {
+        "label": "digital skills & mediawijsheid",
+        "category": "Thema"
+      },
+      {
+        "label": "digitale tools",
+        "category": "Thema"
+      },
+      {
+        "label": "educatieve technologie",
+        "category": "Thema"
+      },
+      {
+        "label": "onderwijs en vorming",
+        "category": "Thema"
+      },
+      {
+        "label": "ai / artificiële intelligentie",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "didactiek",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "leren",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -678,7 +1250,24 @@
     "flowPhase": "In uitvoering",
     "yearBC": 2023,
     "approvedTimestamp": 45098,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "industrie 4.0",
+        "category": "Thema"
+      },
+      {
+        "label": "energie",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "digitaal",
+        "category": "Transitiedomein"
+      },
+      {
+        "label": "ecologisch",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -697,7 +1286,44 @@
     "flowPhase": "In uitvoering",
     "yearBC": 2023,
     "approvedTimestamp": 45098,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "digital health",
+        "category": "Thema"
+      },
+      {
+        "label": "digitale tools",
+        "category": "Thema"
+      },
+      {
+        "label": "gezonde omgeving",
+        "category": "Thema"
+      },
+      {
+        "label": "preventieve gezondheid",
+        "category": "Thema"
+      },
+      {
+        "label": "quality of life",
+        "category": "Thema"
+      },
+      {
+        "label": "vital cities",
+        "category": "Thema"
+      },
+      {
+        "label": "digitaal",
+        "category": "Transitiedomein"
+      },
+      {
+        "label": "gezond",
+        "category": "Transitiedomein"
+      },
+      {
+        "label": "sociaal",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -716,7 +1342,40 @@
     "flowPhase": "In uitvoering",
     "yearBC": 2023,
     "approvedTimestamp": 45098,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "gezonde omgeving",
+        "category": "Thema"
+      },
+      {
+        "label": "onderwijs en vorming",
+        "category": "Thema"
+      },
+      {
+        "label": "preventieve gezondheid",
+        "category": "Thema"
+      },
+      {
+        "label": "quality of life",
+        "category": "Thema"
+      },
+      {
+        "label": "sociale interventies met impact",
+        "category": "Thema"
+      },
+      {
+        "label": "welzijn in het onderwijs",
+        "category": "Thema"
+      },
+      {
+        "label": "gezond",
+        "category": "Transitiedomein"
+      },
+      {
+        "label": "leren",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -735,7 +1394,16 @@
     "flowPhase": "In afsluit",
     "yearBC": 2023,
     "approvedTimestamp": 45182,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "sociale interventies met impact",
+        "category": "Thema"
+      },
+      {
+        "label": "leren",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -792,7 +1460,24 @@
     "flowPhase": "In afsluit",
     "yearBC": 2021,
     "approvedTimestamp": 44516,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "didactische innovatie",
+        "category": "Thema"
+      },
+      {
+        "label": "educatieve technologie",
+        "category": "Thema"
+      },
+      {
+        "label": "didactiek",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "leren",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -811,7 +1496,32 @@
     "flowPhase": "In afsluit",
     "yearBC": 2022,
     "approvedTimestamp": 44734,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "digitale tools",
+        "category": "Thema"
+      },
+      {
+        "label": "gezonde omgeving",
+        "category": "Thema"
+      },
+      {
+        "label": "preventieve gezondheid",
+        "category": "Thema"
+      },
+      {
+        "label": "big data and analytics",
+        "category": "Thema"
+      },
+      {
+        "label": "digitaal",
+        "category": "Transitiedomein"
+      },
+      {
+        "label": "gezond",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -830,7 +1540,40 @@
     "flowPhase": "In uitvoering",
     "yearBC": 2022,
     "approvedTimestamp": 44734,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "didactische innovatie",
+        "category": "Thema"
+      },
+      {
+        "label": "gezonde omgeving",
+        "category": "Thema"
+      },
+      {
+        "label": "innovatieve leeromgevingen",
+        "category": "Thema"
+      },
+      {
+        "label": "onderwijs en vorming",
+        "category": "Thema"
+      },
+      {
+        "label": "quality of life",
+        "category": "Thema"
+      },
+      {
+        "label": "sociale interventies met impact",
+        "category": "Thema"
+      },
+      {
+        "label": "welzijn in het onderwijs",
+        "category": "Thema"
+      },
+      {
+        "label": "gezond",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -849,7 +1592,16 @@
     "flowPhase": "In uitvoering",
     "yearBC": 2023,
     "approvedTimestamp": 44951,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "didactische innovatie",
+        "category": "Thema"
+      },
+      {
+        "label": "leren",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -868,7 +1620,32 @@
     "flowPhase": "In uitvoering",
     "yearBC": 2025,
     "approvedTimestamp": 45833,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "digital skills & mediawijsheid",
+        "category": "Thema"
+      },
+      {
+        "label": "ai / artificiële intelligentie",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "digitaal",
+        "category": "Transitiedomein"
+      },
+      {
+        "label": "fake news",
+        "category": "Thema"
+      },
+      {
+        "label": "leren",
+        "category": "Transitiedomein"
+      },
+      {
+        "label": "sociaal",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -887,7 +1664,24 @@
     "flowPhase": "In uitvoering",
     "yearBC": 2025,
     "approvedTimestamp": 45796,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "onderwijs en vorming",
+        "category": "Thema"
+      },
+      {
+        "label": "gezond",
+        "category": "Transitiedomein"
+      },
+      {
+        "label": "leren",
+        "category": "Transitiedomein"
+      },
+      {
+        "label": "sociaal",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -906,7 +1700,24 @@
     "flowPhase": "In uitvoering",
     "yearBC": 2025,
     "approvedTimestamp": 45833,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "ai / artificiële intelligentie",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "digitaal",
+        "category": "Transitiedomein"
+      },
+      {
+        "label": "ecologisch",
+        "category": "Transitiedomein"
+      },
+      {
+        "label": "leren",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -925,7 +1736,24 @@
     "flowPhase": "In uitvoering",
     "yearBC": 2025,
     "approvedTimestamp": 45796,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "didactische innovatie",
+        "category": "Thema"
+      },
+      {
+        "label": "innovatieve leeromgevingen",
+        "category": "Thema"
+      },
+      {
+        "label": "didactiek",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "leren",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -944,7 +1772,28 @@
     "flowPhase": "In uitvoering",
     "yearBC": 2025,
     "approvedTimestamp": 45833,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "social creativity",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "sociale interventies met impact",
+        "category": "Thema"
+      },
+      {
+        "label": "ecologisch",
+        "category": "Transitiedomein"
+      },
+      {
+        "label": "leren",
+        "category": "Transitiedomein"
+      },
+      {
+        "label": "sociaal",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -963,7 +1812,20 @@
     "flowPhase": "In uitvoering",
     "yearBC": 2025,
     "approvedTimestamp": 45796,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "social creativity",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "sociale interventies met impact",
+        "category": "Thema"
+      },
+      {
+        "label": "zorg voor en door de gemeenschap",
+        "category": "Thema"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -982,7 +1844,12 @@
     "flowPhase": "In uitvoering",
     "yearBC": 2025,
     "approvedTimestamp": 45796,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "digital health",
+        "category": "Thema"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -1001,7 +1868,24 @@
     "flowPhase": "In uitvoering",
     "yearBC": 2025,
     "approvedTimestamp": 45833,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "circulaire economie",
+        "category": "Thema"
+      },
+      {
+        "label": "digitaal",
+        "category": "Transitiedomein"
+      },
+      {
+        "label": "ecologisch",
+        "category": "Transitiedomein"
+      },
+      {
+        "label": "sociaal",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -1020,7 +1904,24 @@
     "flowPhase": "In uitvoering",
     "yearBC": 2025,
     "approvedTimestamp": 45833,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "preventieve gezondheid",
+        "category": "Thema"
+      },
+      {
+        "label": "microbiële identificatie",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "digitaal",
+        "category": "Transitiedomein"
+      },
+      {
+        "label": "gezond",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -1039,7 +1940,24 @@
     "flowPhase": "In uitvoering",
     "yearBC": 2025,
     "approvedTimestamp": 45833,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "werknemers",
+        "category": "Thema"
+      },
+      {
+        "label": "ondernemerschap",
+        "category": "Thema"
+      },
+      {
+        "label": "hr / human resources",
+        "category": "Thema"
+      },
+      {
+        "label": "gezond",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -1058,7 +1976,16 @@
     "flowPhase": "In uitvoering",
     "yearBC": 2025,
     "approvedTimestamp": 45833,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "ar/vr/xr",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "digitaal",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -1077,7 +2004,24 @@
     "flowPhase": "In uitvoering",
     "yearBC": 2025,
     "approvedTimestamp": 45833,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "vital cities",
+        "category": "Thema"
+      },
+      {
+        "label": "ecologisch",
+        "category": "Transitiedomein"
+      },
+      {
+        "label": "gezond",
+        "category": "Transitiedomein"
+      },
+      {
+        "label": "sociaal",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -1096,7 +2040,32 @@
     "flowPhase": "In uitvoering",
     "yearBC": 2025,
     "approvedTimestamp": 45833,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "onderwijs en vorming",
+        "category": "Thema"
+      },
+      {
+        "label": "welzijn in het onderwijs",
+        "category": "Thema"
+      },
+      {
+        "label": "ar/vr/xr",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "digitaal",
+        "category": "Transitiedomein"
+      },
+      {
+        "label": "gezond",
+        "category": "Transitiedomein"
+      },
+      {
+        "label": "sociaal",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -1115,7 +2084,20 @@
     "flowPhase": "In uitvoering",
     "yearBC": 2025,
     "approvedTimestamp": 45833,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "digitaal",
+        "category": "Transitiedomein"
+      },
+      {
+        "label": "ecologisch",
+        "category": "Transitiedomein"
+      },
+      {
+        "label": "sociaal",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -1134,7 +2116,24 @@
     "flowPhase": "In uitvoering",
     "yearBC": 2022,
     "approvedTimestamp": 44852,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "digitaal ondernemen en logistiek",
+        "category": "Thema"
+      },
+      {
+        "label": "ondernemerschap",
+        "category": "Thema"
+      },
+      {
+        "label": "leren",
+        "category": "Transitiedomein"
+      },
+      {
+        "label": "sociaal",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -1153,7 +2152,28 @@
     "flowPhase": "In uitvoering",
     "yearBC": 2019,
     "approvedTimestamp": 43810,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "preventieve gezondheid",
+        "category": "Thema"
+      },
+      {
+        "label": "sociale interventies met impact",
+        "category": "Thema"
+      },
+      {
+        "label": "ecologisch",
+        "category": "Transitiedomein"
+      },
+      {
+        "label": "gezond",
+        "category": "Transitiedomein"
+      },
+      {
+        "label": "sociaal",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -1172,7 +2192,28 @@
     "flowPhase": "In uitvoering",
     "yearBC": 2023,
     "approvedTimestamp": 45000,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "gezonde omgeving",
+        "category": "Thema"
+      },
+      {
+        "label": "preventieve gezondheid",
+        "category": "Thema"
+      },
+      {
+        "label": "ecologisch",
+        "category": "Transitiedomein"
+      },
+      {
+        "label": "gezond",
+        "category": "Transitiedomein"
+      },
+      {
+        "label": "sociaal",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -1191,7 +2232,16 @@
     "flowPhase": "In uitvoering",
     "yearBC": 2023,
     "approvedTimestamp": 45182,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "cybersecurity",
+        "category": "Thema"
+      },
+      {
+        "label": "digitaal",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -1210,7 +2260,20 @@
     "flowPhase": "In uitvoering",
     "yearBC": 2023,
     "approvedTimestamp": 45182,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "digitaal ondernemen en logistiek",
+        "category": "Thema"
+      },
+      {
+        "label": "ondernemerschap",
+        "category": "Thema"
+      },
+      {
+        "label": "sociaal",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -1229,7 +2292,12 @@
     "flowPhase": "In uitvoering",
     "yearBC": 2024,
     "approvedTimestamp": 45644,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "ar/vr/xr",
+        "category": "Technologie of methodiek"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -1267,7 +2335,16 @@
     "flowPhase": "In uitvoering",
     "yearBC": 2023,
     "approvedTimestamp": 45056,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "energie",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "ecologisch",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -1286,7 +2363,16 @@
     "flowPhase": "In afsluit",
     "yearBC": 2022,
     "approvedTimestamp": 44916,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "social creativity",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "product design",
+        "category": "Thema"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -1305,7 +2391,16 @@
     "flowPhase": "In uitvoering",
     "yearBC": 2023,
     "approvedTimestamp": 45217,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "ai / artificiële intelligentie",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "digitaal",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -1324,7 +2419,24 @@
     "flowPhase": "In uitvoering",
     "yearBC": 2023,
     "approvedTimestamp": 45182,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "cybersecurity",
+        "category": "Thema"
+      },
+      {
+        "label": "energie",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "digitaal",
+        "category": "Transitiedomein"
+      },
+      {
+        "label": "ecologisch",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -1343,7 +2455,28 @@
     "flowPhase": "In uitvoering",
     "yearBC": 2022,
     "approvedTimestamp": 44916,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "industrie 4.0",
+        "category": "Thema"
+      },
+      {
+        "label": "cybersecurity",
+        "category": "Thema"
+      },
+      {
+        "label": "ai / artificiële intelligentie",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "ar/vr/xr",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "digitaal",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -1362,7 +2495,24 @@
     "flowPhase": "In afsluit",
     "yearBC": 2022,
     "approvedTimestamp": 44888,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "didactische innovatie",
+        "category": "Thema"
+      },
+      {
+        "label": "ar/vr/xr",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "didactiek",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "leren",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -1381,7 +2531,28 @@
     "flowPhase": "In uitvoering",
     "yearBC": 2022,
     "approvedTimestamp": 44916,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "digitaal ondernemen en logistiek",
+        "category": "Thema"
+      },
+      {
+        "label": "innovatieve leeromgevingen",
+        "category": "Thema"
+      },
+      {
+        "label": "ai / artificiële intelligentie",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "digitaal",
+        "category": "Transitiedomein"
+      },
+      {
+        "label": "sociaal",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -1400,7 +2571,32 @@
     "flowPhase": "In uitvoering",
     "yearBC": 2022,
     "approvedTimestamp": 44580,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "blockchain",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "cybersecurity",
+        "category": "Thema"
+      },
+      {
+        "label": "ai / artificiële intelligentie",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "ar/vr/xr",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "ecologisch",
+        "category": "Transitiedomein"
+      },
+      {
+        "label": "leren",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -1438,7 +2634,32 @@
     "flowPhase": "In uitvoering",
     "yearBC": 2025,
     "approvedTimestamp": 45735,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "gezonde omgeving",
+        "category": "Thema"
+      },
+      {
+        "label": "onderwijs en vorming",
+        "category": "Thema"
+      },
+      {
+        "label": "preventieve gezondheid",
+        "category": "Thema"
+      },
+      {
+        "label": "ecologisch",
+        "category": "Transitiedomein"
+      },
+      {
+        "label": "gezond",
+        "category": "Transitiedomein"
+      },
+      {
+        "label": "sociaal",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -1457,7 +2678,20 @@
     "flowPhase": "In uitvoering",
     "yearBC": 2025,
     "approvedTimestamp": 45945,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "digital applications",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "digitaal",
+        "category": "Transitiedomein"
+      },
+      {
+        "label": "leren",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -1476,7 +2710,16 @@
     "flowPhase": "In afsluit",
     "yearBC": 2024,
     "approvedTimestamp": 45371,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "circulaire economie",
+        "category": "Thema"
+      },
+      {
+        "label": "ecologisch",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -1495,7 +2738,16 @@
     "flowPhase": "In uitvoering",
     "yearBC": 2024,
     "approvedTimestamp": 45553,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "ar/vr/xr",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "sociaal",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -1514,7 +2766,24 @@
     "flowPhase": "In uitvoering",
     "yearBC": 2024,
     "approvedTimestamp": 45553,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "sociale interventies met impact",
+        "category": "Thema"
+      },
+      {
+        "label": "ar/vr/xr",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "digitaal",
+        "category": "Transitiedomein"
+      },
+      {
+        "label": "sociaal",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -1533,7 +2802,24 @@
     "flowPhase": "In uitvoering",
     "yearBC": 2024,
     "approvedTimestamp": 45644,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "onderwijs en vorming",
+        "category": "Thema"
+      },
+      {
+        "label": "sociale interventies met impact",
+        "category": "Thema"
+      },
+      {
+        "label": "welzijn in het onderwijs",
+        "category": "Thema"
+      },
+      {
+        "label": "leren",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -1552,7 +2838,20 @@
     "flowPhase": "In uitvoering",
     "yearBC": 2024,
     "approvedTimestamp": 45644,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "cybersecurity",
+        "category": "Thema"
+      },
+      {
+        "label": "onderwijs en vorming",
+        "category": "Thema"
+      },
+      {
+        "label": "digitaal",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -1571,7 +2870,16 @@
     "flowPhase": "In afsluit",
     "yearBC": 2024,
     "approvedTimestamp": 45315,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "innovatieve leeromgevingen",
+        "category": "Thema"
+      },
+      {
+        "label": "leren",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -1590,7 +2898,24 @@
     "flowPhase": "In uitvoering",
     "yearBC": 2024,
     "approvedTimestamp": 45343,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "gezonde omgeving",
+        "category": "Thema"
+      },
+      {
+        "label": "preventieve gezondheid",
+        "category": "Thema"
+      },
+      {
+        "label": "gezond",
+        "category": "Transitiedomein"
+      },
+      {
+        "label": "sociaal",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -1609,7 +2934,16 @@
     "flowPhase": "In uitvoering",
     "yearBC": 2024,
     "approvedTimestamp": 45462,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "game technology",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "digitaal",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -1628,7 +2962,12 @@
     "flowPhase": "In uitvoering",
     "yearBC": 2024,
     "approvedTimestamp": 45462,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "product design",
+        "category": "Thema"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -1647,7 +2986,20 @@
     "flowPhase": "In uitvoering",
     "yearBC": 2024,
     "approvedTimestamp": 45553,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "blockchain",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "cybersecurity",
+        "category": "Thema"
+      },
+      {
+        "label": "digitaal",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -1666,7 +3018,28 @@
     "flowPhase": "In uitvoering",
     "yearBC": 2023,
     "approvedTimestamp": 45280,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "digitale tools",
+        "category": "Thema"
+      },
+      {
+        "label": "onderwijs en vorming",
+        "category": "Thema"
+      },
+      {
+        "label": "stem/steam",
+        "category": "Thema"
+      },
+      {
+        "label": "leren",
+        "category": "Transitiedomein"
+      },
+      {
+        "label": "sociaal",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -1685,7 +3058,20 @@
     "flowPhase": "In uitvoering",
     "yearBC": 2023,
     "approvedTimestamp": 45182,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "palliatieve zorg",
+        "category": "Thema"
+      },
+      {
+        "label": "gezond",
+        "category": "Transitiedomein"
+      },
+      {
+        "label": "leren",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -1703,7 +3089,28 @@
     "flowPhase": "In uitvoering",
     "yearBC": 2023,
     "approvedTimestamp": 45217,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "onderwijs en vorming",
+        "category": "Thema"
+      },
+      {
+        "label": "welzijn in het onderwijs",
+        "category": "Thema"
+      },
+      {
+        "label": "gezond",
+        "category": "Transitiedomein"
+      },
+      {
+        "label": "leren",
+        "category": "Transitiedomein"
+      },
+      {
+        "label": "sociaal",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -1722,7 +3129,16 @@
     "flowPhase": "In uitvoering",
     "yearBC": 2023,
     "approvedTimestamp": 45182,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "digital health",
+        "category": "Thema"
+      },
+      {
+        "label": "gezond",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -1741,7 +3157,28 @@
     "flowPhase": "In uitvoering",
     "yearBC": 2023,
     "approvedTimestamp": 44951,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "digital skills & mediawijsheid",
+        "category": "Thema"
+      },
+      {
+        "label": "digital storytelling and influencing",
+        "category": "Thema"
+      },
+      {
+        "label": "onderwijs en vorming",
+        "category": "Thema"
+      },
+      {
+        "label": "leren",
+        "category": "Transitiedomein"
+      },
+      {
+        "label": "sociaal",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -1760,7 +3197,40 @@
     "flowPhase": "In uitvoering",
     "yearBC": 2024,
     "approvedTimestamp": 45553,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "digital applications",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "digitale tools",
+        "category": "Thema"
+      },
+      {
+        "label": "ar/vr/xr",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "metaverse",
+        "category": "Thema"
+      },
+      {
+        "label": "digitaal",
+        "category": "Transitiedomein"
+      },
+      {
+        "label": "digital twin",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "ecologisch",
+        "category": "Transitiedomein"
+      },
+      {
+        "label": "sociaal",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -1779,7 +3249,32 @@
     "flowPhase": "In uitvoering",
     "yearBC": 2022,
     "approvedTimestamp": 44888,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "digital applications",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "digital health",
+        "category": "Thema"
+      },
+      {
+        "label": "digitale tools",
+        "category": "Thema"
+      },
+      {
+        "label": "sociale interventies met impact",
+        "category": "Thema"
+      },
+      {
+        "label": "gezond",
+        "category": "Transitiedomein"
+      },
+      {
+        "label": "sociaal",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -1798,7 +3293,20 @@
     "flowPhase": "In uitvoering",
     "yearBC": 2023,
     "approvedTimestamp": 45253,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "cybersecurity",
+        "category": "Thema"
+      },
+      {
+        "label": "digitaal",
+        "category": "Transitiedomein"
+      },
+      {
+        "label": "leren",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -1817,7 +3325,12 @@
     "flowPhase": "In uitvoering",
     "yearBC": 2024,
     "approvedTimestamp": 45315,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "ecologisch",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -1836,7 +3349,16 @@
     "flowPhase": "In uitvoering",
     "yearBC": 2024,
     "approvedTimestamp": 45315,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "digital health",
+        "category": "Thema"
+      },
+      {
+        "label": "gezond",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -1855,7 +3377,24 @@
     "flowPhase": "In uitvoering",
     "yearBC": 2024,
     "approvedTimestamp": 45315,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "5g",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "cybersecurity",
+        "category": "Thema"
+      },
+      {
+        "label": "ar/vr/xr",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "digitaal",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -1874,7 +3413,24 @@
     "flowPhase": "In uitvoering",
     "yearBC": 2024,
     "approvedTimestamp": 45315,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "digitale tools",
+        "category": "Thema"
+      },
+      {
+        "label": "energie",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "digitaal",
+        "category": "Transitiedomein"
+      },
+      {
+        "label": "ecologisch",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -1893,7 +3449,20 @@
     "flowPhase": "In uitvoering",
     "yearBC": 2024,
     "approvedTimestamp": 45315,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "5g",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "ar/vr/xr",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "digitaal",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -1912,7 +3481,28 @@
     "flowPhase": "In uitvoering",
     "yearBC": 2024,
     "approvedTimestamp": 45462,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "digitaal ondernemen en logistiek",
+        "category": "Thema"
+      },
+      {
+        "label": "digital health",
+        "category": "Thema"
+      },
+      {
+        "label": "digitale tools",
+        "category": "Thema"
+      },
+      {
+        "label": "ondernemerschap",
+        "category": "Thema"
+      },
+      {
+        "label": "digitaal",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -1950,7 +3540,12 @@
     "flowPhase": "In uitvoering",
     "yearBC": 2025,
     "approvedTimestamp": 45777,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "game ontwikkeling en technologie",
+        "category": "Thema"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -1969,7 +3564,12 @@
     "flowPhase": "In afsluit",
     "yearBC": 2023,
     "approvedTimestamp": 45280,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "ondernemerschap",
+        "category": "Thema"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -2007,7 +3607,28 @@
     "flowPhase": "In afsluit",
     "yearBC": 2022,
     "approvedTimestamp": 44636,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "industrie 4.0",
+        "category": "Thema"
+      },
+      {
+        "label": "ai / artificiële intelligentie",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "big data and analytics",
+        "category": "Thema"
+      },
+      {
+        "label": "energie",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "digitaal",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -2026,7 +3647,20 @@
     "flowPhase": "In afsluit",
     "yearBC": 2022,
     "approvedTimestamp": 44852,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "zorg voor en door de gemeenschap",
+        "category": "Thema"
+      },
+      {
+        "label": "product design",
+        "category": "Thema"
+      },
+      {
+        "label": "sociaal",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -2064,7 +3698,24 @@
     "flowPhase": "In uitvoering",
     "yearBC": 2023,
     "approvedTimestamp": 44951,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "didactische innovatie",
+        "category": "Thema"
+      },
+      {
+        "label": "digital skills & mediawijsheid",
+        "category": "Thema"
+      },
+      {
+        "label": "co-creatie",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "leren",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -2083,7 +3734,24 @@
     "flowPhase": "In uitvoering",
     "yearBC": 2024,
     "approvedTimestamp": 45553,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "ai / artificiële intelligentie",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "energie",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "digitaal",
+        "category": "Transitiedomein"
+      },
+      {
+        "label": "ecologisch",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -2102,7 +3770,16 @@
     "flowPhase": "In uitvoering",
     "yearBC": 2024,
     "approvedTimestamp": 45553,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "gezond",
+        "category": "Transitiedomein"
+      },
+      {
+        "label": "sociaal",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -2121,7 +3798,20 @@
     "flowPhase": "In uitvoering",
     "yearBC": 2025,
     "approvedTimestamp": 45917,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "digital applications",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "ai / artificiële intelligentie",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "digitaal",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -2140,7 +3830,32 @@
     "flowPhase": "In afsluit",
     "yearBC": 2024,
     "approvedTimestamp": 45434,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "mixed reality",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "digitale tools",
+        "category": "Thema"
+      },
+      {
+        "label": "onderwijs en vorming",
+        "category": "Thema"
+      },
+      {
+        "label": "ai / artificiële intelligentie",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "gezond",
+        "category": "Transitiedomein"
+      },
+      {
+        "label": "leren",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -2178,7 +3893,12 @@
     "flowPhase": "In uitvoering",
     "yearBC": 2024,
     "approvedTimestamp": 45644,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "cybersecurity",
+        "category": "Thema"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -2197,7 +3917,24 @@
     "flowPhase": "In uitvoering",
     "yearBC": 2024,
     "approvedTimestamp": 45553,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "ar/vr/xr",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "ux - user experience",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "digitaal",
+        "category": "Transitiedomein"
+      },
+      {
+        "label": "digital twin",
+        "category": "Technologie of methodiek"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -2254,7 +3991,20 @@
     "flowPhase": "In uitvoering",
     "yearBC": 2023,
     "approvedTimestamp": 44979,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "industrie 4.0",
+        "category": "Thema"
+      },
+      {
+        "label": "cybersecurity",
+        "category": "Thema"
+      },
+      {
+        "label": "digitaal",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -2292,7 +4042,24 @@
     "flowPhase": "In afsluit",
     "yearBC": 2023,
     "approvedTimestamp": 44951,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "digital storytelling and influencing",
+        "category": "Thema"
+      },
+      {
+        "label": "game ontwikkeling en technologie",
+        "category": "Thema"
+      },
+      {
+        "label": "metaverse",
+        "category": "Thema"
+      },
+      {
+        "label": "digitaal",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -2311,7 +4078,24 @@
     "flowPhase": "In uitvoering",
     "yearBC": 2023,
     "approvedTimestamp": 44951,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "5g",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "game ontwikkeling en technologie",
+        "category": "Thema"
+      },
+      {
+        "label": "ar/vr/xr",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "digitaal",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -2330,7 +4114,32 @@
     "flowPhase": "In afsluit",
     "yearBC": 2022,
     "approvedTimestamp": 44888,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "digitale tools",
+        "category": "Thema"
+      },
+      {
+        "label": "ai / artificiële intelligentie",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "ar/vr/xr",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "digitaal",
+        "category": "Transitiedomein"
+      },
+      {
+        "label": "gezond",
+        "category": "Transitiedomein"
+      },
+      {
+        "label": "sociaal",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -2387,7 +4196,20 @@
     "flowPhase": "In uitvoering",
     "yearBC": 2024,
     "approvedTimestamp": 45315,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "ai / artificiële intelligentie",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "energie",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "ecologisch",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -2425,7 +4247,24 @@
     "flowPhase": "In uitvoering",
     "yearBC": 2024,
     "approvedTimestamp": 45343,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "stem",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "digitaal",
+        "category": "Transitiedomein"
+      },
+      {
+        "label": "ecologisch",
+        "category": "Transitiedomein"
+      },
+      {
+        "label": "sociaal",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -2444,7 +4283,16 @@
     "flowPhase": "In afsluit",
     "yearBC": 2024,
     "approvedTimestamp": 45315,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "product design",
+        "category": "Thema"
+      },
+      {
+        "label": "ecologisch",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -2463,7 +4311,16 @@
     "flowPhase": "In afsluit",
     "yearBC": 2023,
     "approvedTimestamp": 45182,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "product design",
+        "category": "Thema"
+      },
+      {
+        "label": "digitaal",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -2501,7 +4358,32 @@
     "flowPhase": "In afsluit",
     "yearBC": 2023,
     "approvedTimestamp": 45098,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "5g",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "cybersecurity",
+        "category": "Thema"
+      },
+      {
+        "label": "ai / artificiële intelligentie",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "ar/vr/xr",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "digitaal",
+        "category": "Transitiedomein"
+      },
+      {
+        "label": "gezond",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -2520,7 +4402,28 @@
     "flowPhase": "In afsluit",
     "yearBC": 2023,
     "approvedTimestamp": 45098,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "5g",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "cybersecurity",
+        "category": "Thema"
+      },
+      {
+        "label": "ai / artificiële intelligentie",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "ar/vr/xr",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "digitaal",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -2558,7 +4461,24 @@
     "flowPhase": "In uitvoering",
     "yearBC": 2025,
     "approvedTimestamp": 45917,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "circulaire economie",
+        "category": "Thema"
+      },
+      {
+        "label": "stem/steam",
+        "category": "Thema"
+      },
+      {
+        "label": "co-creatie",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "ecologisch",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -2577,7 +4497,36 @@
     "flowPhase": "In uitvoering",
     "yearBC": 2025,
     "approvedTimestamp": 45945,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "digital applications",
+        "category": "Technologie of methodiek"
+      },
+      {
+        "label": "digital health",
+        "category": "Thema"
+      },
+      {
+        "label": "digitale tools",
+        "category": "Thema"
+      },
+      {
+        "label": "sociale interventies met impact",
+        "category": "Thema"
+      },
+      {
+        "label": "digitaal",
+        "category": "Transitiedomein"
+      },
+      {
+        "label": "gezond",
+        "category": "Transitiedomein"
+      },
+      {
+        "label": "sociaal",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
@@ -2596,7 +4545,32 @@
     "flowPhase": "In uitvoering",
     "yearBC": 2025,
     "approvedTimestamp": 45945,
-    "transitiedomeinen": [],
+    "transitiedomeinen": [
+      {
+        "label": "digital health",
+        "category": "Thema"
+      },
+      {
+        "label": "game ontwikkeling en technologie",
+        "category": "Thema"
+      },
+      {
+        "label": "sport & coaching",
+        "category": "Thema"
+      },
+      {
+        "label": "digitaal",
+        "category": "Transitiedomein"
+      },
+      {
+        "label": "gezond",
+        "category": "Transitiedomein"
+      },
+      {
+        "label": "leren",
+        "category": "Transitiedomein"
+      }
+    ],
     "keywords": [],
     "abstract": "",
     "outcome": ""
