@@ -63,10 +63,10 @@ export default function Map() {
 
     useEffect(() => {
         const handleKeyDown = (event) => {
-            if (event.key === 'ArrowDown') {
+            if (event.key === 'q') {
                 event.preventDefault()
                 setSelectedIndex((prev) => (prev - 1 + PLANET_COUNT) % PLANET_COUNT)
-            } else if (event.key === 'ArrowUp') {
+            } else if (event.key === 'e') {
                 event.preventDefault()
                 setSelectedIndex((prev) => (prev + 1) % PLANET_COUNT)
             }

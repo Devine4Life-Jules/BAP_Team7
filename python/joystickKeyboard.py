@@ -12,16 +12,23 @@ spi.max_speed_hz = 1350000
 # Rotary encoder pins
 CLK_PIN = 17
 DT_PIN = 18
+SPACE_BUTTON= 2
+BACKSPACE_BUTTON= 3
 
 # Setup GPIO
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(CLK_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(DT_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.setup(SPACE_BUTTON, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.setup(BACKSPACE_BUTTON, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+
 
 clk_last = GPIO.input(CLK_PIN)
 
 # Setup uinput virtual keyboard
 device = uinput.Device([
+    uinput.KEY_SPACE,
+    uinput.KEY_BACKSPACE,
     uinput.KEY_UP,
     uinput.KEY_DOWN,
     uinput.KEY_LEFT,
@@ -96,6 +103,17 @@ try:
             
             last_direction = current_direction
         
+        if GPIO.input(SPACE_BUTTON) == GPIO.LOW:
+            device.emit_click(uinput.KEY_SPACE)
+            print("SPACE pressed")
+            time.sleep(0.25)  
+
+        if GPIO.input(BACKSPACE_BUTTON) == GPIO.LOW:
+            device.emit_click(uinput.KEY_BACKSPACE)
+            print("BACKSPACE pressed") 
+            time.sleep(0.25)  
+
+
         time.sleep(0.01)
 
 except KeyboardInterrupt:

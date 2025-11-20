@@ -28,4 +28,4 @@ try:
 
         time.sleep(0.01)
 except KeyboardInterrupt:
-    GPIO.cleanup()    
+    GPIO.cleanup()   
