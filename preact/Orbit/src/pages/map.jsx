@@ -21,8 +21,7 @@ export default function Map() {
     
     const PLANET_COUNT = filterPlanets.length
 
-    const selectedFilterPlanet = filterPlanets[selectedIndex]
-    const selectedDomain = selectedFilterPlanet.title
+    const selectedDomain = filterPlanets[selectedIndex].title
     
     // Filter projects based on selected transitiedomein
     const filteredProjects = useMemo(() => {

@@ -17,15 +17,6 @@ export default function MapCanvas({ filteredProjects }) {
     const CANVAS_WIDTH = VIEWPORT_WIDTH * 2 // total canvas size (2x viewport)
     const CANVAS_HEIGHT = VIEWPORT_HEIGHT * 2
 
-    // Re-calculate on window resize
-    useEffect(() => {
-        const handleResize = () => {
-            // Force re-render by updating state if needed
-        }
-        window.addEventListener('resize', handleResize)
-        return () => window.removeEventListener('resize', handleResize)
-    }, [])
-
     // Generate non-overlapping positions for all projects
     const projectPositions = useMemo(() => {
         const positions = {}
@@ -211,11 +202,6 @@ export default function MapCanvas({ filteredProjects }) {
                             <Planet
                                 id={project.id}
                                 title={project.ccode}
-                                projectManager={project.researchGroup}
-                                areasOfExpertise={project.cluster}
-                                themes={project.projectType}
-                                kernwoorden={project.analyticalCode}
-                                text={project.mainFunding}
                                 bgColor="green"
                             />
                         </div>
