@@ -5,6 +5,14 @@ import './map.css'
 import projects from '../data/projects.json'
 import { route } from 'preact-router'
 
+// Constants for filter configuration
+const FILTER_CONFIG = {
+    PLANET_RADIUS: 320, // distance from center to filter planets
+    SELECTED_OPACITY: 1, // opacity of selected filter
+    UNSELECTED_OPACITY: 0.5, // opacity of unselected filters
+    OPACITY_TRANSITION: 0.2, // transition duration in seconds
+}
+
 export default function Map() {
     const [selectedIndex, setSelectedIndex] = useState(0)
     
@@ -61,7 +69,7 @@ export default function Map() {
             {/* Filter Planets positioned around the circle edge */}
             {filterPlanets.map((planet, index) => {
                 const angle = (index / filterPlanets.length) * 360
-                const radius = 320 // Position them far out on the circle edge
+                const radius = FILTER_CONFIG.PLANET_RADIUS
                 const x = Math.cos((angle * Math.PI) / 180) * radius
                 const y = Math.sin((angle * Math.PI) / 180) * radius
                 
@@ -71,8 +79,8 @@ export default function Map() {
                         left: `calc(50% + ${x}px)`, 
                         top: `calc(50% + ${y}px)`, 
                         transform: 'translate(-50%, -50%)',
-                        opacity: index === selectedIndex ? 1 : 0.5,
-                        transition: 'opacity 0.2s ease',
+                        opacity: index === selectedIndex ? FILTER_CONFIG.SELECTED_OPACITY : FILTER_CONFIG.UNSELECTED_OPACITY,
+                        transition: `opacity ${FILTER_CONFIG.OPACITY_TRANSITION}s ease`,
                         zIndex: 100
                     }}>
                         <FilterPlanet id={planet.id} title={planet.title} bgColor={planet.bgColor}/>

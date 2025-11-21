@@ -3,25 +3,34 @@ import Planet from "./Planet"
 import { route } from 'preact-router'
 import './mapCanvas.css'
 
+// Constants for map configuration
+const CONFIG = {
+    VIEWPORT_SCALE: 0.9, // 90vh as percentage of window height
+    CANVAS_MULTIPLIER: 2, // canvas size relative to viewport
+    PAN_SPEED: 40, // pixels per arrow key press
+    PLANET_RADIUS: 50, // approximate radius of a planet (100px diameter)
+    MIN_DISTANCE: 130, // minimum distance between projects (2x planet size + padding)
+    SPIRAL_RADIUS_BASE: 150, // starting radius for spiral positioning
+    SPIRAL_RADIUS_INCREMENT: 15, // increment per project in spiral
+    GOLDEN_ANGLE: 137.5, // golden angle for deterministic spiral distribution
+    MAX_POSITIONING_ATTEMPTS: 100, // max attempts to find non-overlapping position
+}
+
 export default function MapCanvas({ filteredProjects }) {
     const [offsetX, setOffsetX] = useState(0)
     const [offsetY, setOffsetY] = useState(0)
     const [selectedProjectId, setSelectedProjectId] = useState(null)
     const viewportRef = useRef(null)
 
-    const PAN_SPEED = 40 // pixels per arrow key press
-    
     // Using 90vh as viewport size (matches app container)
-    const VIEWPORT_WIDTH = window.innerHeight * 0.9 // 90vh in pixels
-    const VIEWPORT_HEIGHT = window.innerHeight * 0.9 // 90vh in pixels
-    const CANVAS_WIDTH = VIEWPORT_WIDTH * 2 // total canvas size (2x viewport)
-    const CANVAS_HEIGHT = VIEWPORT_HEIGHT * 2
+    const VIEWPORT_WIDTH = window.innerHeight * CONFIG.VIEWPORT_SCALE
+    const VIEWPORT_HEIGHT = window.innerHeight * CONFIG.VIEWPORT_SCALE
+    const CANVAS_WIDTH = VIEWPORT_WIDTH * CONFIG.CANVAS_MULTIPLIER
+    const CANVAS_HEIGHT = VIEWPORT_HEIGHT * CONFIG.CANVAS_MULTIPLIER
 
     // Generate non-overlapping positions for all projects
     const projectPositions = useMemo(() => {
         const positions = {}
-        const minDistance = 130 // minimum distance between projects (2x planet size + padding)
-        const maxAttempts = 100
 
         const projects = [...filteredProjects].sort((a, b) => a.id - b.id)
 
@@ -30,10 +39,10 @@ export default function MapCanvas({ filteredProjects }) {
             let attempts = 0
 
             // Try to find a non-overlapping position
-            while (!positioned && attempts < maxAttempts) {
+            while (!positioned && attempts < CONFIG.MAX_POSITIONING_ATTEMPTS) {
                 // Use a spiral pattern for deterministic placement
-                const angle = (index * 137.5) % 360 // Golden angle
-                const spiralRadius = 150 + (index * 15)
+                const angle = (index * CONFIG.GOLDEN_ANGLE) % 360
+                const spiralRadius = CONFIG.SPIRAL_RADIUS_BASE + (index * CONFIG.SPIRAL_RADIUS_INCREMENT)
                 
                 const x = CANVAS_WIDTH / 2 + Math.cos((angle * Math.PI) / 180) * spiralRadius
                 const y = CANVAS_HEIGHT / 2 + Math.sin((angle * Math.PI) / 180) * spiralRadius
@@ -42,7 +51,7 @@ export default function MapCanvas({ filteredProjects }) {
                 let hasOverlap = false
                 for (const pos of Object.values(positions)) {
                     const dist = Math.sqrt(Math.pow(x - pos.x, 2) + Math.pow(y - pos.y, 2))
-                    if (dist < minDistance) {
+                    if (dist < CONFIG.MIN_DISTANCE) {
                         hasOverlap = true
                         break
                     }
@@ -78,7 +87,6 @@ export default function MapCanvas({ filteredProjects }) {
         const screenCenterX = rect.left + rect.width / 2
         const screenCenterY = rect.top + rect.height / 2
         
-        const planetRadius = 50 // approximate radius of a planet (100px diameter)
         let closestId = null
         let closestDistance = Infinity
         let overlapFound = false
@@ -99,7 +107,7 @@ export default function MapCanvas({ filteredProjects }) {
                     )
 
                     // Check if overlapping with center point
-                    const isOverlapping = distance < planetRadius
+                    const isOverlapping = distance < CONFIG.PLANET_RADIUS
 
                     // Prefer overlapping planets, then closest
                     if (isOverlapping && !overlapFound) {
@@ -133,16 +141,16 @@ export default function MapCanvas({ filteredProjects }) {
         const handleKeyDown = (event) => {
             if (event.key === 'ArrowUp') {
                 event.preventDefault()
-                setOffsetY(prev => prev - PAN_SPEED)
+                setOffsetY(prev => prev - CONFIG.PAN_SPEED)
             } else if (event.key === 'ArrowDown') {
                 event.preventDefault()
-                setOffsetY(prev => prev + PAN_SPEED)
+                setOffsetY(prev => prev + CONFIG.PAN_SPEED)
             } else if (event.key === 'ArrowLeft') {
                 event.preventDefault()
-                setOffsetX(prev => prev - PAN_SPEED)
+                setOffsetX(prev => prev - CONFIG.PAN_SPEED)
             } else if (event.key === 'ArrowRight') {
                 event.preventDefault()
-                setOffsetX(prev => prev + PAN_SPEED)
+                setOffsetX(prev => prev + CONFIG.PAN_SPEED)
             } else if (event.code === 'Space') {
                 event.preventDefault()
                 if (selectedProjectId) {
