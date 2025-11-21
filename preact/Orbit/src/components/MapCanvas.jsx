@@ -7,20 +7,25 @@ import './mapCanvas.css'
 const CONFIG = {
     VIEWPORT_SCALE: 0.9, // 90vh as percentage of window height
     CANVAS_MULTIPLIER: 2, // canvas size relative to viewport
-    PAN_SPEED: 40, // pixels per arrow key press
+    PAN_SPEED: 12, // pixels per arrow key press
     PLANET_RADIUS: 50, // approximate radius of a planet (100px diameter)
     MIN_DISTANCE: 130, // minimum distance between projects (2x planet size + padding)
     SPIRAL_RADIUS_BASE: 150, // starting radius for spiral positioning
     SPIRAL_RADIUS_INCREMENT: 15, // increment per project in spiral
     GOLDEN_ANGLE: 137.5, // golden angle for deterministic spiral distribution
     MAX_POSITIONING_ATTEMPTS: 100, // max attempts to find non-overlapping position
+    INERTIA_FRICTION: 0.88, // velocity multiplier per frame (~half second decay at 60fps)
+    INERTIA_MIN_VELOCITY: 0.01, // minimum velocity threshold before stopping
 }
 
 export default function MapCanvas({ filteredProjects }) {
     const [offsetX, setOffsetX] = useState(0)
     const [offsetY, setOffsetY] = useState(0)
     const [selectedProjectId, setSelectedProjectId] = useState(null)
+    const [velocityX, setVelocityX] = useState(0)
+    const [velocityY, setVelocityY] = useState(0)
     const viewportRef = useRef(null)
+    const animationFrameRef = useRef(null)
 
     // Using 90vh as viewport size (matches app container)
     const VIEWPORT_WIDTH = window.innerHeight * CONFIG.VIEWPORT_SCALE
@@ -136,21 +141,62 @@ export default function MapCanvas({ filteredProjects }) {
         setSelectedProjectId(centralProjectId)
     }, [centralProjectId])
 
+    // Apply inertia/momentum to panning
+    useEffect(() => {
+        const animate = () => {
+            setOffsetX(prev => {
+                setVelocityX(v => {
+                    const newVelocity = v * CONFIG.INERTIA_FRICTION
+                    if (Math.abs(newVelocity) < CONFIG.INERTIA_MIN_VELOCITY) {
+                        return 0
+                    }
+                    return newVelocity
+                })
+                return prev + velocityX
+            })
+            
+            setOffsetY(prev => {
+                setVelocityY(v => {
+                    const newVelocity = v * CONFIG.INERTIA_FRICTION
+                    if (Math.abs(newVelocity) < CONFIG.INERTIA_MIN_VELOCITY) {
+                        return 0
+                    }
+                    return newVelocity
+                })
+                return prev + velocityY
+            })
+
+            if (Math.abs(velocityX) > CONFIG.INERTIA_MIN_VELOCITY || Math.abs(velocityY) > CONFIG.INERTIA_MIN_VELOCITY) {
+                animationFrameRef.current = requestAnimationFrame(animate)
+            }
+        }
+
+        if (Math.abs(velocityX) > CONFIG.INERTIA_MIN_VELOCITY || Math.abs(velocityY) > CONFIG.INERTIA_MIN_VELOCITY) {
+            animationFrameRef.current = requestAnimationFrame(animate)
+        }
+
+        return () => {
+            if (animationFrameRef.current) {
+                cancelAnimationFrame(animationFrameRef.current)
+            }
+        }
+    }, [velocityX, velocityY])
+
     // Handle keyboard navigation
     useEffect(() => {
         const handleKeyDown = (event) => {
             if (event.key === 'ArrowUp') {
                 event.preventDefault()
-                setOffsetY(prev => prev - CONFIG.PAN_SPEED)
+                setVelocityY(prev => prev - CONFIG.PAN_SPEED)
             } else if (event.key === 'ArrowDown') {
                 event.preventDefault()
-                setOffsetY(prev => prev + CONFIG.PAN_SPEED)
+                setVelocityY(prev => prev + CONFIG.PAN_SPEED)
             } else if (event.key === 'ArrowLeft') {
                 event.preventDefault()
-                setOffsetX(prev => prev - CONFIG.PAN_SPEED)
+                setVelocityX(prev => prev - CONFIG.PAN_SPEED)
             } else if (event.key === 'ArrowRight') {
                 event.preventDefault()
-                setOffsetX(prev => prev + CONFIG.PAN_SPEED)
+                setVelocityX(prev => prev + CONFIG.PAN_SPEED)
             } else if (event.code === 'Space') {
                 event.preventDefault()
                 if (selectedProjectId) {
