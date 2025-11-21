@@ -51,10 +51,10 @@ export default function Map() {
     // Handle filter planet selection with arrow keys
     useEffect(() => {
         const handleKeyDown = (event) => {
-            if (event.key === 'e') {
+            if (event.key === 'q') {
                 event.preventDefault()
                 setSelectedIndex((prev) => (prev - 1 + PLANET_COUNT) % PLANET_COUNT)
-            } else if (event.key === 'q') {
+            } else if (event.key === 'e') {
                 event.preventDefault()
                 setSelectedIndex((prev) => (prev + 1) % PLANET_COUNT)
             }
