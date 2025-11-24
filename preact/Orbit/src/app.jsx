@@ -1,6 +1,5 @@
 import { useState } from 'preact/hooks'
-import preactLogo from './assets/preact.svg'
-import viteLogo from '/vite.svg'
+
 
 import Screen1 from './pages/onboarding/screen1'
 import Screen2 from './pages/onboarding/screen2'
@@ -9,6 +8,7 @@ import Map from './pages/map'
 import Article from './pages/Article'
 import Project from './pages/Project'
 import { Router } from 'preact-router';
+import { Installation } from './pages/installation'
 import './app.css'
 
 export function App() {
@@ -18,12 +18,8 @@ export function App() {
     <>
 
       <Router>
-        <Screen1 path="/"/>
-        <Screen2 path="/screen2"/>
-        <Screen3 path="/screen3"/>
-        <Map path="/map" />
-        <Article path="/article/:id" />
-        <Project path="/project/:id" />
+        <Installation path="/" default/>
+
       </Router> 
 
     </>
