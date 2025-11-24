@@ -8,13 +8,13 @@ import Map from './map'
 import Article from './Article'
 import Project from './Project'
 import { Router } from 'preact-router';
-import '../app.css'
+import '../../app.css'
 
 export function Installation() {
   
 
   return (
-    <>
+    <div id="installation">
 
       <Router>
         <Screen1 path="/"/>
@@ -25,6 +25,6 @@ export function Installation() {
         <Project path="/project/:id" />
       </Router> 
 
-    </>
+    </div>
   )
 }

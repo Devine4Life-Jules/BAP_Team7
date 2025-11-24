@@ -1,4 +1,4 @@
-import articles from '../data/articles.json'
+import articles from '../../data/articles.json'
 import { useEffect } from 'preact/hooks'
 import { route } from 'preact-router'
 
