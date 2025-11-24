@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 500 500">
+  <!-- Generator: Adobe Illustrator 30.0.0, SVG Export Plug-In . SVG Version: 2.1.1 Build 123)  -->
+  <defs>
+    <style>
+      .st0 {
+        fill: none;
+      }
+
+      .st1 {
+        fill: url(#linear-gradient);
+        stroke: url(#linear-gradient1);
+        stroke-width: 9.6px;
+      }
+    </style>
+    <clipPath id="clippath">
+      <circle class="st0" cx="261.5" cy="262.2" r="129.5"/>
+    </clipPath>
+    <linearGradient id="linear-gradient" x1="126.4" y1="246.3" x2="482.5" y2="-99.2" gradientTransform="translate(-47.5 331) scale(1 -1)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#44c8f5"/>
+      <stop offset=".9" stop-color="#494781" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient1" x1="116.6" y1="236.9" x2="491.2" y2="-87.5" gradientTransform="translate(-47.5 331) scale(1 -1)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ebf6f9"/>
+      <stop offset=".9" stop-color="#ebf6f9" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <circle class="st1" cx="250.9" cy="251.6" r="248.4"/>
+</svg>
