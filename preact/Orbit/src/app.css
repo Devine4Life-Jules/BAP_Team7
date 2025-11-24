@@ -3,6 +3,10 @@
   margin: 0 auto;
 }
 
+.PhoneScreen {
+  color: black;
+}
+
 #installation {
   width: 90vh;
   background-color: rgb(123, 123, 123);
