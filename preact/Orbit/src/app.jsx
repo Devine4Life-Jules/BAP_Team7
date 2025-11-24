@@ -15,9 +15,9 @@ export function App() {
 
       <Router>
         <Installation path="/" default/>
-        <PhoneContact path="/PhoneContact"/>
-        <PhoneProject path="/PhoneProject"/>
-        <PhoneFavourites path="/PhoneFavourites"/>
+        <PhoneContact path="/phone/contact" />
+        <PhoneFavourites path="/phone/favourites" />
+        <PhoneProject path="/phone/project" />
       </Router>
 
     </>
