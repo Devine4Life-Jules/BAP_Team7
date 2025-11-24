@@ -1,4 +1,9 @@
+
 #app {
+  margin: 0 auto;
+}
+
+#installation {
   width: 90vh;
   background-color: rgb(123, 123, 123);
   height: 90vh;
