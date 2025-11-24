@@ -10,7 +10,7 @@ function Screen2 () {
           route('/screen3');
         };
         if (e.code === "Backspace") {
-            route('/');
+            route('/screen1');
         }
       }
   
