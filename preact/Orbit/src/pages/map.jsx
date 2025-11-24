@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from 'preact/hooks'
-import FilterPlanet from '../components/FilterPlanet'
+import FilterShape from '../components/FilterShape'
 import MapCanvas from '../components/MapCanvas'
 import './map.css'
 import projects from '../data/projects.json'
@@ -18,7 +18,7 @@ export default function Map() {
     
     const TRANSITION_DOMAINS = ['gezond', 'digitaal', 'ecologisch', 'leren', 'sociaal']
     
-    const filterPlanets = [
+    const filterShapes = [
         { id:"domain1", title: "gezond", bgColor: "red" },
         { id:"domain2", title: "digitaal", bgColor: "blue" },
         { id:"domain3", title: "ecologisch", bgColor: "green" },
@@ -27,9 +27,9 @@ export default function Map() {
         { id:"domain6", title: "overige", bgColor: "gray" },
     ]
     
-    const PLANET_COUNT = filterPlanets.length
+    const PLANET_COUNT = filterShapes.length
 
-    const selectedDomain = filterPlanets[selectedIndex].title
+    const selectedDomain = filterShapes[selectedIndex].title
     
     // Filter projects based on selected transitiedomein
     const filteredProjects = useMemo(() => {
@@ -67,8 +67,8 @@ export default function Map() {
     return(
         <div style={{ position: 'relative', width: '100%', height: '100%' }}>
             {/* Filter Planets positioned around the circle edge */}
-            {filterPlanets.map((planet, index) => {
-                const angle = (index / filterPlanets.length) * 360
+            {filterShapes.map((planet, index) => {
+                const angle = (index / filterShapes.length) * 360
                 const radius = FILTER_CONFIG.PLANET_RADIUS
                 const x = Math.cos((angle * Math.PI) / 180) * radius
                 const y = Math.sin((angle * Math.PI) / 180) * radius
@@ -83,7 +83,7 @@ export default function Map() {
                         transition: `opacity ${FILTER_CONFIG.OPACITY_TRANSITION}s ease`,
                         zIndex: 100
                     }}>
-                        <FilterPlanet id={planet.id} title={planet.title} bgColor={planet.bgColor}/>
+                        <FilterShape id={planet.id} title={planet.title} bgColor={planet.bgColor}/>
                     </div>
                 )
             })}

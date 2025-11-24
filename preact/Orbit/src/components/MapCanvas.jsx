@@ -3,7 +3,7 @@ import Planet from "./Planet"
 import { route } from 'preact-router'
 import './mapCanvas.css'
 
-// Constants for map configuration
+// map config
 const CONFIG = {
     VIEWPORT_SCALE: 0.9, // 90vh as percentage of window height
     CANVAS_MULTIPLIER: 2, // canvas size relative to viewport
