@@ -13,7 +13,7 @@ export default function Planet({id,bgColor, title}) {
     return(
         <>
             <Link href={`/project/${id}`} style={TextStyle}>
-                <div id={id} style={{width:'100px',height:"100px",borderRadius:"50%",background:bgColor, position:"absolute"}}>
+                <div id={id} style={{width:'100px',height:"100px",borderRadius:"50%",background:bgColor, position:"absolute", border: '2px solid #EBF6F9'}}>
                     <h3>{title}</h3>
                 </div>
             </Link>
