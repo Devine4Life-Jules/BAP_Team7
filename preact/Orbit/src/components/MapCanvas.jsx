@@ -3,7 +3,7 @@ import Planet from "./Planet"
 import { route } from 'preact-router'
 import './mapCanvas.css'
 
-// map config
+// Constants for map configuration
 const CONFIG = {
     VIEWPORT_SCALE: 0.9, // 90vh as percentage of window height
     CANVAS_MULTIPLIER: 2, // canvas size relative to viewport
@@ -256,7 +256,9 @@ export default function MapCanvas({ filteredProjects }) {
                             <Planet
                                 id={project.id}
                                 title={project.ccode}
-                                bgColor="green"
+                                bgColor="linear-gradient(134deg, #44C8F5 16.53%, rgba(73, 71, 129, 0.00) 79.49%)"
+
+
                             />
                         </div>
                     )
