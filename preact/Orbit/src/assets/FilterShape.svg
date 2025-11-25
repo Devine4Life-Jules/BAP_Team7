@@ -4,7 +4,7 @@
   <defs>
     <style>
       .st0 {
-        stroke: #000;
+        stroke: #fff;
         stroke-width: 1.5px;
       }
 
@@ -37,7 +37,7 @@
       }
 
       .st1, .st3 {
-        stroke: #330a35;
+        stroke: #fff;
       }
 
       .st7 {
@@ -45,7 +45,7 @@
       }
 
       .st2 {
-        stroke: #110911;
+        stroke: #fff;
       }
     </style>
     <clipPath id="clippath">
@@ -62,7 +62,6 @@
     </clipPath>
   </defs>
   <g id="Layer_1">
-    <circle class="st0" cx="996.3" cy="1002" r="981.6"/>
   </g>
   <g id="Filter_x5F_Leren">
     <g>

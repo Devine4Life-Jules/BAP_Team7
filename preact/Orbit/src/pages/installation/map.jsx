@@ -1,9 +1,9 @@
 import { useState, useEffect, useMemo } from 'preact/hooks'
-import FilterShape from '../../components/FilterShape'
 import MapCanvas from '../../components/MapCanvas'
 import './map.css'
 import projects from '../../data/projects.json'
 import { route } from 'preact-router'
+import FilterShapeSVG from '../../assets/FilterShape.svg?raw'
 
 // Constants for filter configuration
 const FILTER_CONFIG = {
@@ -20,10 +20,10 @@ export default function Map() {
     
     const filterShapes = [
         { id:"domain1", title: "gezond", bgColor: "red" },
-        { id:"domain2", title: "digitaal", bgColor: "blue" },
-        { id:"domain3", title: "ecologisch", bgColor: "green" },
-        { id:"domain4", title: "leren", bgColor: "purple" },
         { id:"domain5", title: "sociaal", bgColor: "orange" },
+        { id:"domain3", title: "ecologisch", bgColor: "green" },
+        { id:"domain2", title: "digitaal", bgColor: "blue" },
+        { id:"domain4", title: "leren", bgColor: "purple" },
     ]
     
     const PLANET_COUNT = filterShapes.length
@@ -56,32 +56,54 @@ export default function Map() {
         return () => window.removeEventListener('keydown', handleKeyDown)
     }, [PLANET_COUNT])
 
+    // Apply orange border to active filter in SVG
+    useEffect(() => {
+        const svgFilterIds = ['Filter_x5F_Gezond', 'Filter_x5F_Social', 'Filtere_x5F_Ecologisch', 'Filter_x5F_Digitaal', 'Filter_x5F_Leren']
+        
+        // Remove orange border from all filters
+        svgFilterIds.forEach(id => {
+            const element = document.getElementById(id)
+            if (element) {
+                const paths = element.querySelectorAll('path')
+                paths.forEach(path => {
+                    path.style.stroke = '#fff'
+                    path.style.transition = 'stroke 0.2s ease'
+                })
+            }
+        })
+        
+        // Add orange border to selected filter
+        const activeFilterId = svgFilterIds[selectedIndex]
+        const activeElement = document.getElementById(activeFilterId)
+        if (activeElement) {
+            const paths = activeElement.querySelectorAll('path')
+            paths.forEach(path => {
+                path.style.stroke = '#ff9500'
+                path.style.strokeWidth = '3'
+            })
+        }
+    }, [selectedIndex])
+
     return(
         <div style={{ position: 'relative', width: '100%', height: '100%' }}>
-            {/* Filter Planets positioned around the circle edge */}
-            {filterShapes.map((planet, index) => {
-                const angle = (index / filterShapes.length) * 360
-                const radius = FILTER_CONFIG.PLANET_RADIUS
-                const x = Math.cos((angle * Math.PI) / 180) * radius
-                const y = Math.sin((angle * Math.PI) / 180) * radius
-                
-                return (
-                    <div key={planet.id} style={{ 
-                        position: 'absolute', 
-                        left: `calc(50% + ${x}px)`, 
-                        top: `calc(50% + ${y}px)`, 
-                        transform: 'translate(-50%, -50%)',
-                        opacity: index === selectedIndex ? FILTER_CONFIG.SELECTED_OPACITY : FILTER_CONFIG.UNSELECTED_OPACITY,
-                        transition: `opacity ${FILTER_CONFIG.OPACITY_TRANSITION}s ease`,
-                        zIndex: 100
-                    }}>
-                        <FilterShape id={planet.id} title={planet.title} bgColor={planet.bgColor}/>
-                    </div>
-                )
-            })}
-            
             {/* MapCanvas for pannable project map */}
             <MapCanvas filteredProjects={filteredProjects} />
+            
+            {/* SVG Filter overlay - embed as inline SVG */}
+            <div 
+                style={{
+                    position: 'absolute',
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                    width: '100%',
+                    height: '100%',
+                    maxWidth: '90vh',
+                    maxHeight: '90vh',
+                    pointerEvents: 'none'
+                }}
+                dangerouslySetInnerHTML={{__html: FilterShapeSVG}}
+            />
         </div>
     )
 }
