@@ -5,7 +5,7 @@ import './mapCanvas.css'
 
 // Constants for map configuration
 const CONFIG = {
-    VIEWPORT_SCALE: 0.9, // 90vh as percentage of window height
+    VIEWPORT_SCALE: 1, // 90vh as percentage of window height
     CANVAS_MULTIPLIER: 2, // canvas size relative to viewport
     PAN_SPEED: 12, // pixels per arrow key press
     PLANET_RADIUS: 50, // approximate radius of a planet (100px diameter)

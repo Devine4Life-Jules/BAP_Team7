@@ -2,15 +2,12 @@ import projects from '../../data/projects.json'
 import { useEffect } from 'preact/hooks'
 import { route } from 'preact-router'
 
-export default function Project({id}){
+export default function ProjectDetails({id}){
 
     useEffect(() => {
         function handleKey(e) {
             if (e.code === 'Backspace') {
-                route(`/map`);
-            } else if (e.code === 'Space') {
-                e.preventDefault();
-                route(`/project/${id}/details`);
+                route(`/project/${id}`);
             };
         }
 
@@ -54,14 +51,19 @@ export default function Project({id}){
                 )}
             </div>
 
-            {project.teaserAbstract && (
-                <div className="teaser-abstract">
-                    <h3>Teaser</h3>
-                    <div dangerouslySetInnerHTML={{__html: project.teaserAbstract}} />
+            {project.abstract && (
+                <div className="full-abstract">
+                    <h3>Full Abstract</h3>
+                    <div dangerouslySetInnerHTML={{__html: project.abstract}} />
                 </div>
             )}
 
-
+            {project.keywords && (
+                <div className="keywords">
+                    <h3>Keywords</h3>
+                    <p>{project.keywords}</p>
+                </div>
+            )}
         </div>
     )
 }

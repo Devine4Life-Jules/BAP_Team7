@@ -7,14 +7,16 @@ import Screen3 from './onboarding/screen3'
 import Map from './map'
 import Article from './Article'
 import Project from './Project'
+import ProjectDetails from './ProjectDetails'
 import { Router } from 'preact-router';
 import '../../app.css'
+import mainBg from '../../assets/mainBg.png'
 
 export function Installation() {
   
 
   return (
-    <div id="installation">
+    <div id="installation" style={{backgroundImage: `url(${mainBg})`, backgroundSize:'cover', backgroundPosition:'center', backgroundRepeat:'no-repeat'}}>
 
       <Router>
         <Screen1 path="/"/>
@@ -23,6 +25,7 @@ export function Installation() {
         <Map path="/map" />
         <Article path="/article/:id" />
         <Project path="/project/:id" />
+        <ProjectDetails path="/project/:id/details" />
       </Router> 
 
     </div>
