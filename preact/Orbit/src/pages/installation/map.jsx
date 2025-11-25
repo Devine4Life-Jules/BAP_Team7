@@ -24,7 +24,6 @@ export default function Map() {
         { id:"domain3", title: "ecologisch", bgColor: "green" },
         { id:"domain4", title: "leren", bgColor: "purple" },
         { id:"domain5", title: "sociaal", bgColor: "orange" },
-        { id:"domain6", title: "overige", bgColor: "gray" },
     ]
     
     const PLANET_COUNT = filterShapes.length
@@ -34,17 +33,10 @@ export default function Map() {
     // Filter projects based on selected transitiedomein
     const filteredProjects = useMemo(() => {
         return projects.filter(project => {
-            if (selectedDomain === 'overige') {
-                // Projects die geen van de 5 domeinen hebben
-                return !project.transitiedomeinen.some(td => 
-                    TRANSITION_DOMAINS.includes(td.label.toLowerCase())
-                )
-            } else {
-                // Projects die het geselecteerde domein hebben
-                return project.transitiedomeinen.some(td => 
-                    td.label.toLowerCase() === selectedDomain.toLowerCase()
-                )
-            }
+            // Projects die het geselecteerde domein hebben
+            return project.transitiedomeinen.some(td => 
+                td.label.toLowerCase() === selectedDomain.toLowerCase()
+            )
         })
     }, [selectedDomain])
     
