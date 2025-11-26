@@ -54,6 +54,16 @@ export default function Project({id}){
                         </div>
                     </div>
                 )}
+
+                {project.cluster && project.cluster !== "Clusteroverschrijdend" && (
+                    <div className="vakgebieden">
+                        <div className="pills">
+                            <span className="pill vakgebied">
+                                {project.cluster}
+                            </span>
+                        </div>
+                    </div>
+                )}
             </div>
 
             {project.teaserAbstract && (
