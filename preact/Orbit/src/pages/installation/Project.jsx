@@ -1,6 +1,9 @@
 import projects from '../../data/projects.json'
 import { useEffect } from 'preact/hooks'
 import { route } from 'preact-router'
+import Button from '../../components/Button';
+
+
 
 export default function Project({id}){
 
@@ -33,7 +36,7 @@ export default function Project({id}){
  
     return(
         <div className="project-detail">
-            <h2>{project.ccode} - {project.cdesc}</h2>
+            <h2>{project.ccode}</h2>
             
             <div className="project-info">
                 <p>
@@ -41,10 +44,6 @@ export default function Project({id}){
                     <span className="value">{project.researchGroup}</span>
                 </p>
                 
-                <p>
-                    <span className="label">Cluster:</span>
-                    <span className="value">{project.cluster}</span>
-                </p>
 
                 {transitiedomeinLabels && (
                     <p>
@@ -56,12 +55,11 @@ export default function Project({id}){
 
             {project.teaserAbstract && (
                 <div className="teaser-abstract">
-                    <h3>Teaser</h3>
                     <div dangerouslySetInnerHTML={{__html: project.teaserAbstract}} />
                 </div>
             )}
 
-
+            <Button icon={"check"} text={"Read More"}/>
         </div>
     )
 }
