@@ -28,11 +28,9 @@ export default function Project({id}){
         return <div>Project not found</div>
     }
 
-    // Extract transitiedomein labels (the ones with category "Transitiedomein")
-    const transitiedomeinLabels = project.transitiedomeinen
-        .filter(td => td.category === "Transitiedomein")
-        .map(td => td.label)
-        .join(", ");
+    // Extract transitiedomein items (the ones with category "Transitiedomein")
+    const transitiedomeinen = project.transitiedomeinen
+        .filter(td => td.category === "Transitiedomein");
  
     return(
         <div className="project-detail">
@@ -45,11 +43,16 @@ export default function Project({id}){
                 </p>
                 
 
-                {transitiedomeinLabels && (
-                    <p>
-                        <span className="label">Transitiedomein:</span>
-                        <span className="value">{transitiedomeinLabels}</span>
-                    </p>
+                {transitiedomeinen.length > 0 && (
+                    <div className="transitiedomeinen">
+                        <div className="pills">
+                            {transitiedomeinen.map((td, index) => (
+                                <span key={index} className={`pill ${td.label}`}>
+                                    {td.label}
+                                </span>
+                            ))}
+                        </div>
+                    </div>
                 )}
             </div>
 
