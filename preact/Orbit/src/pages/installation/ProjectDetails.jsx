@@ -1,6 +1,4 @@
 import projects from '../../data/projects.json'
-import { useEffect } from 'preact/hooks'
-import { route } from 'preact-router'
 import useKeyboardNavigation from '../../hooks/useNavigation';
 
 export default function ProjectDetails({id}){
