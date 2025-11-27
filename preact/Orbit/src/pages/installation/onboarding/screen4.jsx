@@ -3,15 +3,15 @@ import { useEffect } from "preact/hooks";
 import { route } from 'preact-router';
 
 
-function Screen3 () {
+function Screen4 () {
     useEffect(() => {
       function handleKey(e) {
         if (e.code === "Space") {
           e.preventDefault();
-          route('/screen4');
+          route('/map');
         };
         if (e.code === "Backspace") {
-            route('/screen2');
+            route('/screen3');
         }
       }
   
@@ -21,9 +21,9 @@ function Screen3 () {
     },);  
     return(
         <div className="onboarding-screen">
-            <p>Gebruik de draaiknop om te Filteren tussen de verschillende vakgebieden</p>
+            <p>Gebruik de joystick om te navigeren door ons universum van onderzoek en innovatie</p>
         </div>
     )
 }
 
-export default Screen3;
+export default Screen4;

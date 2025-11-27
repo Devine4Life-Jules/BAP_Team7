@@ -53,7 +53,6 @@ export default function ProjectDetails({id}){
 
             {project.abstract && (
                 <div className="full-abstract">
-                    <h3>Full Abstract</h3>
                     <div dangerouslySetInnerHTML={{__html: project.abstract}} />
                 </div>
             )}

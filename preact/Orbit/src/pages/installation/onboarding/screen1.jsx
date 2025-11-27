@@ -1,10 +1,12 @@
 import { useEffect } from 'preact/hooks';
 import { route } from 'preact-router';
+import Button from '../../../components/Button';
 
 export default function Screen1() {
   useEffect(() => {
     function handleKey(e) {
       if (e.code === "Space") {
+        e.preventDefault(); 
         route('/screen2');
       };
     }
@@ -15,8 +17,10 @@ export default function Screen1() {
   },);
 
   return (
-    <div>
-      <p>Screen 1 — press SPACE to continue</p>
+    <div className='onboarding-screen' >
+      <h1>ORBIT</h1>
+      <p>Lanceer je bedrijf naar de sterren met Howest Research</p>
+      <Button type="check" text="Start"></Button>
     </div>
   );
 }

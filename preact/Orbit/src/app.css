@@ -20,6 +20,18 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0 auto;
 }
 
+
+.onboarding-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+  gap: 20px;
+}
+
+
 .PhoneScreen {
   color: black;
 }
@@ -49,6 +61,33 @@ h1, h2, h3, h4, h5, h6 {
   padding-bottom: 1rem;
 
 }
+
+.teaser-abstract {
+  width: 70%;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+  border-left: 1px solid white;
+  border-right: 1px solid white;
+  border-bottom: 1px solid white;
+  border-radius: 30px;
+  background: linear-gradient(0deg, #494781 0%, rgba(73, 71, 129, 0.00) 94.23%);
+
+}
+
+.full-abstract {
+  width: 80%;
+  margin: 0 auto;
+  padding: 2rem;;
+  border-left: 1px solid white;
+  border-right: 1px solid white;
+  border-top: 1px solid white;
+  border-radius: 30px;
+  background: linear-gradient(180deg, #494781 0%, rgba(73, 71, 129, 0.00) 84.62%);
+
+
+
+}
+
 
 .button-icon img {
   width: 100%;
