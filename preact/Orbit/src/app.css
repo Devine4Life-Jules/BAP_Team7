@@ -16,6 +16,10 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'VAGroundedstd-bold', sans-serif;
 }
 
+div img {
+  max-width: 100%;
+}
+
 #app {
   margin: 0 auto;
 }
