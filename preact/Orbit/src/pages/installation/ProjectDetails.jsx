@@ -1,20 +1,13 @@
 import projects from '../../data/projects.json'
 import { useEffect } from 'preact/hooks'
 import { route } from 'preact-router'
+import useKeyboardNavigation from '../../hooks/useNavigation';
 
 export default function ProjectDetails({id}){
 
-    useEffect(() => {
-        function handleKey(e) {
-            if (e.code === 'Backspace') {
-                route(`/project/${id}`);
-            };
-        }
+    useKeyboardNavigation({back: `/project/${id}`, next: null});
 
-    window.addEventListener('keydown', handleKey);
 
-    return () => window.removeEventListener('keydown', handleKey);
-    }, [id]);
 
     const project = projects.find(p => String(p.id) === String(id))
     
@@ -22,15 +15,12 @@ export default function ProjectDetails({id}){
         return <div>Project not found</div>
     }
 
-    // Extract transitiedomein labels (the ones with category "Transitiedomein")
-    const transitiedomeinLabels = project.transitiedomeinen
-        .filter(td => td.category === "Transitiedomein")
-        .map(td => td.label)
-        .join(", ");
+    const transitiedomeinen = project.transitiedomeinen
+        .filter(td => td.category === "Transitiedomein");
  
     return(
         <div className="project-detail">
-            <h2>{project.ccode} - {project.cdesc}</h2>
+            <h2>{project.manager} - {project.cdesc}</h2>
             
             <div className="project-info">
                 <p>
@@ -38,16 +28,26 @@ export default function ProjectDetails({id}){
                     <span className="value">{project.researchGroup}</span>
                 </p>
                 
-                <p>
-                    <span className="label">Cluster:</span>
-                    <span className="value">{project.cluster}</span>
-                </p>
+                {project.cluster && project.cluster !== "Clusteroverschrijdend" && (
+                    <div className="vakgebieden">
+                        <div className="pills">
+                            <span className="pill vakgebied">
+                                {project.cluster}
+                            </span>
+                        </div>
+                    </div>
+                )}
 
-                {transitiedomeinLabels && (
-                    <p>
-                        <span className="label">Transitiedomein:</span>
-                        <span className="value">{transitiedomeinLabels}</span>
-                    </p>
+                {transitiedomeinen.length > 0 && (
+                    <div className="transitiedomeinen">
+                        <div className="pills">
+                            {transitiedomeinen.map((td, index) => (
+                                <span key={index} className={`pill ${td.label}`}>
+                                    {td.label}
+                                </span>
+                            ))}
+                        </div>
+                    </div>
                 )}
             </div>
 

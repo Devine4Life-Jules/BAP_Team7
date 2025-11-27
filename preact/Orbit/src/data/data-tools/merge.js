@@ -59,7 +59,8 @@ const abstractsById = {};
 abstracts.forEach(row => {
   abstractsById[row.ID] = {
     abstract: row.Abstract || "",
-    teaserAbstract: row.TeaserAbstractForWebsite || ""
+    teaserAbstract: row.TeaserAbstractForWebsite || "",
+    projectManager: row.DossierManagerFullName || ""
   };
 });
 
@@ -87,6 +88,7 @@ const result = globaal.map(row => {
     flowPhase: row.FlowPhaseLabel,
     yearBC: row['Jaar BC'],
     approvedTimestamp: row.ApprovedByManagementTimestamp,
+    projectManager: abstractsById[id]?.projectManager || "",
     // add related tables
     transitiedomeinen: transitieById[id] || [],
     keywords: keywordsById[id] || [],

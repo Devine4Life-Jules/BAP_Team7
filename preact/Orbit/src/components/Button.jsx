@@ -6,7 +6,7 @@ export default function Button ({icon, text}) {
     const chooseIcon = icon === 'back' ? backIcon : checkIcon;
 
     return (
-        <div className="button">
+        <div className="button" syle={{backGroundColor: 'purple'}}>
             <div className="button-icon"><img src={chooseIcon} alt="button Icon" /></div>
             <span className="button-text">{text}</span>
         </div>

@@ -52,18 +52,22 @@ div img {
 .button {
   background-color: rgba(193, 184, 184, 0.3);
   display: flex;
+  gap: 10px;
   justify-content: center;
-  padding: 10px;
+  align-items: center;
   border-radius: 15px;
-  border: 1px solid white;
+  padding: .3rem;
   height: 3vh;
   width: fit-content;
+  width: 70px;
 }
 
 .button-icon {
-  max-width: 30px;
-  padding-bottom: 1rem;
-
+  max-width: 25 px;
+  aspect-ratio: 1/1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .teaser-abstract {

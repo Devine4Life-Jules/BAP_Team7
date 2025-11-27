@@ -1,27 +1,17 @@
+import Button from '../../../components/Button';
+import useKeyboardNavigation from "../../../hooks/useNavigation";
 
-import { useEffect } from "preact/hooks";
-import { route } from 'preact-router';
 
 
 function Screen3 () {
-    useEffect(() => {
-      function handleKey(e) {
-        if (e.code === "Space") {
-          e.preventDefault();
-          route('/screen4');
-        };
-        if (e.code === "Backspace") {
-            route('/screen2');
-        }
-      }
-  
-      window.addEventListener('keydown', handleKey);
-  
-      return () => window.removeEventListener('keydown', handleKey);
-    },);  
+    useKeyboardNavigation({back: '/screen2', next: '/screen4'});
     return(
         <div className="onboarding-screen">
             <p>Gebruik de draaiknop om te Filteren tussen de verschillende vakgebieden</p>
+            <div style={{display: 'flex', gap: '20px'}}>
+              <Button icon="back" text="back"></Button>
+              <Button icon="check" text="Next"></Button>
+            </div>
         </div>
     )
 }

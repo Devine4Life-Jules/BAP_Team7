@@ -6,7 +6,6 @@ import Screen2 from './onboarding/screen2'
 import Screen3 from './onboarding/screen3'
 import Screen4 from './onboarding/screen4'
 import Map from './map'
-import Article from './Article'
 import Project from './Project'
 import ProjectDetails from './ProjectDetails'
 import { Router } from 'preact-router';
@@ -25,7 +24,6 @@ export function Installation() {
         <Screen3 path="/screen3"/>
         <Screen4 path="/screen4"/>
         <Map path="/map" />
-        <Article path="/article/:id" />
         <Project path="/project/:id" />
         <ProjectDetails path="/project/:id/details" />
       </Router> 

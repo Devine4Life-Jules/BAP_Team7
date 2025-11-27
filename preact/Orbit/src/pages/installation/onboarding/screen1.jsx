@@ -2,20 +2,10 @@ import { useEffect } from 'preact/hooks';
 import { route } from 'preact-router';
 import Button from '../../../components/Button';
 import logoHowestResearch from '../../../assets/logo_howestResearch.png'
+import useKeyboardNavigation from "../../../hooks/useNavigation";
 
 export default function Screen1() {
-  useEffect(() => {
-    function handleKey(e) {
-      if (e.code === "Space") {
-        e.preventDefault(); 
-        route('/screen2');
-      };
-    }
-
-    window.addEventListener('keydown', handleKey);
-
-    return () => window.removeEventListener('keydown', handleKey);
-  },);
+  useKeyboardNavigation({next: '/screen2', back: null});
 
   return (
     <div className='onboarding-screen' >
