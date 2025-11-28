@@ -38,9 +38,9 @@ export default function ProjectDetails({id}){
 
                 {transitiedomeinen.length > 0 && (
                     <div className="transitiedomeinen">
-                        <div className="pills">
+                        <div className="domains">
                             {transitiedomeinen.map((td, index) => (
-                                <span key={index} className={`pill ${td.label}`}>
+                                <span key={index} className={`domain ${td.label}`}>
                                     {td.label}
                                 </span>
                             ))}

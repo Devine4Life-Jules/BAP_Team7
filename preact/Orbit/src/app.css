@@ -70,6 +70,23 @@ div img {
   justify-content: center;
 }
 
+.domains {
+  position: absolute;
+}
+
+
+.domain {
+  border: 2px solid #44A69D;
+  background: linear-gradient(181deg, #44A69D 1.69%, rgba(68, 166, 157, 0.30) 99.29%);
+  backdrop-filter:  blur(12.809999465942383px);;
+  aspect-ratio: 1/1;
+  height: 100px;
+  display: block;
+  border-radius: 50%;
+}
+
+
+
 .teaser-abstract {
   width: 70%;
   margin: 0 auto;

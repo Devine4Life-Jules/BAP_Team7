@@ -52,7 +52,7 @@ THRESHOLD_HIGH = CENTER + DEADZONE
 
 last_direction = None
 
-print("Joystick + Rotary Encoder Ready!")
+print("controller ready")
 print("=" * 50)
 
 try:
