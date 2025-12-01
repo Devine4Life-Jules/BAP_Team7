@@ -18,13 +18,10 @@ export default function ProjectDetails({id}){
  
     return(
         <div className="project-detail">
-            <h2>{project.manager} - {project.cdesc}</h2>
+            <h2>{project.ccode}</h2>
             
             <div className="project-info">
-                <p>
-                    <span className="label">Research Group:</span>
-                    <span className="value">{project.researchGroup}</span>
-                </p>
+               
                 
                 {project.cluster && project.cluster !== "Clusteroverschrijdend" && (
                     <div className="vakgebieden">
@@ -55,12 +52,6 @@ export default function ProjectDetails({id}){
                 </div>
             )}
 
-            {project.keywords && (
-                <div className="keywords">
-                    <h3>Keywords</h3>
-                    <p>{project.keywords}</p>
-                </div>
-            )}
         </div>
     )
 }

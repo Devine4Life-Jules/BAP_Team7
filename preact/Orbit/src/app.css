@@ -76,15 +76,51 @@ div img {
 
 
 .domain {
-  border: 2px solid #44A69D;
-  background: linear-gradient(181deg, #44A69D 1.69%, rgba(68, 166, 157, 0.30) 99.29%);
-  backdrop-filter:  blur(12.809999465942383px);;
+
   aspect-ratio: 1/1;
   height: 100px;
   display: block;
   border-radius: 50%;
 }
 
+.domain.gezond {
+    border: 2px solid  #E488AC;
+  background: linear-gradient(181deg, #E488AC 1.69%, rgba(228, 136, 172, 0.30) 99.29%);
+  backdrop-filter:  blur(12.809999465942383px);
+
+}
+
+.domain.gezond {
+    border: 2px solid  #E488AC;
+  background: linear-gradient(181deg, #E488AC 1.69%, rgba(228, 136, 172, 0.30) 99.29%);
+  backdrop-filter:  blur(12.809999465942383px);
+
+}
+
+.domain.leren {
+    border: 2px solid  #F8E371;
+  background: linear-gradient(181deg, #F8E371 1.69%, rgba(248, 227, 113, 0.30) 99.29%);
+  backdrop-filter:  blur(12.809999465942383px);
+}
+
+.domain.digitaal {
+  border: 2px solid #44A69D;
+  background: linear-gradient(181deg, #44A69D 1.69%, rgba(68, 166, 157, 0.30) 99.29%);
+  backdrop-filter:  blur(12.809999465942383px);
+}
+
+.domain.ecologisch
+ {
+  border: 2px solid #4ea644;
+  background: linear-gradient(181deg, #4ea644 1.69%, rgba(68, 166, 68, 0.30) 99.29%);
+  backdrop-filter:  blur(12.809999465942383px);
+}
+
+.domain.sociaal {
+  border: 2px solid #780f8b;
+  background: linear-gradient(181deg, #780f8b 1.69%, rgba(255, 127, 50, 0.30) 99.29%);
+  backdrop-filter:  blur(12.809999465942383px);
+}
 
 
 .teaser-abstract {
@@ -100,13 +136,15 @@ div img {
 }
 
 .full-abstract {
-  width: 80%;
+  width: 70%;
   margin: 0 auto;
-  padding: 2rem;;
+  padding: 1em 2.3rem;
+  font-size: .875rem;
   border-left: 1px solid white;
   border-right: 1px solid white;
   border-top: 1px solid white;
   border-radius: 30px;
+  text-align: left;
   background: linear-gradient(180deg, #494781 0%, rgba(73, 71, 129, 0.00) 84.62%);
 
 

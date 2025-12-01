@@ -1,6 +1,4 @@
 import projects from '../../data/projects.json'
-import { useEffect } from 'preact/hooks'
-import { route } from 'preact-router'
 import Button from '../../components/Button';
 import useKeyboardNavigation from '../../hooks/useNavigation';
 
@@ -8,20 +6,7 @@ import useKeyboardNavigation from '../../hooks/useNavigation';
 
 export default function Project({id}){
 
-    // useEffect(() => {
-    //     function handleKey(e) {
-    //         if (e.code === 'Backspace') {
-    //             route(`/map`);
-    //         } else if (e.code === 'Space') {
-    //             e.preventDefault();
-    //             route(`/project/${id}/details`);
-    //         };
-    //     }
 
-    // window.addEventListener('keydown', handleKey);
-
-    // return () => window.removeEventListener('keydown', handleKey);
-    // }, [id]);
     useKeyboardNavigation({back: '/map', next: `/project/${id}/details`});
 
     const project = projects.find(p => String(p.id) === String(id))

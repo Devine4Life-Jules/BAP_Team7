@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from 'preact/hooks'
+import { useState, useEffect, useMemo, useRef } from 'preact/hooks'
 import MapCanvas from '../../components/MapCanvas'
 import './map.css'
 import projects from '../../data/projects.json'
@@ -15,7 +15,13 @@ const FILTER_CONFIG = {
 
 export default function Map() {
     const [selectedIndex, setSelectedIndex] = useState(0)
+    const qrcodeRef = useRef(null)
     
+    // Generate URL dynamically using current host (IP or localhost)
+    const url = `${window.location.protocol}//${window.location.host}/phone/contact`
+    console.log("Current URL:", url);
+
+
     const TRANSITION_DOMAINS = ['gezond', 'digitaal', 'ecologisch', 'leren', 'sociaal']
     
     const filterShapes = [
@@ -56,6 +62,25 @@ export default function Map() {
         return () => window.removeEventListener('keydown', handleKeyDown)
     }, [PLANET_COUNT])
 
+    // Generate QR code when component mounts or URL changes
+    useEffect(() => {
+        // Check if QRCode library is available and ref is ready
+        if (typeof window.QRCode !== 'undefined' && qrcodeRef.current) {
+            // Clear previous QR code if any
+            qrcodeRef.current.innerHTML = ''
+            
+            // Generate new QR code
+            new window.QRCode(qrcodeRef.current, {
+                text: url,
+                width: 256,
+                height: 256,
+                colorDark: "#000000",
+                colorLight: "#ffffff",
+                correctLevel: window.QRCode.CorrectLevel.H
+            })
+        }
+    }, [url])
+
     // Apply orange border to active filter in SVG
     useEffect(() => {
         const svgFilterIds = ['Filter_x5F_Gezond', 'Filter_x5F_Social', 'Filtere_x5F_Ecologisch', 'Filter_x5F_Digitaal', 'Filter_x5F_Leren']
@@ -88,6 +113,22 @@ export default function Map() {
         <div style={{ position: 'relative', width: '100%', height: '100%' }}>
             {/* MapCanvas for pannable project map */}
             <MapCanvas filteredProjects={filteredProjects} />
+            
+            {/* QR Code overlay */}
+            <div 
+                ref={qrcodeRef}
+                id="qrcode"
+                style={{
+                    position: 'absolute',
+                    top: '20px',
+                    right: '20px',
+                    background: 'white',
+                    padding: '15px',
+                    borderRadius: '12px',
+                    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+                    zIndex: 1000
+                }}
+            />
             
             {/* SVG Filter overlay - embed as inline SVG */}
             <div 
