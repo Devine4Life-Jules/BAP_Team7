@@ -18,7 +18,6 @@ export default function Map() {
     const qrcodeRef = useRef(null)
     
     const url = `${window.location.protocol}//${window.location.host}/phone/contact`
-    console.log("Current URL:", url);
 
 
     const TRANSITION_DOMAINS = ['gezond', 'digitaal', 'ecologisch', 'leren', 'sociaal']

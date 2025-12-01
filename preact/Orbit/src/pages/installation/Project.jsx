@@ -1,13 +1,33 @@
+import { useEffect, useRef } from 'preact/hooks'
 import projects from '../../data/projects.json'
 import Button from '../../components/Button';
 import useKeyboardNavigation from '../../hooks/useNavigation';
 
-
-
 export default function Project({id}){
-
-
+    const qrcodeRef = useRef(null)
+    
+    const url = `${window.location.protocol}//${window.location.host}/phone/project`
+    
     useKeyboardNavigation({back: '/map', next: `/project/${id}/details`});
+    
+    // Generate QR code when component mounts or URL changes
+    useEffect(() => {
+        // Check if QRCode library is available and ref is ready
+        if (typeof window.QRCode !== 'undefined' && qrcodeRef.current) {
+            // Clear previous QR code if any
+            qrcodeRef.current.innerHTML = ''
+            
+            // Generate new QR code
+            new window.QRCode(qrcodeRef.current, {
+                text: url,
+                width: 256,
+                height: 256,
+                colorDark: "#000000",
+                colorLight: "#ffffff",
+                correctLevel: window.QRCode.CorrectLevel.H
+            })
+        }
+    }, [url]);
 
     const project = projects.find(p => String(p.id) === String(id))
     
@@ -20,7 +40,24 @@ export default function Project({id}){
         .filter(td => td.category === "Transitiedomein");
  
     return(
-        <div className="project-detail">
+        <div className="project-detail" style={{ position: 'relative' }}>
+            {/* QR Code overlay */}
+            <div 
+                ref={qrcodeRef}
+                id="qrcode"
+                style={{
+                    position: 'absolute',
+                    top: '20px',
+                    left: '50%',
+                    transform: 'translateX(-50%)',
+                    background: 'white',
+                    padding: '15px',
+                    borderRadius: '12px',
+                    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+                    zIndex: 1000
+                }}
+            />
+            
             <h2>{project.ccode}</h2>
             
             <div className="project-info">
