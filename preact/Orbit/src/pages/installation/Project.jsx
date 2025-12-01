@@ -6,18 +6,14 @@ import useKeyboardNavigation from '../../hooks/useNavigation';
 export default function Project({id}){
     const qrcodeRef = useRef(null)
     
-    const url = `${window.location.protocol}//${window.location.host}/phone/project`
+    const url = `${window.location.protocol}//${window.location.host}/phone/project/${id}`
     
     useKeyboardNavigation({back: '/map', next: `/project/${id}/details`});
     
-    // Generate QR code when component mounts or URL changes
     useEffect(() => {
-        // Check if QRCode library is available and ref is ready
         if (typeof window.QRCode !== 'undefined' && qrcodeRef.current) {
-            // Clear previous QR code if any
             qrcodeRef.current.innerHTML = ''
             
-            // Generate new QR code
             new window.QRCode(qrcodeRef.current, {
                 text: url,
                 width: 256,

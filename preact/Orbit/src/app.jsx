@@ -17,7 +17,7 @@ export function App() {
         <Installation path="/" default/>
         <PhoneContact path="/phone/contact" />
         <PhoneFavourites path="/phone/favourites" />
-        <PhoneProject path="/phone/project" />
+        <PhoneProject path="/phone/project/:id" />
       </Router>
 
     </>
