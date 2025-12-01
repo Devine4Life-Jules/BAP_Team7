@@ -17,7 +17,6 @@ export default function Map() {
     const [selectedIndex, setSelectedIndex] = useState(0)
     const qrcodeRef = useRef(null)
     
-    // Generate URL dynamically using current host (IP or localhost)
     const url = `${window.location.protocol}//${window.location.host}/phone/contact`
     console.log("Current URL:", url);
 
@@ -120,11 +119,13 @@ export default function Map() {
                 id="qrcode"
                 style={{
                     position: 'absolute',
-                    top: '20px',
-                    right: '20px',
+                    top: '75vh',
+                    left: '50%',
+                    transform: 'translateX(-50%)',
                     background: 'white',
-                    padding: '15px',
-                    borderRadius: '12px',
+                    width: '10vh',
+                    padding: '10px',
+                    borderRadius: '25px',
                     boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
                     zIndex: 1000
                 }}

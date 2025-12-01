@@ -1,8 +1,11 @@
 import PhoneNav from "../../components/PhoneNav"
+import './phone.css'
+
+
 
 export default function PhoneProject(){
     return(
-        <div className="PhoneScreen">
+        <div className="phoneScreen">
             phone project
             <PhoneNav />
         </div>
