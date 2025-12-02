@@ -15,7 +15,10 @@ const FILTER_CONFIG = {
 
 export default function Map() {
     const [selectedIndex, setSelectedIndex] = useState(0)
+    const [fps, setFps] = useState(0)
     const qrcodeRef = useRef(null)
+    const frameCountRef = useRef(0)
+    const lastTimeRef = useRef(performance.now())
     
     const url = `${window.location.protocol}//${window.location.host}/phone/contact`
 
@@ -43,6 +46,32 @@ export default function Map() {
             )
         })
     }, [selectedDomain])
+    
+    // FPS counter
+    useEffect(() => {
+        let animationFrameId
+        
+        const calculateFPS = () => {
+            const now = performance.now()
+            frameCountRef.current++
+            
+            const elapsed = now - lastTimeRef.current
+            
+            // Update FPS every second
+            if (elapsed >= 1000) {
+                const currentFps = Math.round((frameCountRef.current * 1000) / elapsed)
+                setFps(currentFps)
+                frameCountRef.current = 0
+                lastTimeRef.current = now
+            }
+            
+            animationFrameId = requestAnimationFrame(calculateFPS)
+        }
+        
+        animationFrameId = requestAnimationFrame(calculateFPS)
+        
+        return () => cancelAnimationFrame(animationFrameId)
+    }, [])
     
     // Handle filter planet selection with arrow keys
     useEffect(() => {
@@ -111,6 +140,26 @@ export default function Map() {
         <div style={{ position: 'relative', width: '100%', height: '100%' }}>
             {/* MapCanvas for pannable project map */}
             <MapCanvas filteredProjects={filteredProjects} />
+            
+            {/* FPS Counter */}
+            <div
+                style={{
+                    position: 'absolute',
+                    top: '10px',
+                    right: '10px',
+                    background: 'rgba(0, 0, 0, 0.7)',
+                    color: '#00ff00',
+                    padding: '8px 12px',
+                    borderRadius: '4px',
+                    fontFamily: 'monospace',
+                    fontSize: '16px',
+                    fontWeight: 'bold',
+                    zIndex: 2000,
+                    pointerEvents: 'none'
+                }}
+            >
+                FPS: {fps}
+            </div>
             
             {/* QR Code overlay */}
             <div 
