@@ -14,8 +14,8 @@ const CONFIG = {
     SPIRAL_RADIUS_INCREMENT: 15, // increment per project in spiral
     GOLDEN_ANGLE: 137.5, // golden angle for deterministic spiral distribution
     MAX_POSITIONING_ATTEMPTS: 100, // max attempts to find non-overlapping position
-    INERTIA_FRICTION: 0.88, // velocity multiplier per frame (~half second decay at 60fps)
-    INERTIA_MIN_VELOCITY: 0.01, // minimum velocity threshold before stopping
+    INERTIA_FRICTION: 0.85, // velocity multiplier per frame (reduced for Pi performance)
+    INERTIA_MIN_VELOCITY: 0.1, // minimum velocity threshold before stopping (higher = stops faster)
 }
 
 export default function MapCanvas({ filteredProjects }) {
@@ -26,6 +26,7 @@ export default function MapCanvas({ filteredProjects }) {
     const [velocityY, setVelocityY] = useState(0)
     const viewportRef = useRef(null)
     const animationFrameRef = useRef(null)
+    const isRaspberryPi = useRef(/arm|aarch64/i.test(navigator.userAgent) || navigator.hardwareConcurrency <= 4)
 
     // Using 90vh as viewport size (matches app container)
     const VIEWPORT_WIDTH = window.innerHeight * CONFIG.VIEWPORT_SCALE
@@ -242,27 +243,23 @@ export default function MapCanvas({ filteredProjects }) {
                     const isSelected = project.id === selectedProjectId
 
                     // Calculate distance from the center point (white dot at viewport center)
-                    // The center point is at viewport center (50%, 50%)
-                    const viewportCenterX = VIEWPORT_WIDTH / 2
-                    const viewportCenterY = VIEWPORT_HEIGHT / 2
-                    
                     // Planet's position on screen after applying canvas offset
-                    // Canvas is centered at viewport center with offset applied
                     const planetScreenX = pos.x - CANVAS_WIDTH / 2 - offsetX
                     const planetScreenY = pos.y - CANVAS_HEIGHT / 2 - offsetY
                     
                     // Distance from planet to viewport center (where the white dot is)
                     const distanceFromCenter = Math.sqrt(
-                        Math.pow(planetScreenX, 2) + 
-                        Math.pow(planetScreenY, 2)
+                        planetScreenX * planetScreenX + 
+                        planetScreenY * planetScreenY
                     )
                     
                     // Calculate opacity with dramatic falloff
-                    // Using exponential curve for more contrast
                     const maxFadeDistance = VIEWPORT_WIDTH * 0.5
                     const normalizedDistance = Math.min(distanceFromCenter / maxFadeDistance, 1)
-                    // Quadratic falloff for dramatic contrast (1 - x^2)
-                    const opacityValue = Math.max(0.05, 1 - Math.pow(normalizedDistance, 1.5))
+                    // Quadratic falloff for dramatic contrast
+                    const rawOpacity = Math.max(0.05, 1 - Math.pow(normalizedDistance, 1.5))
+                    // Round to 0.05 increments to reduce CSS changes (0.05, 0.10, 0.15, etc.)
+                    const opacityValue = isRaspberryPi.current ? Math.round(rawOpacity * 20) / 20 : rawOpacity
 
                     return (
                         <div
