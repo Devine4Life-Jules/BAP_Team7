@@ -241,6 +241,29 @@ export default function MapCanvas({ filteredProjects }) {
 
                     const isSelected = project.id === selectedProjectId
 
+                    // Calculate distance from the center point (white dot at viewport center)
+                    // The center point is at viewport center (50%, 50%)
+                    const viewportCenterX = VIEWPORT_WIDTH / 2
+                    const viewportCenterY = VIEWPORT_HEIGHT / 2
+                    
+                    // Planet's position on screen after applying canvas offset
+                    // Canvas is centered at viewport center with offset applied
+                    const planetScreenX = pos.x - CANVAS_WIDTH / 2 - offsetX
+                    const planetScreenY = pos.y - CANVAS_HEIGHT / 2 - offsetY
+                    
+                    // Distance from planet to viewport center (where the white dot is)
+                    const distanceFromCenter = Math.sqrt(
+                        Math.pow(planetScreenX, 2) + 
+                        Math.pow(planetScreenY, 2)
+                    )
+                    
+                    // Calculate opacity with dramatic falloff
+                    // Using exponential curve for more contrast
+                    const maxFadeDistance = VIEWPORT_WIDTH * 0.5
+                    const normalizedDistance = Math.min(distanceFromCenter / maxFadeDistance, 1)
+                    // Quadratic falloff for dramatic contrast (1 - x^2)
+                    const opacityValue = Math.max(0.05, 1 - Math.pow(normalizedDistance, 1.5))
+
                     return (
                         <div
                             key={project.id}
@@ -257,8 +280,7 @@ export default function MapCanvas({ filteredProjects }) {
                                 id={project.id}
                                 title={project.ccode}
                                 bgColor="linear-gradient(134deg, #44C8F5 16.53%, rgba(73, 71, 129, 0.00) 79.49%)"
-
-
+                                opacity={opacityValue}
                             />
                         </div>
                     )
