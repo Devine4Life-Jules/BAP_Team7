@@ -91,15 +91,21 @@ try:
                 current_direction = uinput.KEY_UP
         
         if current_direction != last_direction:
+            # Release the previous key if there was one
+            if last_direction:
+                device.emit(last_direction, 0)
+                print(f"Joystick: Released")
+            
+            # Press the new key if there is one
             if current_direction:
-                device.emit_click(current_direction)
+                device.emit(current_direction, 1)
                 key_name = {
                     uinput.KEY_UP: "UP",
                     uinput.KEY_DOWN: "DOWN",
                     uinput.KEY_LEFT: "LEFT",
                     uinput.KEY_RIGHT: "RIGHT"
                 }.get(current_direction, "")
-                print(f"Joystick: {key_name}")
+                print(f"Joystick: {key_name} pressed")
             
             last_direction = current_direction
         
