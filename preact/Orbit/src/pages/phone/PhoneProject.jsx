@@ -1,5 +1,6 @@
 import PhoneNav from "../../components/PhoneNav"
 import projects from '../../data/projects.json'
+import dummyImage from '../../assets/dummyImage.png'
 import { Link } from "preact-router"
 import './phone.css'
 
@@ -23,7 +24,7 @@ export default function PhoneProject({id}){
                   <Link href='/phone/contact'>Contact page</Link>
              </div>
              <div>
-                <img src={project.image} alt="project image" />
+                <img src={dummyImage} alt="project image" />
              </div>
              <div>
                 <h2>Abstract</h2>

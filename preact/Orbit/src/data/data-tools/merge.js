@@ -55,13 +55,43 @@ transitie.forEach(row => {
   });
 });
 
+// Function to decode base64-encoded UTF-8 data URI (following C# code logic)
+function decodeBase64DataUri(base64String) {
+  if (!base64String || base64String.length === 0) {
+    return "";
+  }
+  
+  if (base64String.startsWith('data:')) {
+    return base64String; // Already decoded
+  }
+  
+  try {
+    // Step 1: Decode base64 to UTF-8 string (Node.js Buffer can handle this)
+    const utf8String = Buffer.from(base64String, 'base64').toString('utf-8');
+    
+    // Step 2: Check if it's a valid data URI
+    if (utf8String.startsWith('data:image/')) {
+      console.log(`✅ Decoded image data URI (length: ${utf8String.length})`);
+      return utf8String;
+    } else {
+      console.warn(`⚠️ Decoded string doesn't start with data:image/ - first 50 chars: ${utf8String.substring(0, 50)}`);
+      return "";
+    }
+  } catch (err) {
+    console.error('❌ Error decoding base64:', err.message);
+    return "";
+  }
+}
+
 const abstractsById = {};
 abstracts.forEach(row => {
+  const pictureData = row.PictureCommunication || "";
+  
   abstractsById[row.ID] = {
     abstract: row.Abstract || "",
     teaserAbstract: row.TeaserAbstractForWebsite || "",
     projectManager: row.DossierManagerFullName || "",
-    pictureUrl: row.PictureCommunication || ""
+    pictureUrl: decodeBase64DataUri(pictureData)
   };
 });
 
