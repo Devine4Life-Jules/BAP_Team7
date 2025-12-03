@@ -85,16 +85,17 @@ export default function PhoneContact(){
             )}
 
             <form onSubmit={handleSubmit}>
-                <label htmlFor="companyName">Company Name</label>
+                <label style={{display: 'block'}} htmlFor="companyName">Company Name</label>
                 <input 
                     name="companyName" 
                     id="companyName"
+                    style={{display: 'block'}}
                     value={companyName}
                     onChange={(e) => setCompanyName(e.target.value)}
                     required
                 />
                 
-                <label htmlFor="contactName">Contact Name</label>
+                <label htmlFor="contactName" style={{display: 'block'}}>Contact Name</label>
                 <input 
                     name="contactName"
                     id="contactName" 
@@ -103,9 +104,10 @@ export default function PhoneContact(){
                     required
                 />
                 
-                <label htmlFor="email">Email</label>
+                <label htmlFor="email" style={{display: 'block'}}>Email</label>
                 <input 
                     name="email" 
+                    style={{display: 'block'}}
                     id="email"
                     type="email"
                     value={email}
@@ -113,9 +115,10 @@ export default function PhoneContact(){
                     required
                 />
                 
-                <label htmlFor="message">Message</label>
+                <label htmlFor="message" style={{display: 'block'}}>Message</label>
                 <textarea 
                     name="message"
+                    style={{display: 'block'}}
                     id="message" 
                     rows="4"
                     value={message}
@@ -127,6 +130,7 @@ export default function PhoneContact(){
                     type="submit" 
                     disabled={isSubmitting}
                     style={{
+                        display: 'block',
                         opacity: isSubmitting ? 0.6 : 1,
                         cursor: isSubmitting ? 'not-allowed' : 'pointer'
                     }}
