@@ -46,11 +46,12 @@ export default function Project({id}){
                 id="qrcode"
                 style={{
                     position: 'absolute',
-                    top: '20px',
+                    top: '75vh',
+                    width: '10vh',
                     left: '50%',
                     transform: 'translateX(-50%)',
                     background: 'white',
-                    padding: '15px',
+                    padding: '8px',
                     borderRadius: '12px',
                     boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
                     zIndex: 1000
