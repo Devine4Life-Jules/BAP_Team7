@@ -2,7 +2,7 @@ import { Link } from "preact-router"
 
 import PlanetBg from '../assets/planet.png'
 
-export default function Planet({id, bgColor, title, opacity = 1}) {
+export default function Planet({id, bgColor, title}) {
 
     const TextStyle = {
         textDecoration: 'none',
@@ -11,10 +11,6 @@ export default function Planet({id, bgColor, title, opacity = 1}) {
         textAlign: 'center',
         backgroundColor:'red',
     };
-    
-    // Faster transitions for low-end devices
-    const isLowEnd = /arm|aarch64/i.test(navigator.userAgent) || navigator.hardwareConcurrency <= 4
-    const transitionSpeed = isLowEnd ? '0.15s' : '0.3s'
 
     return(
         <>
@@ -28,10 +24,7 @@ export default function Planet({id, bgColor, title, opacity = 1}) {
                     backgroundSize:'cover', 
                     display:'flex', 
                     alignItems:'center', 
-                    justifyContent:'center',
-                    opacity: opacity,
-                    transition: `opacity ${transitionSpeed} ease`,
-                    willChange: 'opacity'
+                    justifyContent:'center'
                 }}>
                     <h3>{title}</h3>
                 </div>

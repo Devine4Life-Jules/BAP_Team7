@@ -242,25 +242,6 @@ export default function MapCanvas({ filteredProjects }) {
 
                     const isSelected = project.id === selectedProjectId
 
-                    // Calculate distance from the center point (white dot at viewport center)
-                    // Planet's position on screen after applying canvas offset
-                    const planetScreenX = pos.x - CANVAS_WIDTH / 2 - offsetX
-                    const planetScreenY = pos.y - CANVAS_HEIGHT / 2 - offsetY
-                    
-                    // Distance from planet to viewport center (where the white dot is)
-                    const distanceFromCenter = Math.sqrt(
-                        planetScreenX * planetScreenX + 
-                        planetScreenY * planetScreenY
-                    )
-                    
-                    // Calculate opacity with dramatic falloff
-                    const maxFadeDistance = VIEWPORT_WIDTH * 0.5
-                    const normalizedDistance = Math.min(distanceFromCenter / maxFadeDistance, 1)
-                    // Quadratic falloff for dramatic contrast
-                    const rawOpacity = Math.max(0.05, 1 - Math.pow(normalizedDistance, 1.5))
-                    // Round to 0.05 increments to reduce CSS changes (0.05, 0.10, 0.15, etc.)
-                    const opacityValue = isRaspberryPi.current ? Math.round(rawOpacity * 20) / 20 : rawOpacity
-
                     return (
                         <div
                             key={project.id}
@@ -277,7 +258,6 @@ export default function MapCanvas({ filteredProjects }) {
                                 id={project.id}
                                 title={project.ccode}
                                 bgColor="linear-gradient(134deg, #44C8F5 16.53%, rgba(73, 71, 129, 0.00) 79.49%)"
-                                opacity={opacityValue}
                             />
                         </div>
                     )
