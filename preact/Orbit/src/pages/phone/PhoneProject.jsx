@@ -7,10 +7,25 @@ import './phone.css'
 
 
 import { supabase } from '../../lib/supabase'
-const { data: projects } = await supabase.from('projects').select('*')
 
 
 export default function PhoneProject({id}){
+
+
+        const [projects, setProjects] = useState([])
+    const [loading, setLoading] = useState(true)
+    
+    useEffect(() => {
+        async function fetchProjects() {
+            const { data } = await supabase.from('projects').select('*')
+            setProjects(data || [])
+            setLoading(false)
+        }
+        fetchProjects()
+    }, [])
+    
+    if (loading) return <div>Loading...</div>
+
     const [isSaved, setIsSaved] = useState(false);
 
     const project = projects.find(p => String(p.id) === String(id));

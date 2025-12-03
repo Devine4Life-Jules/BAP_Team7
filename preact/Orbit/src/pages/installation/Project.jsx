@@ -4,9 +4,21 @@ import Button from '../../components/Button';
 import useKeyboardNavigation from '../../hooks/useNavigation';
 
 import { supabase } from '../../lib/supabase'
-const { data: projects } = await supabase.from('projects').select('*')
 
 export default function Project({id}){
+        const [projects, setProjects] = useState([])
+    const [loading, setLoading] = useState(true)
+    
+    useEffect(() => {
+        async function fetchProjects() {
+            const { data } = await supabase.from('projects').select('*')
+            setProjects(data || [])
+            setLoading(false)
+        }
+        fetchProjects()
+    }, [])
+    
+    if (loading) return <div>Loading...</div>
     const qrcodeRef = useRef(null)
     
     const url = `${window.location.protocol}//${window.location.host}/phone/project/${id}`

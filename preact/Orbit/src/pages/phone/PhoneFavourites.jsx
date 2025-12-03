@@ -4,11 +4,26 @@ import PhoneNav from "../../components/PhoneNav"
 // import projects from '../../data/projects.json'
 
 import { supabase } from '../../lib/supabase'
-const { data: projects } = await supabase.from('projects').select('*')
 
 import './phone.css'
 
 export default function PhoneFavourites(){
+
+
+    const [projects, setProjects] = useState([])
+    const [loading, setLoading] = useState(true)
+    
+    useEffect(() => {
+        async function fetchProjects() {
+            const { data } = await supabase.from('projects').select('*')
+            setProjects(data || [])
+            setLoading(false)
+        }
+        fetchProjects()
+    }, [])
+    
+    if (loading) return <div>Loading...</div>
+
     const [savedProjects, setSavedProjects] = useState([]);
 
     useEffect(() => {

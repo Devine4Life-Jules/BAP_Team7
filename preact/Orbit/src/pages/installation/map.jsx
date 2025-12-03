@@ -4,17 +4,13 @@ import MapCanvas from '../../components/MapCanvas'
 import { route } from 'preact-router'
 import FilterShapeSVG from '../../assets/FilterShape.svg?raw'
 import { supabase } from '../../lib/supabase'
-const { data: projects } = await supabase.from('projects').select('*')
+
 
 // Constants for filter configuration
-const FILTER_CONFIG = {
-    PLANET_RADIUS: 320, // distance from center to filter planets
-    SELECTED_OPACITY: 1, // opacity of selected filter
-    UNSELECTED_OPACITY: 0.5, // opacity of unselected filters
-    OPACITY_TRANSITION: 0.2, // transition duration in seconds
-}
+
 
 export default function Map() {
+    
     const [selectedIndex, setSelectedIndex] = useState(0)
     const [fps, setFps] = useState(0)
     const qrcodeRef = useRef(null)
@@ -24,24 +20,29 @@ export default function Map() {
     const url = `${window.location.protocol}//${window.location.host}/phone/contact`
 
 
-    const TRANSITION_DOMAINS = ['gezond', 'digitaal', 'ecologisch', 'leren', 'sociaal']
+        const [projects, setProjects] = useState([])
+    const [loading, setLoading] = useState(true)
     
-    const filterShapes = [
-        { id:"domain1", title: "gezond", bgColor: "red" },
-        { id:"domain5", title: "sociaal", bgColor: "orange" },
-        { id:"domain3", title: "ecologisch", bgColor: "green" },
-        { id:"domain2", title: "digitaal", bgColor: "blue" },
-        { id:"domain4", title: "leren", bgColor: "purple" },
-    ]
+    useEffect(() => {
+        async function fetchProjects() {
+            const { data } = await supabase.from('projects').select('*')
+            setProjects(data || [])
+            setLoading(false)
+        }
+        fetchProjects()
+    }, [])
+    
+    if (loading) return <div>Loading...</div>
+    
+
     
     const PLANET_COUNT = filterShapes.length
 
     const selectedDomain = filterShapes[selectedIndex].title
     
-    // Filter projects based on selected transitiedomein
+    // Filter 
     const filteredProjects = useMemo(() => {
         return projects.filter(project => {
-            // Projects die het geselecteerde domein hebben
             return project.transitiedomeinen.some(td => 
                 td.label.toLowerCase() === selectedDomain.toLowerCase()
             )
