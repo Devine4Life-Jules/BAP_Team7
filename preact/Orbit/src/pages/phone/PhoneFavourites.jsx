@@ -1,7 +1,11 @@
 import { useState, useEffect } from 'preact/hooks'
 import { Link } from 'preact-router'
 import PhoneNav from "../../components/PhoneNav"
-import projects from '../../data/projects.json'
+// import projects from '../../data/projects.json'
+
+import { supabase } from '../../lib/supabase'
+const { data: projects } = await supabase.from('projects').select('*')
+
 import './phone.css'
 
 export default function PhoneFavourites(){

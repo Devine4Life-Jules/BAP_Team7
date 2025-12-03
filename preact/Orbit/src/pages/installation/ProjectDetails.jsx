@@ -1,5 +1,8 @@
-import projects from '../../data/projects.json'
+// import projects from '../../data/projects.json' offline fallback
 import useKeyboardNavigation from '../../hooks/useNavigation';
+
+import { supabase } from '../../lib/supabase'
+const { data: projects } = await supabase.from('projects').select('*')
 
 export default function ProjectDetails({id}){
 

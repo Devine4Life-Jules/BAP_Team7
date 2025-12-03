@@ -1,7 +1,10 @@
 import { useEffect, useRef } from 'preact/hooks'
-import projects from '../../data/projects.json'
+// import projects from '../../data/projects.json'
 import Button from '../../components/Button';
 import useKeyboardNavigation from '../../hooks/useNavigation';
+
+import { supabase } from '../../lib/supabase'
+const { data: projects } = await supabase.from('projects').select('*')
 
 export default function Project({id}){
     const qrcodeRef = useRef(null)

@@ -1,9 +1,14 @@
 import { useState, useEffect } from 'preact/hooks'
 import PhoneNav from "../../components/PhoneNav"
-import projects from '../../data/projects.json'
+// import projects from '../../data/projects.json' offline fallback
 import dummyImage from '../../assets/dummyImage.png'
 import { Link } from "preact-router"
 import './phone.css'
+
+
+import { supabase } from '../../lib/supabase'
+const { data: projects } = await supabase.from('projects').select('*')
+
 
 export default function PhoneProject({id}){
     const [isSaved, setIsSaved] = useState(false);
