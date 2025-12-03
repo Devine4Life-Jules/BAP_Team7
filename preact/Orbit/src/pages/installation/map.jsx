@@ -34,6 +34,15 @@ export default function Map() {
     if (loading) return <div>Loading...</div>
     
 
+    // const TRANSITION_DOMAINS = ['gezond', 'digitaal', 'ecologisch', 'leren', 'sociaal']
+    
+    const filterShapes = [
+        { id:"domain1", title: "gezond", bgColor: "red" },
+        { id:"domain5", title: "sociaal", bgColor: "orange" },
+        { id:"domain3", title: "ecologisch", bgColor: "green" },
+        { id:"domain2", title: "digitaal", bgColor: "blue" },
+        { id:"domain4", title: "leren", bgColor: "purple" },
+    ]
     
     const PLANET_COUNT = filterShapes.length
 
