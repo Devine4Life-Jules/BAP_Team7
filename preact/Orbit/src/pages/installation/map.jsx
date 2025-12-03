@@ -92,12 +92,9 @@ export default function Map() {
 
     // Generate QR code when component mounts or URL changes
     useEffect(() => {
-        // Check if QRCode library is available and ref is ready
         if (typeof window.QRCode !== 'undefined' && qrcodeRef.current) {
-            // Clear previous QR code if any
             qrcodeRef.current.innerHTML = ''
             
-            // Generate new QR code
             new window.QRCode(qrcodeRef.current, {
                 text: url,
                 width: 256,
@@ -109,11 +106,10 @@ export default function Map() {
         }
     }, [url])
 
-    // Apply orange border to active filter in SVG
+    // borderFilter
     useEffect(() => {
         const svgFilterIds = ['Filter_x5F_Gezond', 'Filter_x5F_Social', 'Filtere_x5F_Ecologisch', 'Filter_x5F_Digitaal', 'Filter_x5F_Leren']
         
-        // Remove orange border from all filters
         svgFilterIds.forEach(id => {
             const element = document.getElementById(id)
             if (element) {
@@ -125,7 +121,6 @@ export default function Map() {
             }
         })
         
-        // Add orange border to selected filter
         const activeFilterId = svgFilterIds[selectedIndex]
         const activeElement = document.getElementById(activeFilterId)
         if (activeElement) {
