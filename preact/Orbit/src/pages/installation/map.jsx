@@ -1,6 +1,5 @@
 import { useState, useEffect, useMemo, useRef } from 'preact/hooks'
 import MapCanvas from '../../components/MapCanvas'
-import './map.css'
 // import projects from '../../data/projects.json' offline fallback
 import { route } from 'preact-router'
 import FilterShapeSVG from '../../assets/FilterShape.svg?raw'
