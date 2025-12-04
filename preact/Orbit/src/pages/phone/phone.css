@@ -1,6 +1,38 @@
-.phoneScreen {
+
+
+body {
+
     background-color: white;
+    color: black ;
+    display: block ;
+
+}
+
+
+
+
+.phoneNavButton {
+    display: block;
     color: black;
-    width: 100vh;
-    height: 100vh;
+    text-decoration: none;
+
+}
+
+.phoneNavButton:visited {
+    color: black;
+}
+
+
+nav ul {
+    display: flex;
+    justify-content: space-between;
+    position: fixed;
+    width: 100%;
+    background-color: blue;
+
+}
+
+nav ul li {
+    list-style-type: none;
+    margin: 10px 0;
 }

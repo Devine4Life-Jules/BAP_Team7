@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'preact/hooks'
+import { useEffect, useRef, useState } from 'preact/hooks'
 // import projects from '../../data/projects.json'
 import Button from '../../components/Button';
 import useKeyboardNavigation from '../../hooks/useNavigation';
