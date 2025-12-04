@@ -5,6 +5,7 @@ import PhoneFavourites from './pages/phone/PhoneFavourites';
 import PhoneContact from './pages/phone/PhoneContact';
 import { Router } from 'preact-router';
 import { Installation } from './pages/installation/Installation'
+import './reset.css'
 import './app.css'
 
 export function App() {
