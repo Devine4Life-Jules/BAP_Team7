@@ -20,9 +20,10 @@ export default function PhoneProject({id}){
             const { data } = await supabase.from('projects').select('*')
             setProjects(data || [])
             setLoading(false)
+            localStorage.setItem('lastVisitedProject', id);
         }
         fetchProjects()
-    }, [])
+    }, [id])
     
     if (loading) return <div>Loading...</div>
 
