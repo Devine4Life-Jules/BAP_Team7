@@ -1,4 +1,3 @@
-import { useState } from 'preact/hooks'
 
 
 import Screen1 from './onboarding/screen1'
@@ -7,12 +6,12 @@ import Screen3 from './onboarding/screen3'
 import Screen4 from './onboarding/screen4'
 import Map from './map'
 import Project from './Project'
-import ProjectDetails from './ProjectDetails'
 import { Router } from 'preact-router';
 import '../../app.css'
 import mainBg from '../../assets/mainBg.png'
 
 export function Installation() {
+
   
 
   return (
@@ -25,7 +24,6 @@ export function Installation() {
         <Screen4 path="/screen4"/>
         <Map path="/map" />
         <Project path="/project/:id" />
-        <ProjectDetails path="/project/:id/details" />
       </Router> 
 
     </div>

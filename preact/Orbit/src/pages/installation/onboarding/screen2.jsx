@@ -7,7 +7,7 @@ import useKeyboardNavigation from "../../../hooks/useNavigation";
 
 
 function Screen2 () {
-    useKeyboardNavigation({back: '/screen1', next: '/screen3'});
+    useKeyboardNavigation({back: '/', next: '/screen3'});
     return(
         <div className="onboarding-screen">
             <h2>Wie is Howest</h2>

@@ -1,11 +1,10 @@
-import { useState, useEffect, useMemo, useRef } from 'preact/hooks'
+import { useState, useEffect, useMemo, useRef, useContext } from 'preact/hooks'
+import { ProjectsContext } from '../../contexts/ProjectsContext';
 import MapCanvas from '../../components/MapCanvas'
 // import projects from '../../data/projects.json' offline fallback
 import FilterShapeSVG from '../../assets/FilterShape.svg?raw'
 import { supabase } from '../../lib/supabase'
 
-
-// Constants for filter configuration
 
 
 export default function Map() {
@@ -19,19 +18,13 @@ export default function Map() {
     const url = `${window.location.protocol}//${window.location.host}/phone/contact`
 
 
-        const [projects, setProjects] = useState([])
-    const [loading, setLoading] = useState(true)
+
+    const { projects, loading } = useContext(ProjectsContext);
+
+
     
-    useEffect(() => {
-        async function fetchProjects() {
-            const { data } = await supabase.from('projects').select('*')
-            setProjects(data || [])
-            setLoading(false)
-        }
-        fetchProjects()
-    }, [])
-    
-    if (loading) return <div>Loading...</div>
+     if (loading) return <div class="loader"></div>
+
     
 
     // const TRANSITION_DOMAINS = ['gezond', 'digitaal', 'ecologisch', 'leren', 'sociaal']

@@ -1,11 +1,13 @@
-import { useEffect } from 'preact/hooks';
-import { route } from 'preact-router';
+import { useContext } from 'preact/hooks';
 import Button from '../../../components/Button';
 import logoHowestResearch from '../../../assets/logo_howestResearch.png'
 import useKeyboardNavigation from "../../../hooks/useNavigation";
-
+import { ProjectsContext } from '../../../contexts/ProjectsContext';
 export default function Screen1() {
   useKeyboardNavigation({next: '/screen2', back: null});
+  const { projects, loading } = useContext(ProjectsContext);
+  if (loading) return <div class="loader"></div>
+  console.log('Projects: ', projects);
 
   return (
     <div className='onboarding-screen' >

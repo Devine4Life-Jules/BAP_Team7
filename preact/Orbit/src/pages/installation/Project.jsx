@@ -1,24 +1,15 @@
-import { useEffect, useRef, useState } from 'preact/hooks'
+import { useEffect, useRef, useState, useContext } from 'preact/hooks'
 // import projects from '../../data/projects.json'
 import Button from '../../components/Button';
 import useKeyboardNavigation from '../../hooks/useNavigation';
+import { ProjectsContext } from '../../contexts/ProjectsContext';
 
 import { supabase } from '../../lib/supabase'
 
 export default function Project({id}){
-        const [projects, setProjects] = useState([])
-    const [loading, setLoading] = useState(true)
+    const { projects, loading } = useContext(ProjectsContext);
     
-    useEffect(() => {
-        async function fetchProjects() {
-            const { data } = await supabase.from('projects').select('*')
-            setProjects(data || [])
-            setLoading(false)
-        }
-        fetchProjects()
-    }, [])
-    
-    if (loading) return <div>Loading...</div>
+    if (loading) return <div class="loader"></div>
     const qrcodeRef = useRef(null)
     
     const url = `${window.location.protocol}//${window.location.host}/phone/project/${id}`

@@ -1,5 +1,5 @@
 import { useState } from 'preact/hooks'
-
+import { ProjectsProvider } from './contexts/ProjectsContext';
 import PhoneProject from './pages/phone/PhoneProject';
 import PhoneFavourites from './pages/phone/PhoneFavourites';  
 import PhoneContact from './pages/phone/PhoneContact';
@@ -14,12 +14,14 @@ export function App() {
   return (
     <>
 
-      <Router>
-        <Installation path="/" default/>
-        <PhoneContact path="/phone/contact" />
-        <PhoneFavourites path="/phone/favourites" />
-        <PhoneProject path="/phone/project/:id" />
-      </Router>
+      <ProjectsProvider>
+        <Router>
+          <Installation path="/" default/>
+          <PhoneContact path="/phone/contact" />
+          <PhoneFavourites path="/phone/favourites" />
+          <PhoneProject path="/phone/project/:id" />
+        </Router>
+      </ProjectsProvider>
 
     </>
   )

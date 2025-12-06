@@ -1,8 +1,7 @@
-import { useState, useEffect } from 'preact/hooks'
+import { useState, useEffect, useContext } from 'preact/hooks'
 import { Link } from 'preact-router'
 import PhoneNav from "../../components/PhoneNav"
-// import projects from '../../data/projects.json'
-
+import { ProjectsContext } from '../../contexts/ProjectsContext'
 import { supabase } from '../../lib/supabase'
 
 import './phone.css'
@@ -10,19 +9,8 @@ import './phone.css'
 export default function PhoneFavourites(){
 
 
-    const [projects, setProjects] = useState([])
-    const [loading, setLoading] = useState(true)
-    
-    useEffect(() => {
-        async function fetchProjects() {
-            const { data } = await supabase.from('projects').select('*')
-            setProjects(data || [])
-            setLoading(false)
-        }
-        fetchProjects()
-    }, [])
-    
-    if (loading) return <div>Loading...</div>
+    const { projects, loading } = useContext(ProjectsContext);
+    if (loading) return <div class="loader"></div>
 
     const [savedProjects, setSavedProjects] = useState([]);
 

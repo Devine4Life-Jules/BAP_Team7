@@ -1,31 +1,20 @@
-import { useState, useEffect } from 'preact/hooks'
+import { useState, useEffect, useContext } from 'preact/hooks'
 import PhoneNav from "../../components/PhoneNav"
-// import projects from '../../data/projects.json' offline fallback
 import dummyImage from '../../assets/dummyImage.png'
 import { Link } from "preact-router"
 import './phone.css'
 
+import { ProjectsContext } from '../../contexts/ProjectsContext';
 
-import { supabase } from '../../lib/supabase'
+import { supabase } from '../../lib/supabase';
 
 
 export default function PhoneProject({id}){
 
 
-        const [projects, setProjects] = useState([])
-    const [loading, setLoading] = useState(true)
-    
-    useEffect(() => {
-        async function fetchProjects() {
-            const { data } = await supabase.from('projects').select('*')
-            setProjects(data || [])
-            setLoading(false)
-            localStorage.setItem('lastVisitedProject', id);
-        }
-        fetchProjects()
-    }, [id])
-    
-    if (loading) return <div>Loading...</div>
+    const { projects, loading } = useContext(ProjectsContext);
+
+    if (loading) return <div class="loader"></div>;
 
     const [isSaved, setIsSaved] = useState(false);
 

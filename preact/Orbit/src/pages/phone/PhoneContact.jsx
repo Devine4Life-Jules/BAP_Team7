@@ -1,6 +1,5 @@
 import { useState } from 'preact/hooks'
 import { supabase } from '../../lib/supabase'
-import '../../app.css'
 import './phone.css'
 import PhoneNav from '../../components/PhoneNav'
 
