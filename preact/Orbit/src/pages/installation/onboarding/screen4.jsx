@@ -1,13 +1,14 @@
 
-import { useEffect } from "preact/hooks";
-import { route } from 'preact-router';
+
 import Button from '../../../components/Button';
 import useKeyboardNavigation from "../../../hooks/useNavigation";
+import useReBoot from '../../../hooks/useReBoot';
 
 
 
 function Screen4 () {
     useKeyboardNavigation({back: '/screen3', next: '/map'});
+    useReBoot({rebootTime: 1000});
     return(
         <div className="onboarding-screen">
             <p>Gebruik de joystick om te navigeren door ons universum van onderzoek en innovatie</p>

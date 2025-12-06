@@ -55,7 +55,7 @@ export default function PhoneContact(){
 
     return(
         <div className="phoneScreen">
-            <h2>Phone Contact</h2>
+            <h1 class="mainPhoneTitle">Phone Contact</h1>
 
             {/* Success message */}
             {submitStatus === 'success' && (

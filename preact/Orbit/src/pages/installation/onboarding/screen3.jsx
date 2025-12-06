@@ -1,10 +1,12 @@
 import Button from '../../../components/Button';
 import useKeyboardNavigation from "../../../hooks/useNavigation";
+import useReBoot from '../../../hooks/useReBoot';
 
 
 
 function Screen3 () {
     useKeyboardNavigation({back: '/screen2', next: '/screen4'});
+    useReBoot({rebootTime: 1000});
     return(
         <div className="onboarding-screen">
             <p>Gebruik de draaiknop om te Filteren tussen de verschillende vakgebieden</p>

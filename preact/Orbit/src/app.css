@@ -8,7 +8,7 @@
 body {
   font-family: 'VAGroundedstd-light', sans-serif;
   color: white;
-    background-color: #000032;
+  background-color: #000032;
 
 }
 
@@ -18,6 +18,14 @@ h1, h2, h3, h4, h5, h6 {
 
 div img {
   max-width: 100%;
+}
+
+.loaderWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
 }
 
 .loader {

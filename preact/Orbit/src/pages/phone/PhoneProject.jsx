@@ -6,7 +6,6 @@ import './phone.css'
 
 import { ProjectsContext } from '../../contexts/ProjectsContext';
 
-import { supabase } from '../../lib/supabase';
 
 
 export default function PhoneProject({id}){
@@ -61,7 +60,7 @@ export default function PhoneProject({id}){
 
     return(
         <div className="phoneScreen">
-             <h2>{project.ccode}</h2>
+             <h1 class="mainPhoneTitle">{project.ccode}</h1>
 
              <div class="teaser">
                  <h2>Teaser</h2>

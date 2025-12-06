@@ -1,9 +1,8 @@
 import { useState, useEffect, useMemo, useRef, useContext } from 'preact/hooks'
 import { ProjectsContext } from '../../contexts/ProjectsContext';
 import MapCanvas from '../../components/MapCanvas'
-// import projects from '../../data/projects.json' offline fallback
 import FilterShapeSVG from '../../assets/FilterShape.svg?raw'
-import { supabase } from '../../lib/supabase'
+import useReBoot from '../../hooks/useReBoot';
 
 
 
@@ -23,7 +22,7 @@ export default function Map() {
 
 
     
-     if (loading) return <div class="loader"></div>
+     if (loading) return <div class="loaderWrapper"><div class="loader"></div></div>
 
     
 

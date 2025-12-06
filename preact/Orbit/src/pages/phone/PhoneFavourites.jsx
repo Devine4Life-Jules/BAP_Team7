@@ -29,7 +29,7 @@ export default function PhoneFavourites(){
 
     return(
         <div className="phoneScreen">
-            <h2>Saved Projects</h2>
+            <h1 class="mainPhoneTitle">Saved Projects</h1>
             
             {savedProjects.length === 0 ? (
                 <p style={{ padding: '20px', color: '#666' }}>

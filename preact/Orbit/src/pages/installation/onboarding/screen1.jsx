@@ -6,7 +6,6 @@ import { ProjectsContext } from '../../../contexts/ProjectsContext';
 export default function Screen1() {
   useKeyboardNavigation({next: '/screen2', back: null});
   const { projects, loading } = useContext(ProjectsContext);
-  if (loading) return <div class="loader"></div>
   console.log('Projects: ', projects);
 
   return (

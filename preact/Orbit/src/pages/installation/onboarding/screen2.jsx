@@ -1,13 +1,11 @@
-
-import { useEffect } from "preact/hooks";
-import { route } from 'preact-router';
 import Button from '../../../components/Button';
 import logoHowestResearch from '../../../assets/logo_howestResearch.png'
 import useKeyboardNavigation from "../../../hooks/useNavigation";
-
+import useReBoot from '../../../hooks/useReBoot';
 
 function Screen2 () {
     useKeyboardNavigation({back: '/', next: '/screen3'});
+    useReBoot({rebootTime: 1000});
     return(
         <div className="onboarding-screen">
             <h2>Wie is Howest</h2>

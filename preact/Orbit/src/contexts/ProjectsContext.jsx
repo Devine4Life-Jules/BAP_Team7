@@ -20,6 +20,8 @@ export function ProjectsProvider({ children }) {
     
     fetchProjects();
   }, []);
+    if (loading) return <div class="loaderWrapper"><div class="loader"></div></div>;
+
   return (
     <ProjectsContext.Provider value={{ projects, loading }}>
       {children}
