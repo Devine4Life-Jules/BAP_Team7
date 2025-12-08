@@ -7,7 +7,7 @@
 
 body {
   font-family: 'VAGroundedstd-light', sans-serif;
-  color: white;
+  color: #F3E0FF;
   background-color: #000032;
 
 }
@@ -26,6 +26,16 @@ div img {
   align-items: center;
   height: 100vh;
   width: 100vw;
+}
+
+.mainTitle {
+    font-family: 'VAGroundedstd-bold', sans-serif;
+    font-size: 5.5em;
+    margin-top: 100px;
+    justify-self: flex-start;
+    padding-bottom: auto;
+    text-shadow: 0 16.769px 66.866px #9312FD;
+
 }
 
 .loader {
@@ -71,6 +81,19 @@ div img {
   background-size: contain;
   background-position: center top;
   background-repeat: no-repeat;
+  justify-content: flex-start;
+  gap: 0;
+}
+
+.screen1 .button {
+  margin-top: 15px;
+}
+
+.bottomLogo {
+  width: 25%;
+  margin-top: auto;
+  margin-bottom: 7rem;
+  justify-self: flex-end;
 }
 
 

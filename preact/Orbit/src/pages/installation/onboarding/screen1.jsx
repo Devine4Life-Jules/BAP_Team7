@@ -1,6 +1,6 @@
 import { useContext } from 'preact/hooks';
 import Button from '../../../components/Button';
-import logoHowestResearch from '../../../assets/logo_howestResearch.png'
+import logoHowestResearch from '../../../assets/Logo_Howest_Research.png'
 import useKeyboardNavigation from "../../../hooks/useNavigation";
 import { ProjectsContext } from '../../../contexts/ProjectsContext';
 export default function Screen1() {
@@ -10,12 +10,13 @@ export default function Screen1() {
 
   return (
     <div className='onboarding-screen screen1' >
-      <h1>ORBIT</h1>
+      <h1 class="mainTitle">ORBIT</h1>
       <p>Lanceer je bedrijf naar de sterren</p>
-      <div style={{width: "50%"}}>
+      <Button type="check" text="Start"></Button>
+      <div className="bottomLogo">
         <img src={logoHowestResearch} alt="Howest Research Logo" />
       </div>
-      <Button type="check" text="Start"></Button>
+      
 
     </div>
   );
