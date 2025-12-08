@@ -76,13 +76,20 @@ div img {
   color: black;
 }
 
-.screen1 {
-  background-image: url(./assets/screen1Bg.png);
+.screen1, .screen2{  
   background-size: contain;
   background-position: center top;
   background-repeat: no-repeat;
   justify-content: flex-start;
   gap: 0;
+}
+
+.screen1 {
+  background-image: url(./assets/screen1Bg.png);
+}
+
+.screen2 {
+  background-image: url(./assets/screen2Bg.png);
 }
 
 .screen1 .button {
