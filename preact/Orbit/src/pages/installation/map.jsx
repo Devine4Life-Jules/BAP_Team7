@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo, useRef, useContext } from 'preact/hooks'
+import { useState, useEffect, useMemo, useRef, useContext, useCallback } from 'preact/hooks'
 import { ProjectsContext } from '../../contexts/ProjectsContext';
 import MapCanvas from '../../components/MapCanvas'
 import FilterShapeSVG from '../../assets/FilterShape.svg?raw'
@@ -10,13 +10,15 @@ export default function Map() {
     
     const [selectedIndex, setSelectedIndex] = useState(0)
     const [fps, setFps] = useState(0)
+    const [selectedProject, setSelectedProject] = useState(null)
+    const [planetPosition, setPlanetPosition] = useState(null)
     const qrcodeRef = useRef(null)
     const frameCountRef = useRef(0)
     const lastTimeRef = useRef(performance.now())
     
     const url = `${window.location.protocol}//${window.location.host}/phone/contact`
 
-
+    useReBoot({rebootTime: 10000});
 
     const { projects, loading } = useContext(ProjectsContext);
 
@@ -133,10 +135,32 @@ export default function Map() {
         }
     }, [selectedIndex])
 
+    // Memoize the callback to prevent infinite render loops
+    const handleSelectionChange = useCallback((projectId, position) => {
+        const project = projects.find(p => p.id === projectId)
+        setSelectedProject(project)
+        setPlanetPosition(position)
+    }, [projects])
+
+    // Hide modal after 3 seconds of the same planet being selected
+    useEffect(() => {
+        if (selectedProject) {
+            const timer = setTimeout(() => {
+                setSelectedProject(null)
+                setPlanetPosition(null)
+            }, 3000) // 3 seconds
+
+            return () => clearTimeout(timer)
+        }
+    }, [selectedProject])
+
     return(
         <div style={{ position: 'relative', width: '100%', height: '100%' }}>
             {/* MapCanvas for pannable project map */}
-            <MapCanvas filteredProjects={filteredProjects} />
+            <MapCanvas 
+                filteredProjects={filteredProjects} 
+                onSelectionChange={handleSelectionChange}
+            />
             
             {/* FPS Counter */}
             <div
@@ -191,6 +215,48 @@ export default function Map() {
                 }}
                 dangerouslySetInnerHTML={{__html: FilterShapeSVG}}
             />
+
+            {/* Project Details Dialog - Positioned near planet */}
+            {selectedProject && planetPosition && (
+                <div 
+                    style={{
+                        position: 'absolute',
+                        top: `${planetPosition.y - 80}px`, // Position above the planet
+                        left: `${planetPosition.x + 60}px`, // Position to the right of planet
+                        background: 'white',
+                        color: 'black',
+                        padding: '15px 20px',
+                        borderRadius: '12px',
+                        boxShadow: '0 4px 20px rgba(0, 0, 0, 0.3)',
+                        zIndex: 2500,
+                        minWidth: '200px',
+                        maxWidth: '300px',
+                        pointerEvents: 'none',
+                        transform: 'translateX(-50%)' // Center horizontally on the planet
+                    }}
+                >
+                    <h3 style={{ margin: '0 0 10px 0', fontSize: '20px', fontWeight: 'bold' }}>
+                        {selectedProject.ccode}
+                    </h3>
+                    <div>
+                        <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
+                            {selectedProject.transitiedomeinen.slice(0, 3).map((td, index) => (
+                                <span 
+                                    key={index}
+                                    style={{
+                                        background: '#f0f0f0',
+                                        padding: '4px 10px',
+                                        borderRadius: '12px',
+                                        fontSize: '12px'
+                                    }}
+                                >
+                                    {td.label}
+                                </span>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     )
 }

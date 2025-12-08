@@ -18,7 +18,7 @@ const CONFIG = {
     INERTIA_MIN_VELOCITY: 0.1, // minimum velocity threshold before stopping (higher = stops faster)
 }
 
-export default function MapCanvas({ filteredProjects }) {
+export default function MapCanvas({ filteredProjects, onSelectionChange }) {
     const [offsetX, setOffsetX] = useState(0)
     const [offsetY, setOffsetY] = useState(0)
     const [selectedProjectId, setSelectedProjectId] = useState(null)
@@ -141,6 +141,19 @@ export default function MapCanvas({ filteredProjects }) {
     useEffect(() => {
         setSelectedProjectId(centralProjectId)
     }, [centralProjectId])
+
+    // Notify parent of selection change (only when centralProjectId changes)
+    useEffect(() => {
+        if (onSelectionChange && centralProjectId) {
+            const position = projectPositions[centralProjectId]
+            if (position) {
+                // Calculate screen position of the planet (center of viewport)
+                const screenX = VIEWPORT_WIDTH / 2
+                const screenY = VIEWPORT_HEIGHT / 2
+                onSelectionChange(centralProjectId, { x: screenX, y: screenY })
+            }
+        }
+    }, [centralProjectId, onSelectionChange])
 
     // Apply inertia/momentum to panning
     useEffect(() => {
