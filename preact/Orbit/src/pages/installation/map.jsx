@@ -18,7 +18,7 @@ export default function Map() {
     
     const url = `${window.location.protocol}//${window.location.host}/phone/contact`
 
-    useReBoot({rebootTime: 10000});
+    useReBoot({rebootTime: 100000});
 
     const { projects, loading } = useContext(ProjectsContext);
 

@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState, useContext } from 'preact/hooks'
-// import projects from '../../data/projects.json'
 import Button from '../../components/Button';
 import useKeyboardNavigation from '../../hooks/useNavigation';
 import { ProjectsContext } from '../../contexts/ProjectsContext';
+import useReBoot from '../../hooks/useReBoot';
 
-import { supabase } from '../../lib/supabase'
 
 export default function Project({id}){
+    // useReBoot({rebootTime: 100000});
     const { projects, loading } = useContext(ProjectsContext);
     
     if (loading) return <div class="loader"></div>

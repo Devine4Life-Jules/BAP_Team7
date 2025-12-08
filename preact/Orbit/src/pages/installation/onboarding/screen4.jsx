@@ -8,7 +8,7 @@ import useReBoot from '../../../hooks/useReBoot';
 
 function Screen4 () {
     useKeyboardNavigation({back: '/screen3', next: '/map'});
-    useReBoot({rebootTime: 1000});
+    useReBoot({rebootTime: 100000});
     return(
         <div className="onboarding-screen">
             <p>Gebruik de joystick om te navigeren door ons universum van onderzoek en innovatie</p>

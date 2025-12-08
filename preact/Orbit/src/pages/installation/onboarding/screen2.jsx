@@ -5,7 +5,7 @@ import useReBoot from '../../../hooks/useReBoot';
 
 function Screen2 () {
     useKeyboardNavigation({back: '/', next: '/screen3'});
-    useReBoot({rebootTime: 1000});
+    useReBoot({rebootTime: 100000});
     return(
         <div className="onboarding-screen">
             <h2>Wie is Howest</h2>
