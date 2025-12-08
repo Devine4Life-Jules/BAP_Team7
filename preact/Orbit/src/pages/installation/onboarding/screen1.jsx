@@ -4,7 +4,7 @@ import logoHowestResearch from '../../../assets/Logo_Howest_Research.png'
 import useKeyboardNavigation from "../../../hooks/useNavigation";
 import { ProjectsContext } from '../../../contexts/ProjectsContext';
 export default function Screen1() {
-  useKeyboardNavigation({next: '/screen2', back: null});
+  useKeyboardNavigation({next: '/screen2', back: '/'});
   const { projects, loading } = useContext(ProjectsContext);
   console.log('Projects: ', projects);
 
