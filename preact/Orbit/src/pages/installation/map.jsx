@@ -240,19 +240,23 @@ export default function Map() {
                     </h3>
                     <div>
                         <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
-                            {selectedProject.transitiedomeinen.slice(0, 3).map((td, index) => (
-                                <span 
-                                    key={index}
-                                    style={{
-                                        background: '#f0f0f0',
-                                        padding: '4px 10px',
-                                        borderRadius: '12px',
-                                        fontSize: '12px'
-                                    }}
-                                >
-                                    {td.label}
-                                </span>
-                            ))}
+                            {selectedProject.transitiedomeinen.slice(0, 3).map((td, index) => {
+                                // Remove abbreviation in parentheses, e.g. "Gezond (GE)" -> "Gezond"
+                                const labelWithoutAbbr = td.label.replace(/\s*\([^)]*\)\s*/g, '').trim()
+                                return (
+                                    <span 
+                                        key={index}
+                                        style={{
+                                            background: '#f0f0f0',
+                                            padding: '4px 10px',
+                                            borderRadius: '12px',
+                                            fontSize: '12px'
+                                        }}
+                                    >
+                                        {labelWithoutAbbr}
+                                    </span>
+                                )
+                            })}
                         </div>
                     </div>
                 </div>

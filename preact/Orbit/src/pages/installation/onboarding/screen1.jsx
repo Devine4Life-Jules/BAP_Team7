@@ -9,7 +9,7 @@ export default function Screen1() {
   console.log('Projects: ', projects);
 
   return (
-    <div className='onboarding-screen' >
+    <div className='onboarding-screen screen1' >
       <h1>ORBIT</h1>
       <p>Lanceer je bedrijf naar de sterren</p>
       <div style={{width: "50%"}}>

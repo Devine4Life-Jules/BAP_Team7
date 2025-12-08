@@ -40,6 +40,11 @@ export default function Project({id}){
     // Extract transitiedomein items (the ones with category "Transitiedomein")
     const transitiedomeinen = project.transitiedomeinen
         .filter(td => td.category === "Transitiedomein");
+    
+    // Extract keywords (thema category)
+    const keywords = project.transitiedomeinen
+        .filter(td => td.category === "Thema")
+        .slice(0, 3); // Get first 3 keywords
  
     return(
         <div className="project-detail" style={{ position: 'relative' }}>
@@ -60,21 +65,31 @@ export default function Project({id}){
                     zIndex: 1000
                 }}
             />
-            
-            <h2>{project.ccode}</h2>
-            
+
+            <h2 className="installation-ProjectTitle">{project.ccode}</h2>
+
+            {/* Keywords pills */}
+            {keywords.length > 0 && (
+                <div style={{ display: 'flex', gap: '8px', marginTop: '10px', marginBottom: '20px' }}>
+                    {keywords.map((keyword, index) => (
+                        <span key={index} className="pill">
+                            {keyword.label}
+                        </span>
+                    ))}
+                </div>
+            )}
+
             <div className="project-info">
                 <p>
-                    <span className="label">Research Group:</span>
                     <span className="value">{project.researchGroup}</span>
                 </p>
                 
 
                 {transitiedomeinen.length > 0 && (
                     <div className="transitiedomeinen">
-                        <div className="pills">
+                        <div className="domain">
                             {transitiedomeinen.map((td, index) => (
-                                <span key={index} className={`pill ${td.label}`}>
+                                <span key={index} className={`domain ${td.label}`}>
                                     {td.label}
                                 </span>
                             ))}
@@ -84,9 +99,9 @@ export default function Project({id}){
 
                 {project.cluster && project.cluster !== "Clusteroverschrijdend" && (
                     <div className="vakgebieden">
-                        <div className="pills">
-                            <span className="pill vakgebied">
-                                {project.cluster}
+                        <div className="cluster">
+                            <span className="vakgebied" >
+                                {project.cluster.replace(/\s*\([^)]*\)\s*/g, '').trim().replace(/ /g, '\n')}
                             </span>
                         </div>
                     </div>
