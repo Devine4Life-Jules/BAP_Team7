@@ -109,29 +109,26 @@ export default function Map() {
         }
     }, [url])
 
-    // borderFilter
+    // Toggle filter active layers opacity
     useEffect(() => {
-        const svgFilterIds = ['Filter_x5F_Gezond', 'Filter_x5F_Social', 'Filtere_x5F_Ecologisch', 'Filter_x5F_Digitaal', 'Filter_x5F_Leren']
+        // Order must match filterShapes array: gezond, sociaal, ecologisch, digitaal, leren
+        // SVG uses _x5F_ as encoded underscore
+        const filterActiveIds = ['gezond_x5F_Active', 'sociaal_x5F_Active', 'ecologisch_x5F_Active', 'digitaal_x5F_Active', 'leren_x5F_Active']
         
-        svgFilterIds.forEach(id => {
-            const element = document.getElementById(id)
-            if (element) {
-                const paths = element.querySelectorAll('path')
-                paths.forEach(path => {
-                    path.style.stroke = '#fff'
-                    path.style.transition = 'stroke 0.2s ease'
-                })
+        // Set all _Active layers to opacity 0
+        filterActiveIds.forEach(id => {
+            const activeLayer = document.getElementById(id)
+            if (activeLayer) {
+                activeLayer.style.opacity = '0'
+                activeLayer.style.transition = 'opacity 0.3s ease'
             }
         })
         
-        const activeFilterId = svgFilterIds[selectedIndex]
-        const activeElement = document.getElementById(activeFilterId)
-        if (activeElement) {
-            const paths = activeElement.querySelectorAll('path')
-            paths.forEach(path => {
-                path.style.stroke = '#ff9500'
-                path.style.strokeWidth = '3'
-            })
+        // Set the selected filter's _Active layer to opacity 100%
+        const selectedActiveId = filterActiveIds[selectedIndex]
+        const selectedActiveLayer = document.getElementById(selectedActiveId)
+        if (selectedActiveLayer) {
+            selectedActiveLayer.style.opacity = '1'
         }
     }, [selectedIndex])
 
