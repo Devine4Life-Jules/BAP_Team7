@@ -4,6 +4,7 @@ import useKeyboardNavigation from '../../hooks/useNavigation';
 import { ProjectsContext } from '../../contexts/ProjectsContext';
 import useReBoot from '../../hooks/useReBoot';
 import bottomCloudsMain from '../../assets/bottomCloudsMain.png'
+import QRCode from 'qrcode'
 
 
 export default function Project({id}){
@@ -18,16 +19,27 @@ export default function Project({id}){
     useKeyboardNavigation({back: '/map', next: null});
     
     useEffect(() => {
-        if (typeof window.QRCode !== 'undefined' && qrcodeRef.current) {
+        if (qrcodeRef.current) {
             qrcodeRef.current.innerHTML = ''
             
-            new window.QRCode(qrcodeRef.current, {
-                text: url,
-                width: 256,
-                height: 256,
-                colorDark: "#000000",
-                colorLight: "#ffffff",
-                correctLevel: window.QRCode.CorrectLevel.H
+            // Calculate viewport height based size (10vh ≈ 96px on 960px height screen)
+            const containerSize = window.innerHeight * 0.1
+            
+            QRCode.toCanvas(url, {
+                width: containerSize,
+                margin: 0,
+                color: {
+                    dark: '#000000',
+                    light: '#ffffff'
+                },
+                errorCorrectionLevel: 'H'
+            }).then(canvas => {
+                canvas.style.display = 'block'
+                canvas.style.width = '100%'
+                canvas.style.height = '100%'
+                qrcodeRef.current.appendChild(canvas)
+            }).catch(err => {
+                console.error('QR Code generation error:', err)
             })
         }
     }, [url]);
