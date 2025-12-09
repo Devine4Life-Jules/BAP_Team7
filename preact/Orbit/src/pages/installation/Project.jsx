@@ -3,6 +3,7 @@ import Button from '../../components/Button';
 import useKeyboardNavigation from '../../hooks/useNavigation';
 import { ProjectsContext } from '../../contexts/ProjectsContext';
 import useReBoot from '../../hooks/useReBoot';
+import bottomCloudsMain from '../../assets/bottomCloudsMain.png'
 
 
 export default function Project({id}){
@@ -107,18 +108,31 @@ export default function Project({id}){
                 </div>
             )}
 
-            <Button icon={"check"} text={"Read More"}/>
+            <Button icon={"back"} text={"terug"}/>
                       {transitiedomeinen.length > 0 && (
                     <div className="transitiedomeinen">
                         <div className="domain">
                             {transitiedomeinen.map((td, index) => (
-                                <span key={index} className={`domain ${td.label}`}>
+                                <span key={index} id={`domain${index}`} className={`domain ${td.label}`}>
                                     {td.label}
                                 </span>
                             ))}
                         </div>
                     </div>
                 )}
+                <div>
+                    <img src={bottomCloudsMain}                    
+                     style={{
+                        position: 'absolute',
+                        bottom: '0',
+                        left: '50%',
+                        transform: 'translateX(-50%)',
+                        width: '100%',
+                        height: 'auto',
+                        zIndex: 1,
+                        pointerEvents: 'none'
+                    }} alt="" />
+                </div>
         </div>
     )
 }

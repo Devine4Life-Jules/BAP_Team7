@@ -133,7 +133,9 @@ div img {
   background-size: 90%;
   background-repeat: no-repeat;
   height: 100%;
-  background-image:url(./assets/fadingEllipse.png) ;
+  background-image:url(./assets/fadingEllipse.png);
+  border-radius: 50%;
+  overflow: hidden;
 }
 
 .project-info {  display: flex;
@@ -142,6 +144,19 @@ div img {
   flex-direction: column;
   align-items: center;
 }
+
+#domain0 {
+  top: 150px;
+  left: 50px;
+  position: absolute;
+}
+
+#domain1 {
+  top: 300px;
+  left: 30px;
+  position: absolute;
+}
+
 
 .cluster {
   aspect-ratio: 1/1 ;

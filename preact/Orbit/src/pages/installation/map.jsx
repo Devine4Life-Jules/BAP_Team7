@@ -3,6 +3,7 @@ import { ProjectsContext } from '../../contexts/ProjectsContext';
 import MapCanvas from '../../components/MapCanvas'
 import FilterShapeSVG from '../../assets/FilterShape.svg?raw'
 import useReBoot from '../../hooks/useReBoot';
+import bottomCloudsMain from '../../assets/bottomCloudsMain.png'
 
 
 
@@ -157,6 +158,7 @@ export default function Map() {
             <MapCanvas 
                 filteredProjects={filteredProjects} 
                 onSelectionChange={handleSelectionChange}
+                bottomCloudsImg={bottomCloudsMain}
             />
             
             {/* FPS Counter */}
@@ -258,6 +260,10 @@ export default function Map() {
                     </div>
                 </div>
             )}
+            
+        <div>
+            
+        </div>
         </div>
     )
 }

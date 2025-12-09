@@ -18,7 +18,7 @@ const CONFIG = {
     INERTIA_MIN_VELOCITY: 0.1, // minimum velocity threshold before stopping (higher = stops faster)
 }
 
-export default function MapCanvas({ filteredProjects, onSelectionChange }) {
+export default function MapCanvas({ filteredProjects, onSelectionChange, bottomCloudsImg }) {
     const [offsetX, setOffsetX] = useState(0)
     const [offsetY, setOffsetY] = useState(0)
     const [selectedProjectId, setSelectedProjectId] = useState(null)
@@ -228,6 +228,24 @@ export default function MapCanvas({ filteredProjects, onSelectionChange }) {
 
     return (
         <div className="map-viewport" ref={viewportRef}>
+            {/* Bottom clouds image - fixed in viewport */}
+            {bottomCloudsImg && (
+                <img 
+                    src={bottomCloudsImg} 
+                    alt="" 
+                    style={{
+                        position: 'absolute',
+                        bottom: '0',
+                        left: '50%',
+                        transform: 'translateX(-50%)',
+                        width: '100%',
+                        height: 'auto',
+                        zIndex: 1,
+                        pointerEvents: 'none'
+                    }}
+                />
+            )}
+            
             {/* Invisible center point indicator */}
             <div style={{
                 position: 'absolute',
