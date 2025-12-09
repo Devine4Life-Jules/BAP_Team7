@@ -90,10 +90,16 @@ div img {
 
 .screen2 {
   background-image: url(./assets/screen2Bg.png);
+  justify-content: center;
+
 }
 
 .screen1 .button {
   margin-top: 15px;
+}
+
+.screen2Logo {
+  width: 50%;
 }
 
 .bottomLogo {

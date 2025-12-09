@@ -8,12 +8,11 @@ function Screen2 () {
     useReBoot({rebootTime: 100000});
     return(
         <div className="onboarding-screen screen2">
-            <h2>Wie is Howest</h2>
-            <div style={{width: "50%"}}>
+            <div class="screen2Logo">
               <img src={logoHowestResearch} alt="Howest Research Logo" />
             </div>
-            <p>Missiegedreven onderzoek dat jouw bedrijf lanceert naar nieuwe hoogtes</p>
-            <div style={{display: 'flex', gap: '20px'}}>
+            <p style={{fontSize: "20px", maxWidth:"75%", fontWeight: "lighter"}}>Missiegedreven onderzoek dat jouw bedrijf lanceert naar nieuwe hoogtes</p>
+            <div style={{display: 'flex', gap: '20px', marginBottom: '100px'}}>
               <Button icon="back" text="back"></Button>
               <Button icon="check" text="Next"></Button>
             </div>
