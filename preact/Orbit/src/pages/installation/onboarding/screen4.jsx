@@ -11,7 +11,7 @@ function Screen4 () {
     useReBoot({rebootTime: 100000});
     return(
         <div className="onboarding-screen">
-            <p>Gebruik de joystick om te navigeren door ons universum van onderzoek en innovatie</p>
+            <p className='onboardingInstruction'>Gebruik de joystick om te navigeren door ons universum van onderzoek en innovatie</p>
             <div style={{display: 'flex', gap: '20px'}}>
               <Button icon="back" text="back"></Button>
               <Button icon="check" text="Next"></Button>

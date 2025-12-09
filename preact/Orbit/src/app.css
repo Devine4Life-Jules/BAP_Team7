@@ -110,20 +110,37 @@ div img {
   justify-self: flex-end;
 }
 
+.onboardingInstruction {
+  background: linear-gradient(180deg, rgba(51, 46, 132, 0.70) 0%, rgba(93, 122, 218, 0.10) 100%);
+  border: .5px solid white;
+  padding: 1rem;
+  border-radius: 15px;
+  max-width: 45vh;
+
+
+}
+
 
 .installation-ProjectTitle {
     font-family: 'VAGroundedstd-bold', sans-serif;
     font-size: 36px;
-    margin: 10px 0;
+    margin: 20px 0;
     text-align: center;
 }
 
 .project-detail {
-  background-position: center;
-  background-size: 80%;
+  background-position: center top;
+  background-size: 90%;
   background-repeat: no-repeat;
   height: 100%;
   background-image:url(./assets/fadingEllipse.png) ;
+}
+
+.project-info {  display: flex;
+  padding-top: 100px;
+  margin-top: 50px;
+  flex-direction: column;
+  align-items: center;
 }
 
 .cluster {

@@ -14,7 +14,7 @@ export default function Project({id}){
     
     const url = `${window.location.protocol}//${window.location.host}/phone/project/${id}`
     
-    useKeyboardNavigation({back: '/map', next: `/project/${id}/details`});
+    useKeyboardNavigation({back: '/map', next: null});
     
     useEffect(() => {
         if (typeof window.QRCode !== 'undefined' && qrcodeRef.current) {
@@ -48,7 +48,6 @@ export default function Project({id}){
  
     return(
         <div className="project-detail" style={{ position: 'relative' }}>
-            {/* QR Code overlay */}
             <div 
                 ref={qrcodeRef}
                 id="qrcode"
@@ -66,11 +65,16 @@ export default function Project({id}){
                 }}
             />
 
-            <h2 className="installation-ProjectTitle">{project.ccode}</h2>
+            
 
-            {/* Keywords pills */}
-            {keywords.length > 0 && (
-                <div style={{ display: 'flex', gap: '8px', marginTop: '10px', marginBottom: '20px' }}>
+
+            <div className="project-info">
+               
+
+
+                 <h2 className="installation-ProjectTitle">{project.ccode}</h2>
+                             {keywords.length > 0 && (
+                <div style={{ display: 'flex', gap: '8px', marginTop: '10px', marginBottom: '20px'  }}>
                     {keywords.map((keyword, index) => (
                         <span key={index} className="pill">
                             {keyword.label}
@@ -78,24 +82,13 @@ export default function Project({id}){
                     ))}
                 </div>
             )}
-
-            <div className="project-info">
                 <p>
+                    
                     <span className="value">{project.researchGroup}</span>
                 </p>
                 
 
-                {transitiedomeinen.length > 0 && (
-                    <div className="transitiedomeinen">
-                        <div className="domain">
-                            {transitiedomeinen.map((td, index) => (
-                                <span key={index} className={`domain ${td.label}`}>
-                                    {td.label}
-                                </span>
-                            ))}
-                        </div>
-                    </div>
-                )}
+      
 
                 {project.cluster && project.cluster !== "Clusteroverschrijdend" && (
                     <div className="vakgebieden">
@@ -115,6 +108,17 @@ export default function Project({id}){
             )}
 
             <Button icon={"check"} text={"Read More"}/>
+                      {transitiedomeinen.length > 0 && (
+                    <div className="transitiedomeinen">
+                        <div className="domain">
+                            {transitiedomeinen.map((td, index) => (
+                                <span key={index} className={`domain ${td.label}`}>
+                                    {td.label}
+                                </span>
+                            ))}
+                        </div>
+                    </div>
+                )}
         </div>
     )
 }

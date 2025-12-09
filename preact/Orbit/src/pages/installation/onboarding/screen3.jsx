@@ -85,7 +85,7 @@ function Screen3 () {
             <div style={{width: '45vh'}}>
                 <img className="encoder-rotating" style={{width: '100%'}} src={encoderImg} alt="" />
             </div>
-            <p>Gebruik de draaiknop om te Filteren tussen de verschillende vakgebieden</p>
+            <p className='onboardingInstruction'>Gebruik de draaiknop om te Filteren tussen de verschillende vakgebieden</p>
  
             
             <div style={{display: 'flex', gap: '20px'}}>
