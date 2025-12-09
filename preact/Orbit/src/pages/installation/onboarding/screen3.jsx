@@ -2,6 +2,7 @@ import Button from '../../../components/Button';
 import useKeyboardNavigation from "../../../hooks/useNavigation";
 import useReBoot from '../../../hooks/useReBoot';
 import FilterShapeSVG from '../../../assets/FilterShape.svg?raw';
+import encoderImg from '../../../assets/encoder.png';
 
 
 
@@ -43,10 +44,32 @@ function Screen3 () {
                             opacity: 0;
                         }
                     }
+                    
+                    /* Encoder rotation animation - 72 degrees per step (360/5) */
+                    .encoder-rotating {
+                        animation: encoderRotate 2.5s infinite step-end;
+                    }
+                    
+                    @keyframes encoderRotate {
+                        0%, 20% {
+                            transform: rotate(0deg);
+                        }
+                        20%, 40% {
+                            transform: rotate(45deg);
+                        }
+                        40%, 60% {
+                            transform: rotate(90deg);
+                        }
+                        60%, 80% {
+                            transform: rotate(135deg);
+                        }
+                        80%, 100% {
+                            transform: rotate(180deg);
+                        }
+                    }
                 `}
             </style>
             
-            <p>Gebruik de draaiknop om te Filteren tussen de verschillende vakgebieden</p>
             
             <div 
                 style={{
@@ -59,6 +82,11 @@ function Screen3 () {
                 }}
                 dangerouslySetInnerHTML={{__html: FilterShapeSVG}}
             />
+            <div style={{width: '45vh'}}>
+                <img className="encoder-rotating" style={{width: '100%'}} src={encoderImg} alt="" />
+            </div>
+            <p>Gebruik de draaiknop om te Filteren tussen de verschillende vakgebieden</p>
+ 
             
             <div style={{display: 'flex', gap: '20px'}}>
               <Button icon="back" text="back"></Button>
