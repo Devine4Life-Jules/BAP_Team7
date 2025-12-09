@@ -129,7 +129,7 @@ div img {
 }
 
 .project-detail {
-  background-position: center top;
+  background-position: center 50px;
   background-size: 90%;
   background-repeat: no-repeat;
   height: 100%;

@@ -82,11 +82,14 @@ export default function Project({id}){
                         </span>
                     ))}
                 </div>
+                
             )}
+            
                 <p>
                     
                     <span className="value">{project.researchGroup}</span>
                 </p>
+                
                 
 
       
@@ -101,6 +104,7 @@ export default function Project({id}){
                     </div>
                 )}
             </div>
+            
 
             {project.teaserAbstract && (
                 <div className="teaser-abstract">
@@ -108,31 +112,36 @@ export default function Project({id}){
                 </div>
             )}
 
-            <Button icon={"back"} text={"terug"}/>
-                      {transitiedomeinen.length > 0 && (
-                    <div className="transitiedomeinen">
-                        <div className="domain">
-                            {transitiedomeinen.map((td, index) => (
-                                <span key={index} id={`domain${index}`} className={`domain ${td.label}`}>
-                                    {td.label}
-                                </span>
-                            ))}
-                        </div>
+            <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
+                <Button icon={"back"} text={"terug"} />
+            </div>
+
+            {transitiedomeinen.length > 0 && (
+                <div className="transitiedomeinen">
+                    <div className="domain">
+                        {transitiedomeinen.map((td, index) => (
+                            <span key={index} id={`domain${index}`} className={`domain ${td.label}`}>
+                                {td.label}
+                            </span>
+                        ))}
                     </div>
-                )}
-                <div>
-                    <img src={bottomCloudsMain}                    
-                     style={{
-                        position: 'absolute',
-                        bottom: '0',
-                        left: '50%',
-                        transform: 'translateX(-50%)',
-                        width: '100%',
-                        height: 'auto',
-                        zIndex: 1,
-                        pointerEvents: 'none'
-                    }} alt="" />
                 </div>
+            )}
+
+            <img 
+                src={bottomCloudsMain}                    
+                style={{
+                    position: 'absolute',
+                    bottom: '0',
+                    left: '50%',
+                    transform: 'translateX(-50%)',
+                    width: '100%',
+                    height: 'auto',
+                    zIndex: 1,
+                    pointerEvents: 'none'
+                }} 
+                alt="" 
+            />
         </div>
     )
 }
