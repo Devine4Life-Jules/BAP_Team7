@@ -159,6 +159,7 @@ export default function Map() {
                 filteredProjects={filteredProjects} 
                 onSelectionChange={handleSelectionChange}
                 bottomCloudsImg={bottomCloudsMain}
+                selectedProject={selectedProject}
             />
             
             {/* FPS Counter */}
@@ -215,55 +216,6 @@ export default function Map() {
                 dangerouslySetInnerHTML={{__html: FilterShapeSVG}}
             />
 
-            {/* Project Details Dialog - Positioned near planet */}
-            {selectedProject && planetPosition && (
-                <div 
-                    style={{
-                        position: 'absolute',
-                        top: `${planetPosition.y - 80}px`, // Position above the planet
-                        left: `${planetPosition.x + 60}px`, // Position to the right of planet
-                        background: 'white',
-                        color: 'black',
-                        padding: '15px 20px',
-                        borderRadius: '12px',
-                        boxShadow: '0 4px 20px rgba(0, 0, 0, 0.3)',
-                        zIndex: 2500,
-                        minWidth: '200px',
-                        maxWidth: '300px',
-                        pointerEvents: 'none',
-                        transform: 'translateX(-50%)' // Center horizontally on the planet
-                    }}
-                >
-                    <h3 style={{ margin: '0 0 10px 0', fontSize: '20px', fontWeight: 'bold' }}>
-                        {selectedProject.ccode}
-                    </h3>
-                    <div>
-                        <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
-                            {selectedProject.transitiedomeinen.slice(0, 3).map((td, index) => {
-                                // Remove abbreviation in parentheses, e.g. "Gezond (GE)" -> "Gezond"
-                                const labelWithoutAbbr = td.label.replace(/\s*\([^)]*\)\s*/g, '').trim()
-                                return (
-                                    <span 
-                                        key={index}
-                                        style={{
-                                            background: '#f0f0f0',
-                                            padding: '4px 10px',
-                                            borderRadius: '12px',
-                                            fontSize: '12px'
-                                        }}
-                                    >
-                                        {labelWithoutAbbr}
-                                    </span>
-                                )
-                            })}
-                        </div>
-                    </div>
-                </div>
-            )}
-            
-        <div>
-            
-        </div>
         </div>
     )
 }
