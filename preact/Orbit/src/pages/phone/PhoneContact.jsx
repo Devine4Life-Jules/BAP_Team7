@@ -2,6 +2,9 @@ import { useState } from 'preact/hooks'
 import { supabase } from '../../lib/supabase'
 import './phone.css'
 import PhoneNav from '../../components/PhoneNav'
+import { Link } from 'preact-router'
+import cloudsTopContact from '../../assets/cloudsTopContact.png'
+import mobileContactRocket from '../../assets/mobileContactRocket.png'
 
 export default function PhoneContact(){
     // State for form fields
@@ -54,9 +57,15 @@ export default function PhoneContact(){
     }
 
     return(
-        <div className="phoneScreen">
-            <h1 class="mainPhoneTitle">Phone Contact</h1>
+        <div className="contactPage">
 
+            <div class="contactHeader">
+                <img src={cloudsTopContact} alt="" style={{width: '100%', position: 'absolute', top: 0, left: 0}}/>
+                <h1 class="mainPhoneTitle" style={{fontSize: "5rem"}}>orbit</h1>
+                <p>Onze research is wat jou bedrijf naar de sterren zal brengen. Interesse of vragen aarzel niet en kom in contact</p>
+                <Link href='#contactForm' className="projectCTA" style={{backgroundColor: '#332E84'}}>Samenwerken</Link>
+                <img src={mobileContactRocket} alt="rocket" style={{width: '60%',  margin: '0 auto', }} />
+            </div>
             {/* Success message */}
             {submitStatus === 'success' && (
                 <div style={{ 
@@ -83,7 +92,7 @@ export default function PhoneContact(){
                 </div>
             )}
 
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} id="contactForm" className="contactForm">
                 <label style={{display: 'block'}} htmlFor="companyName">Company Name</label>
                 <input 
                     name="companyName" 
@@ -128,6 +137,7 @@ export default function PhoneContact(){
                 <button 
                     type="submit" 
                     disabled={isSubmitting}
+                    className="projectCTA"
                     style={{
                         display: 'block',
                         opacity: isSubmitting ? 0.6 : 1,
@@ -137,6 +147,7 @@ export default function PhoneContact(){
                     {isSubmitting ? 'Sending...' : 'Submit'}
                 </button>
             </form>
+
 
             <PhoneNav />
         </div>

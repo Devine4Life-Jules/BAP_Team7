@@ -113,13 +113,16 @@ body {
 
 .phoneNavButton {
     display: block;
-    color: black;
+    color: white;
     text-decoration: none;
-
 }
 
 .phoneNavButton:visited {
-    color: black;
+    color: white;
+}
+
+.phoneNavButton.activeNavButton {
+    color: #E91E63 !important;
 }
 
 .phoneProjectAbstract {
@@ -129,9 +132,52 @@ body {
 }
 
 
+.contactHeader {
+    background: linear-gradient(180deg, #311E60 0%, #050535 100%);
+    margin-top: 0;
+    color: white;
+    padding: 2rem 1rem 0rem 1rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 1.5rem;
+  
+}
+
+.contactForm {
+    background: linear-gradient(0deg, #494781 0%, rgba(73, 71, 129, 0.00) 100%);
+
+    width: 80%;
+    margin: 0 auto;
+    padding: 1rem;
+    border-radius: 30px;
+}
+
+.contactPage {
+    padding-bottom: 5rem;
+}
+
+
+.contactForm input, textarea {
+    width: 90%;
+    background-color: transparent;
+    margin-bottom: 1rem;
+    border-radius: 10px ;
+    margin-top: .7rem;
+    
+}
+
+label {
+    margin-bottom: 2rem;
+    padding-bottom: .4rem;
+    line-height: 2rem;
+}
+
+
+
 nav ul {
     display: flex;
-    border: 2px solid red;
     position: fixed;
     bottom: 0;
     left: 0;
@@ -141,13 +187,19 @@ nav ul {
     align-items: center;
     padding: 0;
     margin: 0;
-    background-color: white;
+    background-color: #454382;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    height: 4rem;
 
+}
+
+nav a {
+    color: white;
 }
 
 nav ul li {
     list-style-type: none;
     margin: 10px 0;
-    border: 2px solid blue;
     text-align: center;
 }
