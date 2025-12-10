@@ -3,7 +3,7 @@ import PhoneNav from "../../components/PhoneNav"
 import dummyImage from '../../assets/dummyImage.png'
 import { Link } from "preact-router"
 import './phone.css'
-import SaveIcon from '../../components/saveIcon'
+import SaveIcon from '../../components/SaveIcon'
 import imgOverlayClouds from '../../assets/imgOverlayClouds.png'
 
 import { ProjectsContext } from '../../contexts/ProjectsContext';
