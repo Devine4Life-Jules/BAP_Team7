@@ -3,6 +3,8 @@ import PhoneNav from "../../components/PhoneNav"
 import dummyImage from '../../assets/dummyImage.png'
 import { Link } from "preact-router"
 import './phone.css'
+import SaveIcon from '../../components/saveIcon'
+import imgOverlayClouds from '../../assets/imgOverlayClouds.png'
 
 import { ProjectsContext } from '../../contexts/ProjectsContext';
 
@@ -18,6 +20,9 @@ export default function PhoneProject({id}){
     const [isSaved, setIsSaved] = useState(false);
 
     const project = projects.find(p => String(p.id) === String(id));
+
+    const transitiedomeinen = project.transitiedomeinen
+    .filter(td => td.category === "Transitiedomein");
     
     // Get saved projects from localStorage
     const getSavedProjects = () => {
@@ -60,38 +65,52 @@ export default function PhoneProject({id}){
 
     return(
         <div className="phoneScreen">
+            
              <div class="phoneProjectHeader">
                  <div className="phoneProjectHeaderContent">
-                     <h1 className="mainPhoneTitle">{project.ccode}</h1>
+                     <div className="phoneTitleWrapper">
+                         <div>
+                             <h1 className="mainPhoneTitle">{project.ccode}</h1>
+                            {transitiedomeinen.length > 0 && (
+                            <div>
+                                <div className="phoneDomainWrapper">
+                                    {transitiedomeinen.map((td, index) => (
+                                        <span key={index} id={`phonedomain${index}`} className={`phonedomain ${td.label}`}>
+                                            {td.label}
+                                        </span>
+                                    ))}
+                                </div>
+                            </div>
+                            )}
+                         </div>
+                         <div>
+                            <button
+                            onClick={isSaved ? unsaveProject : saveProject}
+                            style={{
+                            padding:'0',
+                            backgroundColor: 'transparent',
+                            border: 'none',
+                            transition: 'opacity 0.3s'
+                            }}
+                        >
+                            <SaveIcon isSaved={isSaved} />
+                        </button>
+                         </div>
+                     </div>
                      <div className="teaser">
                          <p dangerouslySetInnerHTML={{__html: project.teaserAbstract}} />
-                          <Link href='/phone/contact'>Contact page</Link>
+                          <Link href='/phone/contact' className="projectCTA">Samenwerken</Link>
                      </div>
                  </div>
                  
-                 <button
-                    onClick={isSaved ? unsaveProject : saveProject}
-                    style={{
-                        padding: '12px 24px',
-                        margin: '20px 0',
-                        cursor: 'pointer',
-                        backgroundColor: isSaved ? '#4CAF50' : '#2196F3',
-                        color: 'white',
-                        border: 'none',
-                        borderRadius: '8px',
-                        fontSize: '16px',
-                        fontWeight: 'bold',
-                        transition: 'background-color 0.3s'
-                    }}
-                 >
-                    {isSaved ? '✓ Saved' : 'Save Project'}
-                 </button>
+
              </div>
 
              <div>
-                <img src={dummyImage} alt="project image" />
+                <img className="projectImage" src={dummyImage} alt="project image" />
+                <img className="imgOverlayClouds" src={imgOverlayClouds} alt="clouds overlay" />
              </div>
-             <div>
+             <div className='phoneProjectAbstract'>
                 <h2>Abstract</h2>
                 <p dangerouslySetInnerHTML={{__html: project.abstract}} />
              </div>

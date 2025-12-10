@@ -24,9 +24,11 @@ body {
 }
 
 
+
+
 .phoneScreen {
     color: black;
-    background-color: white;
+    background-color: #EDF7FA;
     min-height: 100vh;
     font-family: 'VAGroundedstd-light', sans-serif;
     display: block;
@@ -39,6 +41,63 @@ body {
     margin-top: 0;
     color: white;
     padding-top: 2rem;
+    padding-bottom: 5rem;
+}
+
+.phoneTitleWrapper {
+    display: flex;   
+    justify-content: space-between; 
+    align-items: flex-start;
+}
+
+.phonedomain {
+    margin-right: 1rem;
+    background-color: aqua;
+    padding: 4px 8px;
+    border-radius: 30px;
+    color: black;
+}
+
+.phoneDomainWrapper {
+    display: flex;
+    margin: .3rem auto;
+}
+
+.teaser {
+    font-size: 1.5rem;
+    font-weight: 100;
+}
+
+.projectCTA {
+    border-radius: 34.453px;
+    background: rgba(255, 255, 255, 0.20);
+    box-shadow: 0 1.392px 3.48px 0 rgba(22, 10, 58, 0.50);
+    color: white;
+    padding: 1.3rem 1.5rem;
+    display: block;
+    text-align: center;
+    max-width: 25vh;
+    margin: 0 auto;
+}
+
+
+.projectImage {
+    border-top-left-radius: 35px;
+    border-top-right-radius: 35px;  
+    margin-top: -4rem;
+    position: relative;
+    z-index: 5;
+}
+
+
+.imgOverlayClouds {
+    margin-top: -2rem;
+    position: relative;
+    z-index: 10;
+}
+
+.projectCTA a:visited {
+    color: white;
 }
 
 .phoneProjectHeaderContent {
@@ -62,6 +121,12 @@ body {
     color: black;
 }
 
+.phoneProjectAbstract {
+    margin-top: -3rem;
+    z-index: 15;
+    position: relative;
+}
+
 
 nav ul {
     display: flex;
@@ -71,7 +136,7 @@ nav ul {
     left: 0;
     width: 100%;
     justify-content: space-around;
-    z-index: 1;
+    z-index: 100;
     align-items: center;
     padding: 0;
     margin: 0;

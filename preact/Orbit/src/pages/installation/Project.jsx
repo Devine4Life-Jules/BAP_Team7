@@ -8,7 +8,7 @@ import QRCode from 'qrcode'
 
 
 export default function Project({id}){
-    // useReBoot({rebootTime: 100000});
+    useReBoot({rebootTime: 100000});
     const { projects, loading } = useContext(ProjectsContext);
     
     if (loading) return <div class="loader"></div>
@@ -22,7 +22,6 @@ export default function Project({id}){
         if (qrcodeRef.current) {
             qrcodeRef.current.innerHTML = ''
             
-            // Calculate viewport height based size (10vh ≈ 96px on 960px height screen)
             const containerSize = window.innerHeight * 0.1
             
             QRCode.toCanvas(url, {
