@@ -60,31 +60,33 @@ export default function PhoneProject({id}){
 
     return(
         <div className="phoneScreen">
-             <h1 class="mainPhoneTitle">{project.ccode}</h1>
-
-             <div class="teaser">
-                 <h2>Teaser</h2>
-                 <p dangerouslySetInnerHTML={{__html: project.teaserAbstract}} />
-                  <Link href='/phone/contact'>Contact page</Link>
+             <div class="phoneProjectHeader">
+                 <div className="phoneProjectHeaderContent">
+                     <h1 className="mainPhoneTitle">{project.ccode}</h1>
+                     <div className="teaser">
+                         <p dangerouslySetInnerHTML={{__html: project.teaserAbstract}} />
+                          <Link href='/phone/contact'>Contact page</Link>
+                     </div>
+                 </div>
+                 
+                 <button
+                    onClick={isSaved ? unsaveProject : saveProject}
+                    style={{
+                        padding: '12px 24px',
+                        margin: '20px 0',
+                        cursor: 'pointer',
+                        backgroundColor: isSaved ? '#4CAF50' : '#2196F3',
+                        color: 'white',
+                        border: 'none',
+                        borderRadius: '8px',
+                        fontSize: '16px',
+                        fontWeight: 'bold',
+                        transition: 'background-color 0.3s'
+                    }}
+                 >
+                    {isSaved ? '✓ Saved' : 'Save Project'}
+                 </button>
              </div>
-             
-             <button 
-                onClick={isSaved ? unsaveProject : saveProject}
-                style={{
-                    padding: '12px 24px',
-                    margin: '20px 0',
-                    cursor: 'pointer',
-                    backgroundColor: isSaved ? '#4CAF50' : '#2196F3',
-                    color: 'white',
-                    border: 'none',
-                    borderRadius: '8px',
-                    fontSize: '16px',
-                    fontWeight: 'bold',
-                    transition: 'background-color 0.3s'
-                }}
-             >
-                {isSaved ? '✓ Saved' : 'Save Project'}
-             </button>
 
              <div>
                 <img src={dummyImage} alt="project image" />

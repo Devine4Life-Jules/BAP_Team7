@@ -14,7 +14,7 @@
 .mainPhoneTitle {
     font-family: 'VAGroundedstd-bold', sans-serif;
     font-size: 40px;
-    margin: 10px 0;
+   
 }
 
 body {
@@ -23,12 +23,30 @@ body {
 
 }
 
+
 .phoneScreen {
     color: black;
     background-color: white;
     min-height: 100vh;
     font-family: 'VAGroundedstd-light', sans-serif;
     display: block;
+    padding-top: auto;
+}
+
+
+.phoneProjectHeader {
+    background: linear-gradient(180deg, #000032 0%, #891EE8 100%);
+    margin-top: 0;
+    color: white;
+    padding-top: 2rem;
+}
+
+.phoneProjectHeaderContent {
+    background: linear-gradient(0deg, rgba(73, 71, 129, 0.00) 0%, #6462A7 100%);
+    width: 85%;
+    padding: 20px;
+    margin: 0 auto;
+    border-radius: 20px;
 }
 
 
