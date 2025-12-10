@@ -98,7 +98,7 @@ export default function PhoneProject({id}){
                          </div>
                      </div>
                      <div className="teaser">
-                         <p dangerouslySetInnerHTML={{__html: project.teaserAbstract}} />
+                         <p dangerouslySetInnerHTML={{__html: project.teaserAbstract}} style={{ marginBottom: '2rem' }} />
                           <Link href='/phone/contact' className="projectCTA">Samenwerken</Link>
                      </div>
                  </div>
