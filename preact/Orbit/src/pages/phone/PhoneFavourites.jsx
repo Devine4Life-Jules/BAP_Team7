@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from 'preact/hooks'
 import { Link } from 'preact-router'
 import PhoneNav from "../../components/PhoneNav"
 import { ProjectsContext } from '../../contexts/ProjectsContext'
+import PhoneCard from '../../components/PhoneCard'
 import { supabase } from '../../lib/supabase'
 
 import './phone.css'
@@ -28,8 +29,9 @@ export default function PhoneFavourites(){
     }, []);
 
     return(
-        <div className="phoneScreen">
-            <h1 class="mainPhoneTitle">Saved Projects</h1>
+        <div className="phoneFavourites">
+            <h1 class="mainPhoneTitle">Opgeslagen</h1>
+            <p>Jouw verzameling van onderzoeken. Alles op één plek.</p>
             
             {savedProjects.length === 0 ? (
                 <p style={{ padding: '20px', color: '#666' }}>
@@ -43,26 +45,7 @@ export default function PhoneFavourites(){
                     padding: '20px 0'
                 }}>
                     {savedProjects.map(project => (
-                        <Link 
-                            key={project.id}
-                            href={`/phone/project/${project.id}`}
-                            style={{
-                                padding: '15px',
-                                backgroundColor: '#f5f5f5',
-                                borderRadius: '8px',
-                                textDecoration: 'none',
-                                color: '#333',
-                                border: '1px solid #ddd',
-                                transition: 'all 0.3s'
-                            }}
-                        >
-                            <h3 style={{ margin: '0 0 8px 0', color: '#2196F3' }}>
-                                {project.ccode}
-                            </h3>
-                            <p style={{ margin: 0, fontSize: '14px', color: '#666' }}>
-                                {project.cdesc}
-                            </p>
-                        </Link>
+                        <PhoneCard key={project.id} project={project} />
                     ))}
                 </div>
             )}

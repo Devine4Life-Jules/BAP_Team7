@@ -168,6 +168,14 @@ body {
     
 }
 
+
+.phonefavourites {
+    color: black;
+    background: linear-gradient(0deg, rgba(73, 71, 129, 0.00) 0%, #6462A7 100%);
+
+    display: block;
+}
+
 label {
     margin-bottom: 2rem;
     padding-bottom: .4rem;
