@@ -194,23 +194,44 @@ export default function Map() {
                 FPS: {fps}
             </div>
             
-            {/* QR Code overlay */}
+            {/* QR Code overlay with message */}
             <div 
-                ref={qrcodeRef}
-                id="qrcode"
                 style={{
                     position: 'absolute',
-                    top: '75vh',
+                    top: '70vh',
                     left: '50%',
                     transform: 'translateX(-50%)',
-                    background: 'white',
-                    width: '10vh',
-                    padding: '10px',
-                    borderRadius: '25px',
-                    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    gap: '10px',
                     zIndex: 1000
                 }}
-            />
+            >
+                <div 
+                    ref={qrcodeRef}
+                    id="qrcode"
+                    style={{
+                        background: 'white',
+                        width: '10vh',
+                        borderRadius: '25px',
+                        padding: '10px',
+                        boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)'
+                    }}
+                />
+                <p 
+                    style={{
+                        color: '#0A0C3C',
+                        fontSize: '1rem',
+                        fontWeight: 'bold',
+                        textAlign: 'center',
+                        marginTop: "-.2rem"
+                        
+                    }}
+                >
+                    <span style={{ display:'block'}}>zet koers naar</span> <span style={{fontSize: '1.5rem'}}>samenwerking</span>
+                </p>
+            </div>
             
             {/* SVG Filter overlay - embed as inline SVG */}
             <div 
