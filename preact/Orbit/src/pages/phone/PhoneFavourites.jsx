@@ -45,7 +45,7 @@ export default function PhoneFavourites(){
                     padding: '20px 0'
                 }}>
                     {savedProjects.map(project => (
-                        <PhoneCard key={project.id} project={project} />
+                        <PhoneCard key={project.id} project={project} background={`linear-gradient(90deg, #494781 0%, rgba(73, 71, 129, 0.00) 100%)`} />
                     ))}
                 </div>
             )}
