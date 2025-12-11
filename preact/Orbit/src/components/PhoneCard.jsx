@@ -1,6 +1,13 @@
 import { Link } from 'preact-router'
 import dummyImage from '../assets/dummyImage.png';
 
+const cardStyle = {
+    border: "1px solid white",
+    borderRadius: "10px",
+    overflow: "hidden",
+    color: "white",
+}
+
 export default function PhoneCard({ project, background }) {
     return (
         <Link 
@@ -14,9 +21,9 @@ export default function PhoneCard({ project, background }) {
                 transition: 'all 0.3s'
             }}
         >
-            <div>
+            <div style={cardStyle} >
                 <img src={dummyImage} alt="dummy image" />
-                <h3 style={{ margin: '0 0 8px 0', color: '#2196F3' }}>
+                <h3>
                     {project.ccode}
                 </h3>
                 <p style={{ margin: 0, fontSize: '14px', color: '#666' }}>
