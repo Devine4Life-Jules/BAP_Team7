@@ -42,7 +42,7 @@ export default function PhoneFavourites(){
                     display: 'flex', 
                     flexDirection: 'column', 
                     gap: '15px',
-                    padding: '20px 0'
+                    padding: '15px'
                 }}>
                     {savedProjects.map(project => (
                         <PhoneCard key={project.id} project={project} background={`linear-gradient(90deg, #494781 0%, rgba(73, 71, 129, 0.00) 100%)`} />

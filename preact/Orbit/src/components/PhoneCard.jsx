@@ -10,6 +10,15 @@ const cardStyle = {
     color: "white",
 }
 
+const cardLabelStyle = {
+    padding: '1rem 0 .1rem 1rem',
+}
+
+const cardTitleStyle = {
+    fontSize: '1.2rem',
+    fontFamily: 'VAGroundedstd-bold',
+}
+
 export default function PhoneCard({ project, background }) {
     const transitiedomeinen = useGetDomains(project);
 
@@ -27,15 +36,17 @@ export default function PhoneCard({ project, background }) {
         >
             <div style={cardStyle} >
                 <img src={dummyImage} alt="dummy image" />
-                <h3>
-                    {project.ccode}
-                </h3>
-                <div>
-                    <PhoneDomainPills domains={transitiedomeinen} />
+                <div style={cardLabelStyle}>
+                    <h2 style={cardTitleStyle}>
+                        {project.ccode}
+                    </h2>
+                    <div>
+                        <PhoneDomainPills domains={transitiedomeinen} />
+                    </div>
+                    <p style={{ margin: 0, fontSize: '14px', color: '#666' }}>
+                        {project.cdesc}
+                    </p>
                 </div>
-                <p style={{ margin: 0, fontSize: '14px', color: '#666' }}>
-                    {project.cdesc}
-                </p>
             </div>
         </Link>
     )
