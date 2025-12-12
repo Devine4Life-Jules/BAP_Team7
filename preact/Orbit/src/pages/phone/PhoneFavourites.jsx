@@ -5,14 +5,14 @@ import { ProjectsContext } from '../../contexts/ProjectsContext'
 import PhoneCard from '../../components/PhoneCard'
 import { supabase } from '../../lib/supabase'
 import PhoneFooter from '../../components/PhoneFooter'
+import useGetProjects from '../../hooks/useGetProjects'
 
 import './phone.css'
 
 export default function PhoneFavourites(){
 
 
-    const { projects, loading } = useContext(ProjectsContext);
-    if (loading) return <div class="loader"></div>
+    const projects = useGetProjects();
 
     const [savedProjects, setSavedProjects] = useState([]);
 

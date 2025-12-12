@@ -4,14 +4,18 @@ import useKeyboardNavigation from '../../hooks/useNavigation';
 import { ProjectsContext } from '../../contexts/ProjectsContext';
 import useReBoot from '../../hooks/useReBoot';
 import bottomCloudsMain from '../../assets/bottomCloudsMain.png'
+import useGetDomains from '../../hooks/useGetDomains';
 import QRCode from 'qrcode'
+import useGetProjects from '../../hooks/useGetProjects';
 
 
 export default function Project({id}){
+    const projects = useGetProjects();
+    const project = projects.find(p => String(p.id) === String(id))
+    const transitiedomeinen = useGetDomains(project);
+
     useReBoot({rebootTime: 100000});
-    const { projects, loading } = useContext(ProjectsContext);
-    
-    if (loading) return <div class="loader"></div>
+
     const qrcodeRef = useRef(null)
     
     const url = `${window.location.protocol}//${window.location.host}/phone/project/${id}?source=qr`
@@ -43,15 +47,13 @@ export default function Project({id}){
         }
     }, [url]);
 
-    const project = projects.find(p => String(p.id) === String(id))
     
     if (!project) {
         return <div>Project not found</div>
     }
 
     // Extract transitiedomein items (the ones with category "Transitiedomein")
-    const transitiedomeinen = project.transitiedomeinen
-        .filter(td => td.category === "Transitiedomein");
+
     
     // Extract keywords (thema category)
     const keywords = project.transitiedomeinen
