@@ -10,6 +10,7 @@ import PhoneDomainPills from '../../components/PhoneDomainPills';
 import useGetDomains from '../../hooks/useGetDomains'
 import { supabase } from '../../lib/supabase'
 import PhoneFooter from '../../components/PhoneFooter'
+import PhoneCard from '../../components/PhoneCard'
 
 
 
@@ -22,9 +23,20 @@ export default function PhoneProject({id}){
 
     const [isSaved, setIsSaved] = useState(false);
 
-    
-
-    
+    // Get 3 similar projects from the same domain
+    const similarProjects = projects
+        .filter(p => {
+            // Exclude current project
+            if (String(p.id) === String(id)) return false;
+            
+            // Check if project has any matching transitiedomein
+            return p.transitiedomeinen?.some(td => 
+                transitiedomeinen.some(currentTd => 
+                    td.label === currentTd.label && td.category === "Transitiedomein"
+                )
+            );
+        })
+        .slice(0, 3); // Get first 3 matches
 
     const getSavedProjects = () => {
         const saved = localStorage.getItem('savedProjects');
@@ -137,13 +149,28 @@ export default function PhoneProject({id}){
 
              </div>
 
-             <div>
-                <img className="projectImage" src={dummyImage} alt="project image" />
-                <img className="imgOverlayClouds" src={imgOverlayClouds} alt="clouds overlay" />
-             </div>
-             <div className='phoneProjectAbstract'>
-                <h2>Abstract</h2>
-                <p dangerouslySetInnerHTML={{__html: project.abstract}} />
+             <div style={{background:'#010133'}}>
+                 <div className="phoneProjectImageWrapper">
+                    <img className="projectImage" src={dummyImage} alt="project image" />
+                    <img className="imgOverlayClouds" src={imgOverlayClouds} alt="clouds overlay" />
+                 </div>
+                 <div className='phoneProjectAbstract'>
+                    <h2 className='abstractTitle'>Abstract</h2>
+                    <p className='abstractText' dangerouslySetInnerHTML={{__html: project.abstract}} />
+                    <div className='moreLikeThis'>
+                        <h3>meer zo als dit</h3>
+                        {similarProjects.length > 0 ? (
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
+                                {similarProjects.map(similarProject => (
+                                    <PhoneCard key={similarProject.id} project={similarProject} textColor={"black"}  />
+                                ))}
+                            </div>
+                        ) : (
+                            <p>Geen gelijkaardige projecten gevonden</p>
+                        )}
+                    </div>
+                 </div>
+   
              </div>
             <PhoneNav />
             <PhoneFooter />

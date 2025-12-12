@@ -18,7 +18,7 @@
 }
 
 body {
-    font-family: 'VAGroundedstd-light', sans-serif;
+    font-family: 'open-sans', sans-serif;
     display: block ;
 
 }
@@ -64,13 +64,27 @@ h1, h2, h3, h4, h5, h6 {
 
 .phoneDomainWrapper {
     display: flex;
-    margin: 1rem auto;
+    margin:  auto;
 }
 
 .teaser {
     font-size: 1.5rem;
     font-weight: 100;
     line-height: 2rem;
+}
+
+
+
+
+.abstractTitle {
+    font-size: 1.2rem;
+    font-family: 'VAGroundedstd-bold', sans-serif;
+    margin-bottom: 1rem;
+}
+
+.abstractText {
+    font-size: 1.2rem;
+    
 }
 
 .projectCTA {
@@ -130,9 +144,18 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .phoneProjectAbstract {
-    margin-top: -3rem;
+    margin: -3rem auto 0 auto;
+    width: 100;
     z-index: 15;
     position: relative;
+    padding:1.5rem 2rem;
+    background-color: #EDF7FA;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+}
+
+strong {
+    color: #494781;
 }
 
 

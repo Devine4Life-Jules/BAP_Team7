@@ -7,21 +7,20 @@ import bottomCloudsMain from '../../assets/bottomCloudsMain.png'
 import useGetDomains from '../../hooks/useGetDomains';
 import QRCode from 'qrcode'
 import useGetProjects from '../../hooks/useGetProjects';
+import useGetKeywords from '../../hooks/useGetKeywords';
 
 
 export default function Project({id}){
     const projects = useGetProjects();
     const project = projects.find(p => String(p.id) === String(id))
     const transitiedomeinen = useGetDomains(project);
+    const keywords = useGetKeywords(project);
 
+    useKeyboardNavigation({back: '/map', next: null});
     useReBoot({rebootTime: 100000});
 
     const qrcodeRef = useRef(null)
-    
     const url = `${window.location.protocol}//${window.location.host}/phone/project/${id}?source=qr`
-    
-    useKeyboardNavigation({back: '/map', next: null});
-    
     useEffect(() => {
         if (qrcodeRef.current) {
             qrcodeRef.current.innerHTML = ''
@@ -52,13 +51,9 @@ export default function Project({id}){
         return <div>Project not found</div>
     }
 
-    // Extract transitiedomein items (the ones with category "Transitiedomein")
 
     
-    // Extract keywords (thema category)
-    const keywords = project.transitiedomeinen
-        .filter(td => td.category === "Thema")
-        .slice(0, 3); // Get first 3 keywords
+
  
     return(
         <div className="project-detail" style={{ position: 'relative' }}>

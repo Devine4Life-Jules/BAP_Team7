@@ -3,23 +3,29 @@ import dummyImage from '../assets/dummyImage.png';
 import useGetDomains from '../hooks/useGetDomains';
 import PhoneDomainPills from './PhoneDomainPills';
 
-const cardStyle = {
-    border: "1px solid white",
-    borderRadius: "10px",
-    overflow: "hidden",
-    color: "white",
-}
 
-const cardLabelStyle = {
-    padding: '1rem 0 .1rem 1rem',
-}
 
-const cardTitleStyle = {
-    fontSize: '1.2rem',
-    fontFamily: 'VAGroundedstd-bold',
-}
+export default function PhoneCard({ project, background, textColor }) {
 
-export default function PhoneCard({ project, background }) {
+            const cardStyle = {
+            border: `1px solid ${textColor || '#ccc'}`,
+            borderRadius: "10px",
+            overflow: "hidden",
+            color: textColor || '#333',
+        }
+
+        const cardLabelStyle = {
+            padding: '.1rem 0 .3rem 1rem',
+        }
+
+        const cardTitleStyle = {
+            fontSize: '1.2rem',
+            marginBottom: '0.5rem',
+            fontFamily: 'VAGroundedstd-bold',
+        }
+
+
+
     const transitiedomeinen = useGetDomains(project);
 
     return (
@@ -37,15 +43,15 @@ export default function PhoneCard({ project, background }) {
             <div style={cardStyle} >
                 <img src={dummyImage} alt="dummy image" />
                 <div style={cardLabelStyle}>
+                <div>
                     <h2 style={cardTitleStyle}>
                         {project.ccode}
                     </h2>
                     <div>
                         <PhoneDomainPills domains={transitiedomeinen} />
                     </div>
-                    <p style={{ margin: 0, fontSize: '14px', color: '#666' }}>
-                        {project.cdesc}
-                    </p>
+                </div>
+
                 </div>
             </div>
         </Link>
