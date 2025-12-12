@@ -9,6 +9,7 @@ import Project from './Project'
 import { Router } from 'preact-router';
 import '../../app.css'
 import mainBg from '../../assets/mainBg.png'
+import InstallationError from './InstallationError'
 
 export function Installation() {
 
@@ -24,6 +25,7 @@ export function Installation() {
         <Screen4 path="/screen4"/>
         <Map path="/map" />
         <Project path="/project/:id" />
+        <InstallationError path="/*" default />
       </Router> 
 
     </div>
