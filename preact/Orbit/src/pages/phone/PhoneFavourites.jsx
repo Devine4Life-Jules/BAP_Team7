@@ -4,6 +4,7 @@ import PhoneNav from "../../components/PhoneNav"
 import { ProjectsContext } from '../../contexts/ProjectsContext'
 import PhoneCard from '../../components/PhoneCard'
 import { supabase } from '../../lib/supabase'
+import PhoneFooter from '../../components/PhoneFooter'
 
 import './phone.css'
 
@@ -51,6 +52,7 @@ export default function PhoneFavourites(){
             )}
             
             <PhoneNav />
+            <PhoneFooter />
         </div>
     )
 }

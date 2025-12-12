@@ -9,6 +9,7 @@ import useGetProjects from '../../hooks/useGetProjects'
 import PhoneDomainPills from '../../components/PhoneDomainPills';
 import useGetDomains from '../../hooks/useGetDomains'
 import { supabase } from '../../lib/supabase'
+import PhoneFooter from '../../components/PhoneFooter'
 
 
 
@@ -145,6 +146,7 @@ export default function PhoneProject({id}){
                 <p dangerouslySetInnerHTML={{__html: project.abstract}} />
              </div>
             <PhoneNav />
+            <PhoneFooter />
         </div>
     )
 }

@@ -5,6 +5,7 @@ import PhoneNav from '../../components/PhoneNav'
 import { Link } from 'preact-router'
 import cloudsTopContact from '../../assets/cloudsTopContact.png'
 import mobileContactRocket from '../../assets/mobileContactRocket.png'
+import PhoneFooter from '../../components/PhoneFooter'
 
 export default function PhoneContact(){
     // State for form fields
@@ -150,6 +151,7 @@ export default function PhoneContact(){
 
 
             <PhoneNav />
+            <PhoneFooter />
         </div>
     )
 }
