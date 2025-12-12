@@ -213,11 +213,14 @@ div img {
 
 
 .domain {
-
   aspect-ratio: 1/1;
   height: 100px;
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border-radius: 50%;
+  font-family: "VAGroundedstd-bold", sans-serif;
+  font-size: 1.3rem;
 }
 
 .domain.gezond {
