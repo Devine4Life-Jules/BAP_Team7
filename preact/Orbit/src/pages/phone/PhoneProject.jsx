@@ -1,62 +1,98 @@
-import { useState, useEffect, useContext } from 'preact/hooks'
+import { useState, useEffect,  } from 'preact/hooks'
 import PhoneNav from "../../components/PhoneNav"
 import dummyImage from '../../assets/dummyImage.png'
 import { Link } from "preact-router"
 import './phone.css'
 import SaveIcon from '../../components/SaveIcon'
 import imgOverlayClouds from '../../assets/imgOverlayClouds.png'
-
-import { ProjectsContext } from '../../contexts/ProjectsContext';
+import useGetProjects from '../../hooks/useGetProjects'
+import PhoneDomainPills from '../../components/PhoneDomainPills';
+import useGetDomains from '../../hooks/useGetDomains'
+import { supabase } from '../../lib/supabase'
 
 
 
 export default function PhoneProject({id}){
 
 
-    const { projects, loading } = useContext(ProjectsContext);
-
-    if (loading) return <div class="loader"></div>;
+    const projects = useGetProjects();
+    const project = projects.find(p => String(p.id) === String(id));
+    const transitiedomeinen = useGetDomains(project);
 
     const [isSaved, setIsSaved] = useState(false);
 
-    const project = projects.find(p => String(p.id) === String(id));
-
-    const transitiedomeinen = project.transitiedomeinen
-    .filter(td => td.category === "Transitiedomein");
     
-    // Get saved projects from localStorage
+
+    
+
     const getSavedProjects = () => {
         const saved = localStorage.getItem('savedProjects');
         return saved ? JSON.parse(saved) : [];
     };
 
-    // Check if current project is saved
     const checkIfSaved = () => {
         const savedProjects = getSavedProjects();
         return savedProjects.includes(String(id));
     };
 
-    // Save project
-    const saveProject = () => {
+    const saveProject = async () => {
         const savedProjects = getSavedProjects();
         if (!savedProjects.includes(String(id))) {
             savedProjects.push(String(id));
             localStorage.setItem('savedProjects', JSON.stringify(savedProjects));
             setIsSaved(true);
+            
+            // Log to Supabase
+            await supabase
+                .from('saved_project_events')
+                .insert({ 
+                    project_id: parseInt(id), 
+                    action: 'save' 
+                });
         }
     };
 
-    // Unsave project
-    const unsaveProject = () => {
+    const unsaveProject = async () => {
         const savedProjects = getSavedProjects();
         const filtered = savedProjects.filter(projectId => projectId !== String(id));
         localStorage.setItem('savedProjects', JSON.stringify(filtered));
         setIsSaved(false);
+        
+        // Log to Supabase
+        await supabase
+            .from('saved_project_events')
+            .insert({ 
+                project_id: parseInt(id), 
+                action: 'unsave' 
+            });
     };
 
-    // Check saved status on component mount
     useEffect(() => {
         setIsSaved(checkIfSaved());
+        
+        // Check if user came from QR code scan
+        const urlParams = new URLSearchParams(window.location.search);
+        const source = urlParams.get('source');
+        
+        if (source === 'qr') {
+            // Log QR scan to Supabase
+            supabase
+                .from('qr_scan_events')
+                .insert({ 
+                    project_id: parseInt(id)
+                })
+                .then(() => {
+                    console.log('QR scan logged for project', id);
+                })
+                .catch(err => {
+                    console.error('Error logging QR scan:', err);
+                });
+            
+            // Optional: Remove the ?source=qr from URL to clean it up
+            // This prevents logging the same scan if user refreshes
+            const cleanUrl = window.location.pathname;
+            window.history.replaceState({}, '', cleanUrl);
+        }
     }, [id]);
     
     if (!project) {
@@ -73,13 +109,7 @@ export default function PhoneProject({id}){
                              <h1 className="mainPhoneTitle">{project.ccode}</h1>
                             {transitiedomeinen.length > 0 && (
                             <div>
-                                <div className="phoneDomainWrapper">
-                                    {transitiedomeinen.map((td, index) => (
-                                        <span key={index} id={`phonedomain${index}`} className={`phonedomain ${td.label}`}>
-                                            {td.label}
-                                        </span>
-                                    ))}
-                                </div>
+                                <PhoneDomainPills domains={transitiedomeinen} />
                             </div>
                             )}
                          </div>

@@ -14,7 +14,7 @@ export default function Project({id}){
     if (loading) return <div class="loader"></div>
     const qrcodeRef = useRef(null)
     
-    const url = `${window.location.protocol}//${window.location.host}/phone/project/${id}`
+    const url = `${window.location.protocol}//${window.location.host}/phone/project/${id}?source=qr`
     
     useKeyboardNavigation({back: '/map', next: null});
     

@@ -1,5 +1,7 @@
 import { Link } from 'preact-router'
 import dummyImage from '../assets/dummyImage.png';
+import useGetDomains from '../hooks/useGetDomains';
+import PhoneDomainPills from './PhoneDomainPills';
 
 const cardStyle = {
     border: "1px solid white",
@@ -9,6 +11,8 @@ const cardStyle = {
 }
 
 export default function PhoneCard({ project, background }) {
+    const transitiedomeinen = useGetDomains(project);
+
     return (
         <Link 
             key={project.id}
@@ -26,6 +30,9 @@ export default function PhoneCard({ project, background }) {
                 <h3>
                     {project.ccode}
                 </h3>
+                <div>
+                    <PhoneDomainPills domains={transitiedomeinen} />
+                </div>
                 <p style={{ margin: 0, fontSize: '14px', color: '#666' }}>
                     {project.cdesc}
                 </p>
