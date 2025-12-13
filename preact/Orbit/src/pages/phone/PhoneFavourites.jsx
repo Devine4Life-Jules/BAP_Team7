@@ -6,6 +6,7 @@ import PhoneCard from '../../components/PhoneCard'
 import { supabase } from '../../lib/supabase'
 import PhoneFooter from '../../components/PhoneFooter'
 import useGetProjects from '../../hooks/useGetProjects'
+import savedPlanet from '../../assets/savedPlanet.png'
 
 import './phone.css'
 
@@ -30,27 +31,33 @@ export default function PhoneFavourites(){
     }, []);
 
     return(
-        <div className="phoneFavourites">
-            <h1 class="mainPhoneTitle">Opgeslagen</h1>
-            <p>Jouw verzameling van onderzoeken. Alles op één plek.</p>
-            
-            {savedProjects.length === 0 ? (
-                <p style={{ padding: '20px', color: '#666' }}>
-                    No saved projects yet. Save projects to see them here!
-                </p>
-            ) : (
-                <div style={{ 
-                    display: 'flex', 
-                    flexDirection: 'column', 
-                    gap: '15px',
-                    padding: '15px'
-                }}>
-                    {savedProjects.map(project => (
-                        <PhoneCard key={project.id} project={project} background={`linear-gradient(90deg, #494781 0%, rgba(73, 71, 129, 0.00) 100%)`} />
-                    ))}
-                </div>
-            )}
-            
+        <div className="phoneFavourites" style={{ paddingTop: '2rem' }}>
+            <div style={{ borderRadius: '30px', background:'linear-gradient(0deg, rgba(73, 71, 129, 0.00) 0%, #6462A7 100%)', padding: '2rem',width: '80%', margin: '0 auto' }}>
+
+                <h1 class="mainPhoneTitle centerTitle">Opgeslagen</h1>
+                
+                
+                {savedProjects.length === 0 ? (
+                    <div className="saved-empty">
+                        <p>Je hebt nog niks opgeslagen</p>
+                        <p>Ontdek onderzoeken op Orbit, onze installatie die jou bedrijf naar de sterren lanceert!</p>
+                        <div className='saved-planet'><img src={savedPlanet} alt="planet illustration" /></div>
+                    </div>
+                ) : (
+                    <div style={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: '15px',
+                        padding: '15px'
+                    }}>
+                        <p>Jouw verzameling van onderzoeken. Alles op één plek.</p>
+                        {savedProjects.map(project => (
+                            <PhoneCard key={project.id} project={project} background={`linear-gradient(90deg, #494781 0%, rgba(73, 71, 129, 0.00) 100%)`} />
+                        ))}
+                    </div>
+                )}
+                
+            </div>
             <PhoneNav />
             <PhoneFooter />
         </div>

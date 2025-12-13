@@ -141,8 +141,9 @@ export default function PhoneProject({id}){
                          </div>
                      </div>
                      <div className="teaser">
-                         <p dangerouslySetInnerHTML={{__html: project.teaserAbstract}} style={{ marginBottom: '2rem' }} />
+                            <p dangerouslySetInnerHTML={{__html: project.teaserAbstract}} style={{ marginBottom: '2rem' }} />
                             <KeyWordPills keywords={keywords} pillClassName={"keyword-pill-white"} />
+                            <p className='CTA-intro'><span style={{color: '#E38EAE'}}>Benieuwd</span> of dit iets voor jou kan betekenen?</p>
                             <Link href='/phone/contact' className="projectCTA">Samenwerken</Link>
                      </div>
                  </div>

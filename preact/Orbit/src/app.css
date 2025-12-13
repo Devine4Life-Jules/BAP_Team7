@@ -129,6 +129,10 @@ div img {
   border-radius: 50%;
 }
 
+.centerTitle {
+  text-align: center;
+}
+
 
 .onboardingInstruction {
   background: linear-gradient(180deg, rgba(51, 46, 132, 0.70) 0%, rgba(93, 122, 218, 0.10) 100%);
@@ -204,6 +208,12 @@ div img {
   border-radius: 50px;
   background-color: rgb(241, 80, 107);
   white-space: nowrap;
+}
+
+
+.CTA-intro {
+  text-align: center;
+  padding:1rem 0 .3rem 0;
 }
 
 .button {
@@ -310,6 +320,21 @@ div img {
 }
 
 
+.saved-empty {
+
+  text-align: center;
+}
+
+.saved-empty p {
+  margin-bottom:1.5rem ;
+  font-size: 1.5rem;
+  line-height: 1.8rem;
+  font-weight: 200;
+}
+
+.saved-planet {
+  padding:2rem 1rem 6rem 1rem;
+}
 
 #installation {
   width: 90vh;
