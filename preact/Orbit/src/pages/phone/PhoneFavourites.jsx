@@ -32,7 +32,7 @@ export default function PhoneFavourites(){
 
     return(
         <div className="phoneFavourites" style={{ paddingTop: '2rem' }}>
-            <div style={{ borderRadius: '30px', background:'linear-gradient(0deg, rgba(73, 71, 129, 0.00) 0%, #6462A7 100%)', padding: '2rem',width: '80%', margin: '0 auto' }}>
+            <div style={{ borderRadius: '30px', background:'linear-gradient(0deg, rgba(73, 71, 129, 0.00) 0%, #6462A7 100%)', padding: '2rem 1rem',width: '85%', margin: '0 auto' }}>
 
                 <h1 class="mainPhoneTitle centerTitle">Opgeslagen</h1>
                 
@@ -48,7 +48,6 @@ export default function PhoneFavourites(){
                         display: 'flex',
                         flexDirection: 'column',
                         gap: '15px',
-                        padding: '15px'
                     }}>
                         <p>Jouw verzameling van onderzoeken. Alles op één plek.</p>
                         {savedProjects.map(project => (
