@@ -21,7 +21,8 @@ export default function PhoneCard({ project, background, textColor }) {
         const cardTitleStyle = {
             fontSize: '1.2rem',
             marginBottom: '0.5rem',
-            fontFamily: 'VAGroundedstd-bold',
+            fontFamily: 'Nunito',
+            fontWeight: '700',
             textAlign: 'left',
             paddingTop: '.5rem',
         }

@@ -6,6 +6,7 @@ import { Link } from 'preact-router'
 import cloudsTopContact from '../../assets/cloudsTopContact.png'
 import mobileContactRocket from '../../assets/mobileContactRocket.png'
 import PhoneFooter from '../../components/PhoneFooter'
+import logo_howestResearch from '../../assets/logo_howestResearch.png'
 
 export default function PhoneContact(){
     // State for form fields
@@ -58,14 +59,34 @@ export default function PhoneContact(){
     }
 
     return(
-        <div className="contactPage">
-
-            <div class="contactHeader">
-                <img src={cloudsTopContact} alt="" style={{width: '100%', position: 'absolute', top: 0, left: 0}}/>
-                <h1 class="mainPhoneTitle" style={{fontSize: "5rem"}}>orbit</h1>
-                <p>Onze research is wat jou bedrijf naar de sterren zal brengen. Interesse of vragen aarzel niet en kom in contact</p>
-                <Link href='#contactForm' className="projectCTA" style={{backgroundColor: '#332E84'}}>Samenwerken</Link>
-                <img src={mobileContactRocket} alt="rocket" style={{width: '60%',  margin: '0 auto', }} />
+        <div className="contactPage" style={{backgroundColor:'#000032', position: 'relative'}}>
+            {/* Clouds overlapping from outside */}
+            <img src={cloudsTopContact} alt="clouds" style={{
+                width: '100%',
+                position: 'absolute',
+                top: 0,
+                left: '50%',
+                transform: 'translateX(-50%)',
+                zIndex: 10,
+                pointerEvents: 'none'
+            }}/>
+            
+            <div class="contactHeader" style={{ position: 'relative', width: '85%', margin: '0 auto', borderRadius: '30px', overflow: 'hidden' }}>
+                {/* Gradient background layer */}
+                <div style={{
+                    position: 'absolute',
+                    inset: 0,
+                    background: 'linear-gradient(0deg, rgba(73, 71, 129, 0.00) 0%, #6462A7 100%)',
+                    zIndex: 1
+                }}></div>
+                
+                {/* Content */}
+                <div style={{ position: 'relative', zIndex: 2, padding: '7rem 1rem' }}>
+                    <div style={{width: '90%', margin: '0 auto'}}><img src={logo_howestResearch} alt="Howest Research" style={{width: '100%'}} /></div>
+                    <p>Onze research is wat jou bedrijf naar de sterren zal brengen. Interesse of vragen aarzel niet en kom in contact</p>
+                    <Link href='#contactForm' className="projectCTA" style={{backgroundColor: '#332E84'}}>Samenwerken</Link>
+                    <img src={mobileContactRocket} alt="rocket" style={{width: '60%',  margin: '0 auto'}} />
+                </div>
             </div>
             {/* Success message */}
             {submitStatus === 'success' && (
