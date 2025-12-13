@@ -7,14 +7,13 @@ import bottomCloudsMain from '../../assets/bottomCloudsMain.png'
 import useGetDomains from '../../hooks/useGetDomains';
 import QRCode from 'qrcode'
 import useGetProjects from '../../hooks/useGetProjects';
-import useGetKeywords from '../../hooks/useGetKeywords';
+
 
 
 export default function Project({id}){
     const projects = useGetProjects();
     const project = projects.find(p => String(p.id) === String(id))
     const transitiedomeinen = useGetDomains(project);
-    const keywords = useGetKeywords(project);
 
     useKeyboardNavigation({back: '/map', next: null});
     useReBoot({rebootTime: 100000});
@@ -82,19 +81,8 @@ export default function Project({id}){
 
 
                  <h2 className="installation-ProjectTitle">{project.ccode}</h2>
-                             {keywords.length > 0 && (
-                <div style={{ display: 'flex', gap: '8px', marginTop: '10px', marginBottom: '20px'  }}>
-                    {keywords.map((keyword, index) => (
-                        <span key={index} className="pill">
-                            {keyword.label}
-                        </span>
-                    ))}
-                </div>
-                
-            )}
-            
+
                 <p>
-                    
                     <span className="value">{project.researchGroup}</span>
                 </p>
                 

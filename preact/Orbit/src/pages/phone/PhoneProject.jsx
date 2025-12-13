@@ -11,6 +11,8 @@ import useGetDomains from '../../hooks/useGetDomains'
 import { supabase } from '../../lib/supabase'
 import PhoneFooter from '../../components/PhoneFooter'
 import PhoneCard from '../../components/PhoneCard'
+import useGetKeywords from '../../hooks/useGetKeywords'
+import KeyWordPills from '../../components/KeyWordsPills';
 
 
 
@@ -20,6 +22,7 @@ export default function PhoneProject({id}){
     const projects = useGetProjects();
     const project = projects.find(p => String(p.id) === String(id));
     const transitiedomeinen = useGetDomains(project);
+    const keywords = useGetKeywords(project);
 
     const [isSaved, setIsSaved] = useState(false);
 
@@ -88,7 +91,6 @@ export default function PhoneProject({id}){
         const source = urlParams.get('source');
         
         if (source === 'qr') {
-            // Log QR scan to Supabase
             supabase
                 .from('qr_scan_events')
                 .insert({ 
@@ -100,9 +102,7 @@ export default function PhoneProject({id}){
                 .catch(err => {
                     console.error('Error logging QR scan:', err);
                 });
-            
-            // Optional: Remove the ?source=qr from URL to clean it up
-            // This prevents logging the same scan if user refreshes
+
             const cleanUrl = window.location.pathname;
             window.history.replaceState({}, '', cleanUrl);
         }
@@ -142,7 +142,8 @@ export default function PhoneProject({id}){
                      </div>
                      <div className="teaser">
                          <p dangerouslySetInnerHTML={{__html: project.teaserAbstract}} style={{ marginBottom: '2rem' }} />
-                          <Link href='/phone/contact' className="projectCTA">Samenwerken</Link>
+                            <KeyWordPills keywords={keywords} pillClassName={"keyword-pill-white"} />
+                            <Link href='/phone/contact' className="projectCTA">Samenwerken</Link>
                      </div>
                  </div>
                  
