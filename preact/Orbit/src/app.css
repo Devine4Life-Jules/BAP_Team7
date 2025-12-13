@@ -1,19 +1,15 @@
-@font-face {
-  font-family: 'VAGroundedstd-light';
-  src: url("./fonts/VAGRoundedStd-Light.otf");
-  font-family: 'VAGroundedstd-bold';
-  src: url("./fonts/VAGRoundedStd-Bold.otf");
-}
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700;800&display=swap');
 
 body {
-  font-family: 'Open Sans', 'VAGroundedstd-light', sans-serif;
+  font-family: 'Open Sans', 'Nunito', sans-serif;
   color: #F3E0FF;
   background-color: #000032;
 
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'VAGroundedstd-bold', sans-serif;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
 }
 
 div img {
@@ -42,7 +38,8 @@ div img {
 }
 
 .mainTitle {
-    font-family: 'VAGroundedstd-bold', sans-serif;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
     font-size: 5.5em;
     margin-top: 100px;
     justify-self: flex-start;
@@ -145,7 +142,8 @@ div img {
 
 
 .installation-ProjectTitle {
-    font-family: 'VAGroundedstd-bold', sans-serif;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
     font-size: 36px;
     margin: 20px 0;
     text-align: center;
@@ -248,7 +246,8 @@ div img {
   justify-content: center;
   align-items: center;
   border-radius: 50%;
-  font-family: "VAGroundedstd-bold", sans-serif;
+  font-family: "Nunito", sans-serif;
+  font-weight: 700;
   font-size: 1.3rem;
 }
 

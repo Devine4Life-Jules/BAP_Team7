@@ -1,18 +1,11 @@
-@font-face {
-  font-family: 'VAGroundedstd-light';
-  src: url("../../fonts/VAGRoundedStd-Light.otf");
-}
-
-@font-face {
-  font-family: 'VAGroundedstd-bold';
-  src: url("../../fonts/VAGRoundedStd-Bold.otf");
-}
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700;800&display=swap');
 
 
 
 
 .mainPhoneTitle {
-    font-family: 'VAGroundedstd-bold', sans-serif;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
     font-size: 40px;
    
 }
@@ -24,7 +17,8 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'VAGroundedstd-bold', sans-serif;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
 }
 
 
@@ -78,7 +72,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .abstractTitle {
     font-size: 1.2rem;
-    font-family: 'VAGroundedstd-bold', sans-serif;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
     margin-bottom: 1rem;
 }
 
@@ -283,7 +278,8 @@ footer section {
 }
 
 footer h3 {
-    font-family: 'VAGroundedstd-bold', sans-serif;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
     font-size:  1.4rem;
     line-height: 1.6rem;
 }
