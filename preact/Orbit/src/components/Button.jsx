@@ -4,10 +4,12 @@ import backIcon from '../assets/back_Icon.png'
 export default function Button ({icon, text}) {
 
     const chooseIcon = icon === 'back' ? backIcon : checkIcon;
+    const chooseColor = icon === 'back' ? 'backIcon' : 'checkIcon';
+
 
     return (
         <div className="button" syle={{backGroundColor: 'purple'}}>
-            <div className="button-icon"><img src={chooseIcon} alt="button Icon" /></div>
+            <div  id={chooseColor} className="button-icon"><img src={chooseIcon} alt="button Icon" /></div>
             <span className="button-text">{text}</span>
         </div>
     )

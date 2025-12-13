@@ -21,6 +21,7 @@ export function App() {
           <PhoneFavourites path="/phone/favourites" />
           <PhoneProject path="/phone/project/:id" />
           <PhoneError path="/phone/:rest*" />
+          <PhoneError path="/phone/project/:rest*" />
           <Installation path="/" />
           <Installation path="/:rest*" />
         </Router>

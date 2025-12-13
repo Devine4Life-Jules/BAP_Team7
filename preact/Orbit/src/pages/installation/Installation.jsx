@@ -25,7 +25,7 @@ export function Installation() {
         <Screen4 path="/screen4"/>
         <Map path="/map" />
         <Project path="/project/:id" />
-        <InstallationError path="/*" default />
+        <InstallationError path="/:rest*" />
       </Router> 
 
     </div>

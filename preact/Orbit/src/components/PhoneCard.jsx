@@ -11,7 +11,7 @@ export default function PhoneCard({ project, background, textColor }) {
             border: `1px solid ${textColor || '#ccc'}`,
             borderRadius: "10px",
             overflow: "hidden",
-            color: textColor || '#333',
+            color: textColor || '#ccc',
         }
 
         const cardLabelStyle = {

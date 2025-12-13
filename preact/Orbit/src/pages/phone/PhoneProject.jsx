@@ -24,7 +24,7 @@ export default function PhoneProject({id}){
     const [isSaved, setIsSaved] = useState(false);
 
     // Get 3 similar projects from the same domain
-    const similarProjects = projects
+    const similarProjects = project ? projects
         .filter(p => {
             // Exclude current project
             if (String(p.id) === String(id)) return false;
@@ -36,7 +36,7 @@ export default function PhoneProject({id}){
                 )
             );
         })
-        .slice(0, 3); // Get first 3 matches
+        .slice(0, 3) : []; // Get first 3 matches
 
     const getSavedProjects = () => {
         const saved = localStorage.getItem('savedProjects');
