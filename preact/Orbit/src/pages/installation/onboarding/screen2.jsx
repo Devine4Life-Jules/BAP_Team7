@@ -2,6 +2,7 @@ import Button from '../../../components/Button';
 import logoHowestResearch from '../../../assets/logo_howestResearch.png'
 import useKeyboardNavigation from "../../../hooks/useNavigation";
 import useReBoot from '../../../hooks/useReBoot';
+import OnboardingProgressBar from '../../../components/OnboardingProgressBar';
 
 function Screen2 () {
     useKeyboardNavigation({back: '/', next: '/screen3'});
@@ -16,6 +17,7 @@ function Screen2 () {
               <Button icon="back" text="back"></Button>
               <Button icon="check" text="Next"></Button>
             </div>
+            <OnboardingProgressBar step={1} />
         </div>
     )
 }

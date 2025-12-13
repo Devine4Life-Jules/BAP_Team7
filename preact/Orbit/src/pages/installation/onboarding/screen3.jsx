@@ -3,6 +3,7 @@ import useKeyboardNavigation from "../../../hooks/useNavigation";
 import useReBoot from '../../../hooks/useReBoot';
 import FilterShapeSVG from '../../../assets/FilterShape.svg?raw';
 import encoderImg from '../../../assets/encoder.png';
+import OnboardingProgressBar from '../../../components/OnboardingProgressBar';
 
 
 
@@ -92,6 +93,7 @@ function Screen3 () {
               <Button icon="back" text="back"></Button>
               <Button icon="check" text="Next"></Button>
             </div>
+            <OnboardingProgressBar step={2} />
         </div>
     )
 }

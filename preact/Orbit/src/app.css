@@ -123,6 +123,13 @@ div img {
   justify-self: flex-end;
 }
 
+.circleOnboarding {
+  width: 1rem;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+}
+
+
 .onboardingInstruction {
   background: linear-gradient(180deg, rgba(51, 46, 132, 0.70) 0%, rgba(93, 122, 218, 0.10) 100%);
   border: .5px solid white;

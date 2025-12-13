@@ -3,6 +3,7 @@
 import Button from '../../../components/Button';
 import useKeyboardNavigation from "../../../hooks/useNavigation";
 import useReBoot from '../../../hooks/useReBoot';
+import OnboardingProgressBar from '../../../components/OnboardingProgressBar';
 
 
 
@@ -16,6 +17,7 @@ function Screen4 () {
               <Button icon="back" text="back"></Button>
               <Button icon="check" text="Next"></Button>
             </div>
+            <OnboardingProgressBar step={3} />
         </div>
     )
 }
