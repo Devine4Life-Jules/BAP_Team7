@@ -115,8 +115,9 @@ export default function PhoneContact(){
             )}
 
             <form onSubmit={handleSubmit} id="contactForm" className="contactForm">
-                <label style={{display: 'block'}} htmlFor="companyName">Company Name</label>
+                <label style={{display: 'block'}} htmlFor="companyName">Naam Bedrijf:</label>
                 <input 
+                    placeholder='Howest Research'
                     name="companyName" 
                     id="companyName"
                     style={{display: 'block'}}
@@ -125,19 +126,21 @@ export default function PhoneContact(){
                     required
                 />
                 
-                <label htmlFor="contactName" style={{display: 'block'}}>Contact Name</label>
+                <label htmlFor="contactName" style={{display: 'block'}}>Naam Contactpersoon:</label>
                 <input 
                     name="contactName"
                     id="contactName" 
+                    placeholder='John Doe'
                     value={contactName}
                     onChange={(e) => setContactName(e.target.value)}
                     required
                 />
                 
-                <label htmlFor="email" style={{display: 'block'}}>Email</label>
+                <label htmlFor="email" style={{display: 'block'}}>Email:</label>
                 <input 
                     name="email" 
                     style={{display: 'block'}}
+                    placeholder='john.doe@howest.be'
                     id="email"
                     type="email"
                     value={email}
@@ -145,9 +148,10 @@ export default function PhoneContact(){
                     required
                 />
                 
-                <label htmlFor="message" style={{display: 'block'}}>Message</label>
+                <label htmlFor="message" style={{display: 'block'}}>Message:</label>
                 <textarea 
                     name="message"
+                    placeholder='Ik ben geïnteresseerd in jullie research diensten...'
                     style={{display: 'block'}}
                     id="message" 
                     rows="4"

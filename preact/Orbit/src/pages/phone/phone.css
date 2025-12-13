@@ -202,7 +202,7 @@ strong {
     margin-bottom: 1rem;
     border-radius: 10px ;
     margin-top: .7rem;
-    
+    border: 1px solid   white;
 }
 
 
@@ -217,7 +217,10 @@ label {
     margin-bottom: 2rem;
     padding-bottom: .4rem;
     line-height: 2rem;
+    font-weight: bold;
+    display: none;
 }
+
 
 
 
