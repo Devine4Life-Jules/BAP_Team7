@@ -44,12 +44,12 @@ export default function PhoneFavourites(){
                         <div className='saved-planet'><img src={savedPlanet} alt="planet illustration" /></div>
                     </div>
                 ) : (
-                    <div style={{
+                    <div className="saved-projects" style={{
                         display: 'flex',
                         flexDirection: 'column',
                         gap: '15px',
                     }}>
-                        <p>Jouw verzameling van onderzoeken. Alles op één plek.</p>
+                        <p style={{ textAlign: 'center' }}>Jouw verzameling van onderzoeken. Alles op één plek.</p>
                         {savedProjects.map(project => (
                             <PhoneCard key={project.id} project={project} background={`linear-gradient(90deg, #494781 0%, rgba(73, 71, 129, 0.00) 100%)`} />
                         ))}

@@ -325,11 +325,16 @@ div img {
   text-align: center;
 }
 
-.saved-empty p {
+.saved-empty p, .saved-projects p {
   margin-bottom:1.5rem ;
   font-size: 1.5rem;
   line-height: 1.8rem;
   font-weight: 200;
+}
+
+.saved-projects {
+  text-align: center;
+
 }
 
 .saved-planet {

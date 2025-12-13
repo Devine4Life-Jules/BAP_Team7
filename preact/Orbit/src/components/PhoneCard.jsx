@@ -15,13 +15,15 @@ export default function PhoneCard({ project, background, textColor }) {
         }
 
         const cardLabelStyle = {
-            padding: '.1rem 0 .3rem 1rem',
+            padding: '.5rem 1rem 1rem .5rem',
         }
 
         const cardTitleStyle = {
             fontSize: '1.2rem',
             marginBottom: '0.5rem',
             fontFamily: 'VAGroundedstd-bold',
+            textAlign: 'left',
+            paddingTop: '.5rem',
         }
 
 
