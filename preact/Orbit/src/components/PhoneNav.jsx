@@ -13,9 +13,9 @@ export default function PhoneNav(){
                     <Match path="/phone/contact">
                         {({ matches }) => (
                             <Link class={matches ? "phoneNavButton activeNavButton" : "phoneNavButton"} href="/phone/contact">
-                                <div style={{display:'flex', flexDirection:'column', alignItems:'center'}}>
+                                <div className="nav-icon" style={{display:'flex', flexDirection:'column', alignItems:'center'}}>
                                     <ContactIcon isActive={matches} />
-                                    <span style={{ color: matches ? '#731ACA' : '#DBCBE5' } }>Contact</span>
+                                    <span style={{ color: '#DBCBE5' }}>Contact</span>
                                 </div>
                             </Link>
                         )}
@@ -25,13 +25,13 @@ export default function PhoneNav(){
                     <Match path="/phone/favourites">
                         {({ matches }) => (
                             <Link class={matches ? "phoneNavButton activeNavButton" : "phoneNavButton"} href="/phone/favourites">
-                                <div style={{display:'flex', flexDirection:'column', alignItems:'center'}}>
+                                <div className="nav-icon" style={{display:'flex', flexDirection:'column', alignItems:'center'}}>
                                     <SaveIcon 
                                         isSaved={matches}
-                                        fillColor={matches ? '#731ACA' : '#DBCBE5'}
-                                        strokeColor={matches ? '#731ACA' : '#DBCBE5'}
+                                        fillColor={matches ? '#DBCBE5' : '#332E84'}
+                                        strokeColor={matches ? '#DBCBE5' : '#DBCBE5'}
                                     />
-                                    <span style={{ color: matches ? '#731ACA' : '#DBCBE5' }}>Saved</span>
+                                    <span style={{ color: '#DBCBE5' }}>Saved</span>
                                 </div>
                             </Link>
                         )}
@@ -41,9 +41,9 @@ export default function PhoneNav(){
                     <Match path="/phone/project/:id">
                         {({ matches }) => (
                             <Link class={matches ? "phoneNavButton activeNavButton" : "phoneNavButton"} href={`/phone/project/${lastProjectId}`}>
-                                <div style={{display:'flex', flexDirection:'column', alignItems:'center'}}>
+                                <div className="nav-icon" style={{display:'flex', flexDirection:'column', alignItems:'center'}}>
                                     <ProjectIcon isActive={matches} />
-                                    <span style={{ color: matches ? '#731ACA' : '#DBCBE5' }}>Project</span>
+                                    <span style={{ color: '#DBCBE5' }}>Project</span>
                                 </div>
                             </Link>
                         )}

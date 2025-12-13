@@ -184,6 +184,10 @@ strong {
   
 }
 
+.nav-icon {
+    width: 3rem;
+}
+
 .contactForm {
     background: linear-gradient(0deg, #494781 0%, rgba(73, 71, 129, 0.00) 100%);
 
