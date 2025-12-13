@@ -18,7 +18,7 @@
 }
 
 body {
-    font-family: 'open-sans', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     display: block ;
 
 }
@@ -34,7 +34,7 @@ h1, h2, h3, h4, h5, h6 {
     color: black;
     background-color: #EDF7FA;
     min-height: 100vh;
-    font-family: 'VAGroundedstd-light', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     display: block;
     padding-top: auto;
 }
