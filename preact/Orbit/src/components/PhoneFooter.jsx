@@ -1,4 +1,5 @@
 import { Icon } from "@iconify/react"
+import logo_howestResearch from '../assets/logo_howestResearch.png'
 
 
 
@@ -36,10 +37,10 @@ export default function PhoneFooter() {
                     <li><a href="#">Contact</a></li>
                 </ul>
             </section>
-            <section>
-                <ul>
-                    <li>howest research</li>
-                    <li>orbit</li>
+            <section style={{borderBottom: 'none', paddingBottom: '100%'}}>
+                <ul style={{display:'flex', justifyContent:'space-between', width:'100%', alignItems:'center'}}>
+                    <li style={{width: '10rem',marginRight:'auto'}}><img src={logo_howestResearch} alt="Howest Research" /></li>
+                    <li style={{width: '10rem',  textAlign:'right', fontWeight: 'bold',fontFamily:'nunito', fontSize:'2rem'}}>Orbit</li>
                 </ul>
             </section>
         </footer>

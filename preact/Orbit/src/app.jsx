@@ -6,6 +6,7 @@ import PhoneContact from './pages/phone/PhoneContact';
 import PhoneError from './pages/phone/PhoneError';
 import { Router } from 'preact-router';
 import { Installation } from './pages/installation/Installation'
+import DashboardHome from './pages/Dashboard/DashboardHome';
 import './reset.css'
 import './app.css'
 
@@ -22,6 +23,7 @@ export function App() {
           <PhoneProject path="/phone/project/:id" />
           <PhoneError path="/phone/:rest*" />
           <PhoneError path="/phone/project/:rest*" />
+          <DashboardHome path="/dashboard" />
           <Installation path="/" />
           <Installation path="/:rest*" />
         </Router>
