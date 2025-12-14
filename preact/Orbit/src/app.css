@@ -215,23 +215,31 @@ div img {
 }
 
 .button {
-  background-color: rgba(193, 184, 184, 0.3);
   display: flex;
-  gap: 10px;
   justify-content: center;
   align-items: center;
-  border-radius: 15px;
-  padding: .3rem;
   height: 3vh;
+
 }
 
 .button-icon {
   aspect-ratio: 1/1;
   align-items: center;
-  width: 3rem;
+  width: 2rem;
+  padding: .3rem;
   justify-content: center;
   display: flex;
   border-radius: 50px;
+  z-index: 500;
+}
+
+.button-text {
+  background-color: rgba(193, 184, 184, 0.3);
+  padding: 8px 17px;
+  margin-left: -12px;
+  border-radius: 10px;
+  z-index: 100;
+
 }
 
 .domains {
