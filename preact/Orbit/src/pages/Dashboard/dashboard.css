@@ -1,0 +1,70 @@
+.dashboard-container {
+    font-family: 'Nunito', sans-serif;
+    min-height: 100vh;
+    width: 100vw;
+    display: flex;
+
+}
+
+header {
+    display: flex;
+}
+
+.dashboard-nav {
+    margin-right: 2rem;
+    background-color: #F3F3F7;
+    color: #332E84;
+}
+
+.dashboard-title {
+    font-weight: bold;
+    font-size: 2.5rem;
+}
+
+.dashboard-h2 {
+    font-weight: bold;
+    font-size: 1.5rem;
+    
+}
+
+main{
+    width: 60vw;
+    margin: 0 auto;
+}
+
+.stats-row1 {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 2rem;
+    border-radius: 20px;
+    border: 2px solid rgba(243, 243, 247, 0.50);
+    background: linear-gradient(180deg, #494781 0%, rgba(73, 71, 129, 0.00) 100%);
+    padding: 1rem;
+    margin: 1rem;
+}
+
+.stats-row1 section {
+    text-align: center;
+    display: flex;
+    flex-direction:column-reverse
+}
+
+.statsNumber {
+    font-weight: bold;
+    font-size: 2.5rem;
+}
+
+
+.stats-row2 {
+    display: flex;
+    justify-content: space-around;
+    
+}
+
+.stats-row2 section {
+    width: 45%;
+    border-radius: 20px;
+    border: 2px solid rgba(243, 243, 247, 0.50);
+    background: linear-gradient(180deg, #494781 0%, rgba(73, 71, 129, 0.00) 100%);
+    padding: 1rem;
+}

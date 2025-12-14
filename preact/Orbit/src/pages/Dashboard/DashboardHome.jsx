@@ -1,7 +1,11 @@
-import { useState, useEffect } from 'preact/hooks';
+import { useState, useEffect, useContext } from 'preact/hooks';
 import { supabase } from '../../lib/supabase';
+import { ProjectsContext } from '../../contexts/ProjectsContext';
+import './dashboard.css';
 
 export default function DashboardHome() {
+    const { projects } = useContext(ProjectsContext);
+    
     const [stats, setStats] = useState({
         totalScans: 0,
         savedProjects: 0,
@@ -10,12 +14,12 @@ export default function DashboardHome() {
         loading: true
     });
 
+    const [topScanned, setTopScanned] = useState([]);
+    const [topSaved, setTopSaved] = useState([]);
+
     useEffect(() => {
         async function fetchStats() {
-            console.log('Starting to fetch dashboard stats...');
             try {
-                // Fetch total QR scans
-                console.log('Fetching QR scans...');
                 const { data: scanData, error: scanError } = await supabase
                     .from('qr_scan_events')
                     .select('*');
@@ -23,31 +27,70 @@ export default function DashboardHome() {
                 console.log('QR Scans result:', { data: scanData, error: scanError });
                 if (scanError) console.error('Error fetching scans:', scanError);
 
-                // Fetch saved/unsaved project events
-                console.log('Fetching saved project events...');
                 const { data: savedData, error: savedError } = await supabase
                     .from('saved_project_events')
-                    .select('action');
+                    .select('action, project_id');
                 
-                console.log('Saved events result:', { data: savedData, error: savedError });
                 if (savedError) console.error('Error fetching saved events:', savedError);
 
-                // Calculate saves and unsaves
                 const saves = savedData?.filter(event => event.action === 'save').length || 0;
                 const unsaves = savedData?.filter(event => event.action === 'unsave').length || 0;
 
-                // Fetch total contacts - get all data and count length
-                console.log('Fetching contacts...');
+                // Calculate top 5 scanned projects
+                const scanCounts = {};
+                scanData?.forEach(scan => {
+                    const pid = scan.project_id;
+                    scanCounts[pid] = (scanCounts[pid] || 0) + 1;
+                });
+                
+                const top5Scanned = Object.entries(scanCounts)
+                    .sort((a, b) => b[1] - a[1])
+                    .slice(0, 5)
+                    .map(([projectId, count]) => {
+                        const project = projects.find(p => p.id === parseInt(projectId));
+                        return {
+                            id: projectId,
+                            ccode: project?.ccode || `Project ${projectId}`,
+                            count
+                        };
+                    });
+                
+                setTopScanned(top5Scanned);
+
+                // Calculate top 5 saved projects (net saves)
+                const saveCounts = {};
+                savedData?.forEach(event => {
+                    const pid = event.project_id;
+                    if (!saveCounts[pid]) saveCounts[pid] = 0;
+                    
+                    if (event.action === 'save') {
+                        saveCounts[pid]++;
+                    } else if (event.action === 'unsave') {
+                        saveCounts[pid]--;
+                    }
+                });
+                
+                const top5Saved = Object.entries(saveCounts)
+                    .filter(([_, count]) => count > 0)
+                    .sort((a, b) => b[1] - a[1])
+                    .slice(0, 5)
+                    .map(([projectId, count]) => {
+                        const project = projects.find(p => p.id === parseInt(projectId));
+                        return {
+                            id: projectId,
+                            ccode: project?.ccode || `Project ${projectId}`,
+                            count
+                        };
+                    });
+                
+                setTopSaved(top5Saved);
+
+
                 const { data: contactData, error: contactError } = await supabase
                     .from('contacts')
                     .select('id, companyName, contactName, email, message');
                 
-                console.log('Contacts result:', { 
-                    data: contactData, 
-                    error: contactError,
-                    length: contactData?.length,
-                    firstItem: contactData?.[0]
-                });
+
                 if (contactError) {
                     console.error('Error fetching contacts:', contactError);
                     console.error('Full error details:', JSON.stringify(contactError, null, 2));
@@ -79,7 +122,7 @@ export default function DashboardHome() {
     }, []);
 
     return (
-        <div>
+        <div class="dashboard-container">
             <div className="dashboard-nav">
                 <ul>
                     <li>home</li>
@@ -88,27 +131,58 @@ export default function DashboardHome() {
             </div>
             <div className="dashboard-home">
                 <header className="dashboard-header">
-                    <h1>Dashboard Orbit</h1>
-                    <input type="text" placeholder="Search..." />
+                    <h1 className="dashboard-title">Dashboard Orbit</h1>
+                    <input type="text" placeholder="Search..." style={{ display: 'block', marginLeft: 'auto' }} />
                 </header>
                 <main>
-                    <div>
+                    <div class="stats-row1">
                         <section>
-                            <h2>Artikels Gescanned</h2>
-                            <p>{stats.loading ? '...' : stats.totalScans}</p>
+                            <h2 className="dashboard-h2">Artikels Gescanned</h2>
+                            <p className="statsNumber">{stats.loading ? '...' : stats.totalScans}</p>
                         </section>
                         <section>
-                            <h2>Artikels Opgeslagen</h2>
-                            <p>{stats.loading ? '...' : stats.savedProjects}</p>
+                            <h2 className="dashboard-h2">Artikels Opgeslagen</h2>
+                            <p className="statsNumber">{stats.loading ? '...' : stats.savedProjects}</p>
                          </section>
                         <section>
-                            <h2>Artikels Verwijderd</h2>
-                            <p>{stats.loading ? '...' : stats.unsavedProjects}</p>
+                            <h2 className="dashboard-h2">ContactGegevens Opgeslagen</h2>
+                            <p className="statsNumber">{stats.loading ? '...' : stats.totalContacts}</p>
+                        </section>
+                    </div>
+                    <div class="stats-row2">
+                        <section>
+                            <h2 className="dashboard-h2">top gescanned</h2>
+                            <ol>
+                                {stats.loading ? (
+                                    <li>Loading...</li>
+                                ) : topScanned.length > 0 ? (
+                                    topScanned.map(item => (
+                                        <li key={item.id}>
+                                            {item.ccode} ({item.count}x)
+                                        </li>
+                                    ))
+                                ) : (
+                                    <li>No data</li>
+                                )}
+                            </ol>
                         </section>
                         <section>
-                            <h2>ContactGegevens Opgeslagen</h2>
-                            <p>{stats.loading ? '...' : stats.totalContacts}</p>
+                            <h2 className="dashboard-h2">top opgeslagen</h2>
+                            <ol>
+                                {stats.loading ? (
+                                    <li>Loading...</li>
+                                ) : topSaved.length > 0 ? (
+                                    topSaved.map(item => (
+                                        <li key={item.id}>
+                                            {item.ccode} ({item.count}x)
+                                        </li>
+                                    ))
+                                ) : (
+                                    <li>No data</li>
+                                )}
+                            </ol>
                         </section>
+
                     </div>
                 </main>
             </div>
