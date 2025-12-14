@@ -300,8 +300,9 @@ div img {
 
 
 .teaser-abstract {
-  width: 70%;
-  margin: 0 auto;
+  width: 50%;
+  font-weight: 200;
+  margin: 10% auto;
   padding: 1rem 2rem;
   border: 1px solid white;
   background:linear-gradient(0deg, #494781 0%, rgba(73, 71, 129, 0.00) 94.23%);

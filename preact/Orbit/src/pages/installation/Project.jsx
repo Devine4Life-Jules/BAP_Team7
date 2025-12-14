@@ -35,10 +35,12 @@ export default function Project({id}){
                 },
                 errorCorrectionLevel: 'H'
             }).then(canvas => {
-                canvas.style.display = 'block'
-                canvas.style.width = '100%'
-                canvas.style.height = '100%'
-                qrcodeRef.current.appendChild(canvas)
+                if (qrcodeRef.current && qrcodeRef.current.children.length === 0) {
+                    canvas.style.display = 'block'
+                    canvas.style.width = '100%'
+                    canvas.style.height = '100%'
+                    qrcodeRef.current.appendChild(canvas)
+                }
             }).catch(err => {
                 console.error('QR Code generation error:', err)
             })
@@ -56,22 +58,44 @@ export default function Project({id}){
  
     return(
         <div className="project-detail" style={{ position: 'relative' }}>
-            <div 
-                ref={qrcodeRef}
-                id="qrcode"
+            <div
                 style={{
                     position: 'absolute',
-                    top: '75vh',
-                    width: '10vh',
+                    top: '73vh',
                     left: '50%',
                     transform: 'translateX(-50%)',
-                    background: 'white',
-                    padding: '8px',
-                    borderRadius: '12px',
-                    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    gap: '10px',
                     zIndex: 1000
                 }}
-            />
+            >
+                <div 
+                    ref={qrcodeRef}
+                    id="qrcode"
+                    style={{
+                        background: 'white',
+                        width: '10vh',
+                        padding: '8px',
+                        borderRadius: '12px',
+                        boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)'
+                    }}
+                >
+                </div>
+                <p 
+                    style={{ 
+                        color: '#0A0C3C',
+                        fontSize: '1.5rem',
+                        fontWeight: 'bold',
+                        textAlign: 'center',
+                        margin: '-.2rem 0 0 0'
+                    }}
+                >
+                    lees meer
+                </p>
+            </div>
+
 
             
 
@@ -82,14 +106,7 @@ export default function Project({id}){
 
                  <h2 className="installation-ProjectTitle">{project.ccode}</h2>
 
-                <p>
-                    <span className="value">{project.researchGroup}</span>
-                </p>
                 
-                
-
-      
-
                 {project.cluster && project.cluster !== "Clusteroverschrijdend" && (
                     <div className="vakgebieden">
                         <div className="cluster">
