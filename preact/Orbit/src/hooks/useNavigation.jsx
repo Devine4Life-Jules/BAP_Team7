@@ -1,14 +1,17 @@
 import { useEffect } from "preact/hooks";
 import { route } from 'preact-router';
 
-export default function useKeyboardNavigation({back, next}) {
+export default function useKeyboardNavigation({back, next, backKey = "Backspace", nextKey = "Space"}) {
         useEffect(() => {
           function handleKey(e) {
-            if (e.code === "Space") {
+            const nextKeys = Array.isArray(nextKey) ? nextKey : [nextKey];
+            const backKeys = Array.isArray(backKey) ? backKey : [backKey];
+            
+            if (nextKeys.includes(e.code)) {
               e.preventDefault();
               route(next);
             };
-            if (e.code === "Backspace") {
+            if (backKeys.includes(e.code)) {
                 route(back);
             }
           }
@@ -16,7 +19,7 @@ export default function useKeyboardNavigation({back, next}) {
           window.addEventListener('keydown', handleKey);
       
           return () => window.removeEventListener('keydown', handleKey);
-        },);  
+        }, [back, next, backKey, nextKey]);  
 }
 
 
