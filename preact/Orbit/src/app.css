@@ -151,13 +151,14 @@ p {
 .installation-ProjectTitle {
     font-family: 'Nunito', sans-serif;
     font-weight: 700;
-    font-size: 36px;
-    margin: 20px 0;
+    font-size: 3.5rem;
+    max-width: 30rem;
     text-align: center;
+    margin: 9rem auto .5rem auto;
 }
 
 .project-detail {
-  background-position: center 50px;
+  background-position: center;
   background-size: 85%;
   background-repeat: no-repeat;
   height: 100%;
@@ -174,18 +175,18 @@ p {
 }
 
 #domain0 {
-  top: 100px;
-  left: 150px;
+  top: 10%;
+  left: 20%;
   position: absolute;
 }
 
 #domain1 {
-  top: 190px;
-  left: 70px;
+  top: 20%;
+  left: 10%;
   position: absolute
 }
 #domain2 {
-  top: 310px;
+  top: 0%;
   left: 20px;
   position: absolute;
 }
@@ -193,16 +194,24 @@ p {
 
 .cluster {
   aspect-ratio: 1/1 ;
-  max-width: 60px;
+  max-width: 100px;
   position: absolute;
   background-image: url(./assets/clusterEllipse.png) ;
   background-size: cover;
   background-position: center;
   position: absolute;
-  top: 550px;
-  left: 600px;
+  top: 65%;
+  left: 78%;
   padding: 20px;
   border-radius: 50%;
+  aspect-ratio: 1/1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  font-family: "Nunito", sans-serif;
+  font-weight: 700;
+  font-size: 1.5rem;
   
 }
 
@@ -256,14 +265,14 @@ p {
 
 .domain {
   aspect-ratio: 1/1;
-  height: 100px;
+  height: 120px;
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 50%;
   font-family: "Nunito", sans-serif;
   font-weight: 700;
-  font-size: 1.3rem;
+  font-size: 1.5rem;
 }
 
 
@@ -345,7 +354,7 @@ p {
 .teaser-abstract {
   width: 50%;
   font-weight: 200;
-  margin: 10% auto;
+  margin: 2% auto 5% auto;
   padding: 1rem 2rem;
   border: 1px solid white;
   background:linear-gradient(0deg, #494781 0%, rgba(73, 71, 129, 0.00) 94.23%);
