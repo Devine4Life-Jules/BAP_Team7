@@ -259,44 +259,60 @@ div img {
   font-size: 1.3rem;
 }
 
-.domain.gezond {
+
+
+.domain.gezond, .phonedomain.gezond {
     border: 2px solid  #E488AC;
   background: linear-gradient(181deg, #E488AC 1.69%, rgba(228, 136, 172, 0.30) 99.29%);
   backdrop-filter:  blur(12.809999465942383px);
 
 }
 
-.domain.gezond {
-    border: 2px solid  #E488AC;
-  background: linear-gradient(181deg, #E488AC 1.69%, rgba(228, 136, 172, 0.30) 99.29%);
-  backdrop-filter:  blur(12.809999465942383px);
-
-}
-
-.domain.leren {
+.domain.leren, .phonedomain.leren {
     border: 2px solid  #F8E371;
   background: linear-gradient(181deg, #F8E371 1.69%, rgba(248, 227, 113, 0.30) 99.29%);
   backdrop-filter:  blur(12.809999465942383px);
 }
 
-.domain.digitaal {
+.domain.digitaal, .phonedomain.digitaal {
   border: 2px solid #44A69D;
   background: linear-gradient(181deg, #44A69D 1.69%, rgba(68, 166, 157, 0.30) 99.29%);
   backdrop-filter:  blur(12.809999465942383px);
 }
 
-.domain.ecologisch
+.domain.ecologisch, .phonedomain.ecologisch
  {
   border: 2px solid #4ea644;
   background: linear-gradient(181deg, #4ea644 1.69%, rgba(68, 166, 68, 0.30) 99.29%);
   backdrop-filter:  blur(12.809999465942383px);
 }
 
-.domain.sociaal {
+.domain.sociaal, .phonedomain.sociaal {
   border: 2px solid #780f8b;
   background: linear-gradient(181deg, #780f8b 1.69%, rgba(255, 127, 50, 0.30) 99.29%);
   backdrop-filter:  blur(12.809999465942383px);
 }
+
+
+.cardPill {
+  width: 1rem;
+  height: 1rem;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: transparent;
+  font-size: 0;
+  line-height: 1;
+  overflow: hidden;
+  text-indent: -9999px;
+  padding: 0;
+  margin: 0;
+  flex-shrink: 0;
+  margin-right: .5rem;
+}
+
 
 
 .teaser-abstract {

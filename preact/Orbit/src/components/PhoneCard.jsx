@@ -51,7 +51,7 @@ export default function PhoneCard({ project, background, textColor }) {
                         {project.ccode}
                     </h2>
                     <div>
-                        <PhoneDomainPills domains={transitiedomeinen} />
+                        <PhoneDomainPills  pillClassName='phonedomain cardPill'domains={transitiedomeinen} />
                     </div>
                 </div>
 
