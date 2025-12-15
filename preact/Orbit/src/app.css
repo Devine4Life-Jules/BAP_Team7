@@ -313,6 +313,23 @@ div img {
   margin-right: .5rem;
 }
 
+.keyword-pill-card {
+  color: white;
+  background: transparent;
+  padding: 4px 8px;
+  border-radius: 30px;
+  font-size: 0.875rem;
+  margin: 0.25rem;
+  display: inline-block;
+  border:2px solid white;
+  font-weight: bold;
+}
+
+.keyword-wrapper-card {
+  overflow: hidden;
+  max-height: 2.5rem; /* Adjust based on pill height to show only one line */
+}
+
 
 
 .teaser-abstract {
