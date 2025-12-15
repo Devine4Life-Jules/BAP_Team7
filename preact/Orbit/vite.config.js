@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite'
 import preact from '@preact/preset-vite'
 import { VitePWA } from 'vite-plugin-pwa'
+import { ViteImageOptimizer } from 'vite-plugin-image-optimizer'
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -58,6 +59,11 @@ export default defineConfig({
         enabled: true,
         type: 'module'
       }
+    }),
+    ViteImageOptimizer({
+      png: { quality: 80 },
+      jpeg: { quality: 80 },
+      jpg: { quality: 80 },
     })
   ],
   host: true,
