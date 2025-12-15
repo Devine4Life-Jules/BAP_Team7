@@ -93,7 +93,7 @@ p {
   color: black;
 }
 
-.screen1, .screen2{  
+.screen1, .screen2, .screen3 {  
   background-size: contain;
   background-position: center top;
   background-repeat: no-repeat;
@@ -109,6 +109,15 @@ p {
   background-image: url(./assets/screen2Bg.png);
   justify-content: center;
 
+}
+
+.screen3 {
+  background-image: url(./assets/screen3Bg.png);
+}
+
+.screen2Title {
+  font-family:'nunito', sans-serif;
+  font-size: 3.5rem;
 }
 
 .screen1 .button {

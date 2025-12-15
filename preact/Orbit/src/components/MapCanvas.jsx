@@ -18,7 +18,7 @@ const CONFIG = {
     INERTIA_MIN_VELOCITY: 0.1, // minimum velocity threshold before stopping (higher = stops faster)
 }
 
-export default function MapCanvas({ filteredProjects, onSelectionChange, bottomCloudsImg, selectedProject }) {
+export default function MapCanvas({ filteredProjects, onSelectionChange, bottomCloudsImg, selectedProject, instructionModalOpen }) {
     const [offsetX, setOffsetX] = useState(0)
     const [offsetY, setOffsetY] = useState(0)
     const [selectedProjectId, setSelectedProjectId] = useState(null)
@@ -199,6 +199,7 @@ export default function MapCanvas({ filteredProjects, onSelectionChange, bottomC
     // Handle keyboard navigation
     useEffect(() => {
         const handleKeyDown = (event) => {
+            if (instructionModalOpen) return;
             if (event.key === 'ArrowUp') {
                 event.preventDefault()
                 setVelocityY(prev => prev - CONFIG.PAN_SPEED)
@@ -224,7 +225,7 @@ export default function MapCanvas({ filteredProjects, onSelectionChange, bottomC
 
         window.addEventListener('keydown', handleKeyDown)
         return () => window.removeEventListener('keydown', handleKeyDown)
-    }, [selectedProjectId])
+    }, [selectedProjectId, instructionModalOpen])
 
     return (
         <div className="map-viewport" ref={viewportRef}>

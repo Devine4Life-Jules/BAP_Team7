@@ -5,6 +5,7 @@ import FilterShapeSVG from '../../assets/FilterShape.svg?raw'
 import useReBoot from '../../hooks/useReBoot';
 import bottomCloudsMain from '../../assets/bottomCloudsMain.png'
 import QRCode from 'qrcode'
+import InstructionModal from '../../components/InstructionModal';
 
 
 
@@ -14,6 +15,7 @@ export default function Map() {
     const [fps, setFps] = useState(0)
     const [selectedProject, setSelectedProject] = useState(null)
     const [planetPosition, setPlanetPosition] = useState(null)
+    const [showInstructionModal, setShowInstructionModal] = useState(false)
     const qrcodeRef = useRef(null)
     const frameCountRef = useRef(0)
     const lastTimeRef = useRef(performance.now())
@@ -24,6 +26,15 @@ export default function Map() {
 
     const { projects, loading } = useContext(ProjectsContext);
 
+    // Check if coming from onboarding
+    useEffect(() => {
+        const params = new URLSearchParams(window.location.search);
+        if (params.get('fromOnboarding') === 'true') {
+            setShowInstructionModal(true);
+            // Clean the URL
+            window.history.replaceState({}, '', '/map');
+        }
+    }, []);
 
     
      if (loading) return <div class="loaderWrapper"><div class="loader"></div></div>
@@ -79,9 +90,17 @@ export default function Map() {
         return () => cancelAnimationFrame(animationFrameId)
     }, [])
     
-    // Handle filter planet selection with arrow keys
+    // Handle filter planet selection with arrow keys, block when modal is active
     useEffect(() => {
         const handleKeyDown = (event) => {
+            if (showInstructionModal) {
+                // Only allow space to close modal
+                if (event.key === ' ' || event.key === 'Spacebar' || event.code === 'Space') {
+                    event.preventDefault();
+                    setShowInstructionModal(false);
+                }
+                return;
+            }
             if (event.key === 'q') {
                 event.preventDefault()
                 setSelectedIndex((prev) => (prev - 1 + PLANET_COUNT) % PLANET_COUNT)
@@ -93,7 +112,7 @@ export default function Map() {
 
         window.addEventListener('keydown', handleKeyDown)
         return () => window.removeEventListener('keydown', handleKeyDown)
-    }, [PLANET_COUNT])
+    }, [PLANET_COUNT, showInstructionModal])
 
     // Generate QR code when component mounts or URL changes
     useEffect(() => {
@@ -165,14 +184,48 @@ export default function Map() {
     }, [selectedProject])
 
     return(
+        
         <div style={{ position: 'relative', width: '100%', height: '100%' }}>
             {/* MapCanvas for pannable project map */}
             <MapCanvas 
                 filteredProjects={filteredProjects} 
-                onSelectionChange={handleSelectionChange}
+                onSelectionChange={showInstructionModal ? undefined : handleSelectionChange}
                 bottomCloudsImg={bottomCloudsMain}
                 selectedProject={selectedProject}
+                instructionModalOpen={showInstructionModal}
             />
+            
+            {/* Instruction Modal with Darkening Overlay */}
+            {showInstructionModal && (
+                <>
+                    <div 
+                        style={{
+
+                            zIndex: "9998"
+                        }}
+                        onClick={() => setShowInstructionModal(false)}
+                    />
+                    <div 
+                        style={{ 
+                            position: 'fixed', 
+                            top: '50%', 
+                            left: '50%', 
+                            transform: 'translate(-50%, -50%)', 
+                            zIndex: 9999,
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            width: '90vh',
+                            height: '90vh',
+                            maxWidth: '90vw',
+                            maxHeight: '90vw',
+                            pointerEvents: 'auto'
+                        }}
+                    >
+                        <InstructionModal onClose={() => setShowInstructionModal(false)} />
+                    </div>
+                </>
+            )}
             
             {/* FPS Counter */}
             <div
