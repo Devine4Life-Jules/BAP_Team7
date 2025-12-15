@@ -1,6 +1,7 @@
 import Joystick from "./Joystick";
 import RotatingButton from "./RotatingButton";
 
+
 export default function InstructionModal({onClose}) {
     return(
         <div>
@@ -73,8 +74,9 @@ export default function InstructionModal({onClose}) {
                     <p style={{ textAlign: 'center', marginTop: '1rem', fontSize: '1.8vh', wordBreak: 'break-word' }}>
                         Gebruik de joystick om te navigeren door ons universum van onderzoek en innovatie
                     </p>
-                </div>
+                </div> 
             </div>
+    
         </div>
     );
 }

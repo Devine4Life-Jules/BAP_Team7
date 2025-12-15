@@ -9,7 +9,7 @@ function Screen2 () {
     useReBoot({rebootTime: 100000});
     return(
         <div className="onboarding-screen screen2">
-          <h1 className="screen2Title"><span style={{fontWeight: "100"}}>Wat is</span> ORBIT ?</h1>
+          <h1 className="screen2Title"><span style={{fontWeight: "100"}}>Wat is</span> <span style={{fontWeight:"900"}}>ORBIT ?</span></h1>
             <p style={{fontSize: "30px",margin:"1rem auto 2rem auto", maxWidth:"70%", fontWeight: "lighter"}}>Orbit is een installatie die laat zien hoe Howest Research jou kan ondersteunen en inspireren.</p>
             <p style={{fontSize: "30px",margin:"1rem auto 2rem auto", maxWidth:"70%", fontWeight: "400"}}>Bedien Orbit met de knoppen onderaan</p>
             <div style={{width:"7rem", margin: "1rem"}}><img src={noTouchIcon} alt="" /></div>

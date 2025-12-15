@@ -25,6 +25,7 @@ p {
 
 
 
+
 .loaderWrapper {
   display: flex;
   justify-content: center;
@@ -151,6 +152,7 @@ p {
   background: linear-gradient(180deg, rgba(51, 46, 132, 0.70) 0%, rgba(93, 122, 218, 0.10) 100%);
   padding: 1rem;
   border-radius: 15px;
+  font-size: 1.5rem;
   max-width: 45vh;
 
 

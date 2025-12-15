@@ -21,6 +21,12 @@ export default function PhoneProject({id}){
 
     const projects = useGetProjects();
     const project = projects.find(p => String(p.id) === String(id));
+    
+    // Show loader if projects are still loading or project not found
+    if (!projects.length || !project) {
+        return <div class="loaderWrapper"><div class="loader"></div></div>;
+    }
+    
     const transitiedomeinen = useGetDomains(project);
     const keywords = useGetKeywords(project);
 

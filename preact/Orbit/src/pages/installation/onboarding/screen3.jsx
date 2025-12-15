@@ -42,14 +42,14 @@ function Screen3 () {
                 `}
             </style>
             
-            <p style={{fontSize:'3rem', marginTop:'10rem', fontWeight:'100'}}>Wie is</p>
+            <p style={{fontSize:'3rem', marginTop:'15rem', fontWeight:'100'}}>Wie is</p>
             <div style={{width: '45vh'}}><img src={logo_howestResearch} alt="" /></div>
             <p style={{fontSize:'2rem', maxWidth:'70%', margin:'1.5rem auto'}}>Innovatief en missiegedreven onderzoek met impact in vijf domeinen</p>
-            <div style={{display: 'flex', gap: '20px'}}>
+            <div style={{display: 'flex', gap: '20px', margin:"1.5rem auto"}}>
               <Button icon="back" text="back"></Button>
               <Button icon="check" text="Next"></Button>
             </div>
-            <OnboardingProgressBar step={2} />
+            <OnboardingProgressBar step={2} style={{alignSelf:"flex-end"}} />
         </div>
     )
 }
