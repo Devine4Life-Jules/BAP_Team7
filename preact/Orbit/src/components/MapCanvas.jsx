@@ -9,11 +9,11 @@ const CONFIG = {
     CANVAS_MULTIPLIER: 2, // canvas size relative to viewport
     PAN_SPEED: 12, // pixels per arrow key press
     PLANET_RADIUS: 50, // approximate radius of a planet (100px diameter)
-    MIN_DISTANCE: 130, // minimum distance between projects (2x planet size + padding)
-    SPIRAL_RADIUS_BASE: 150, // starting radius for spiral positioning
-    SPIRAL_RADIUS_INCREMENT: 15, // increment per project in spiral
+    MIN_DISTANCE: 140, // minimum distance between projects (2x planet radius + padding)
+    SPIRAL_RADIUS_BASE: 200, // starting radius for spiral positioning (increased for better spacing)
+    SPIRAL_RADIUS_INCREMENT: 25, // increment per project in spiral (increased for better spacing)
     GOLDEN_ANGLE: 137.5, // golden angle for deterministic spiral distribution
-    MAX_POSITIONING_ATTEMPTS: 100, // max attempts to find non-overlapping position
+    MAX_POSITIONING_ATTEMPTS: 200, // max attempts to find non-overlapping position (increased)
     INERTIA_FRICTION: 0.85, // velocity multiplier per frame (reduced for Pi performance)
     INERTIA_MIN_VELOCITY: 0.1, // minimum velocity threshold before stopping (higher = stops faster)
 }
@@ -37,44 +37,65 @@ export default function MapCanvas({ filteredProjects, onSelectionChange, bottomC
     // Generate non-overlapping positions for all projects
     const projectPositions = useMemo(() => {
         const positions = {}
-
         const projects = [...filteredProjects].sort((a, b) => a.id - b.id)
+
+        // Helper function to check if a position overlaps with existing planets
+        const isPositionValid = (x, y, existingPositions) => {
+            // Check bounds - ensure planets stay within canvas with padding
+            const padding = CONFIG.PLANET_RADIUS * 2
+            if (x < padding || x > CANVAS_WIDTH - padding || 
+                y < padding || y > CANVAS_HEIGHT - padding) {
+                return false
+            }
+
+            // Check distance from all existing planets
+            for (const pos of Object.values(existingPositions)) {
+                const distance = Math.sqrt(Math.pow(x - pos.x, 2) + Math.pow(y - pos.y, 2))
+                // Ensure minimum distance is at least 2 planet radii + padding
+                if (distance < CONFIG.MIN_DISTANCE) {
+                    return false
+                }
+            }
+            return true
+        }
 
         projects.forEach((project, index) => {
             let positioned = false
             let attempts = 0
 
-            // Try to find a non-overlapping position
+            // Try to find a non-overlapping position using spiral pattern
             while (!positioned && attempts < CONFIG.MAX_POSITIONING_ATTEMPTS) {
-                // Use a spiral pattern for deterministic placement
-                const angle = (index * CONFIG.GOLDEN_ANGLE) % 360
-                const spiralRadius = CONFIG.SPIRAL_RADIUS_BASE + (index * CONFIG.SPIRAL_RADIUS_INCREMENT)
-                
-                const x = CANVAS_WIDTH / 2 + Math.cos((angle * Math.PI) / 180) * spiralRadius
-                const y = CANVAS_HEIGHT / 2 + Math.sin((angle * Math.PI) / 180) * spiralRadius
+                let x, y
 
-                // Check if this position overlaps with existing ones
-                let hasOverlap = false
-                for (const pos of Object.values(positions)) {
-                    const dist = Math.sqrt(Math.pow(x - pos.x, 2) + Math.pow(y - pos.y, 2))
-                    if (dist < CONFIG.MIN_DISTANCE) {
-                        hasOverlap = true
-                        break
-                    }
+                if (attempts < 50) {
+                    // First 50 attempts: use spiral pattern
+                    const angle = (index * CONFIG.GOLDEN_ANGLE + attempts * 15) % 360
+                    const spiralRadius = CONFIG.SPIRAL_RADIUS_BASE + (index * CONFIG.SPIRAL_RADIUS_INCREMENT) + (attempts * 10)
+                    
+                    x = CANVAS_WIDTH / 2 + Math.cos((angle * Math.PI) / 180) * spiralRadius
+                    y = CANVAS_HEIGHT / 2 + Math.sin((angle * Math.PI) / 180) * spiralRadius
+                } else {
+                    // Remaining attempts: try random positions in expanding circles
+                    const angle = Math.random() * 360
+                    const radius = CONFIG.SPIRAL_RADIUS_BASE + (attempts - 50) * 20
+                    
+                    x = CANVAS_WIDTH / 2 + Math.cos((angle * Math.PI) / 180) * radius
+                    y = CANVAS_HEIGHT / 2 + Math.sin((angle * Math.PI) / 180) * radius
                 }
 
-                if (!hasOverlap) {
+                if (isPositionValid(x, y, positions)) {
                     positions[project.id] = { x, y }
                     positioned = true
-                } else {
-                    attempts++
                 }
+                
+                attempts++
             }
 
-            // Fallback: place it anyway if we couldn't find a spot
+            // Fallback: force placement on edge if no position found (should be rare)
             if (!positioned) {
-                const angle = Math.random() * 360
-                const radius = 100 + Math.random() * 400
+                console.warn(`Could not find valid position for project ${project.id} after ${CONFIG.MAX_POSITIONING_ATTEMPTS} attempts`)
+                const angle = (index * 45) % 360
+                const radius = Math.max(CANVAS_WIDTH, CANVAS_HEIGHT) * 0.4
                 const x = CANVAS_WIDTH / 2 + Math.cos((angle * Math.PI) / 180) * radius
                 const y = CANVAS_HEIGHT / 2 + Math.sin((angle * Math.PI) / 180) * radius
                 positions[project.id] = { x, y }
@@ -345,7 +366,8 @@ export default function MapCanvas({ filteredProjects, onSelectionChange, bottomC
                                         <span 
                                             key={index}
                                             style={{
-                                                background: '#f0f0f0',
+                                                background: '#E6007E',
+                                                color: 'white',
                                                 padding: '4px 10px',
                                                 borderRadius: '12px',
                                                 fontSize: '12px'

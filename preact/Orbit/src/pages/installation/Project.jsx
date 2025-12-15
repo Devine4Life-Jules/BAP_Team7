@@ -85,7 +85,7 @@ export default function Project({id}){
                 </div>
                 <p 
                     style={{ 
-                        color: '#0A0C3C',
+                        color: 'white',
                         fontSize: '1.5rem',
                         fontWeight: 'bold',
                         textAlign: 'center',

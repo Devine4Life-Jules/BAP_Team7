@@ -176,17 +176,7 @@ export default function Map() {
         setPlanetPosition(position)
     }, [projects])
 
-    // Hide modal after 3 seconds of the same planet being selected
-    useEffect(() => {
-        if (selectedProject) {
-            const timer = setTimeout(() => {
-                setSelectedProject(null)
-                setPlanetPosition(null)
-            }, 3000) // 3 seconds
 
-            return () => clearTimeout(timer)
-        }
-    }, [selectedProject])
 
     return(
         
@@ -279,7 +269,7 @@ export default function Map() {
                 />
                 <p 
                     style={{
-                        color: '#0A0C3C',
+                        color: '#white',
                         fontSize: '1rem',
                         fontWeight: 'bold',
                         textAlign: 'center',

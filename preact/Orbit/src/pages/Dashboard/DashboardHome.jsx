@@ -119,7 +119,7 @@ export default function DashboardHome() {
         }
 
         fetchStats();
-    }, []);
+    }, [projects]);
 
     return (
         <div class="dashboard-container">
