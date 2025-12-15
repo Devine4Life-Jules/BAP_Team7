@@ -40,7 +40,6 @@ export default function InstructionModal({onClose}) {
                         flexDirection: 'column',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        height: '100%',
                         boxSizing: 'border-box',
                         padding: '1.5vh',
                         borderRight: '1px solid white',
