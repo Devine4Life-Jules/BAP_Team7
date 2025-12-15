@@ -12,6 +12,7 @@ export default function Screen1() {
     <div className='onboarding-screen screen1' >
       <h1 class="mainTitle">ORBIT</h1>
       <p>Lanceer je bedrijf naar de sterren</p>
+      <p>Druk een Knop om verder te gaan</p>
       <div className="bottomLogo">
         <img src={logoHowestResearch} alt="Howest Research Logo" />
       </div>
