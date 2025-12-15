@@ -141,7 +141,7 @@ export default function PhoneProject({id}){
                          </div>
                      </div>
                      <div className="teaser">
-                            <p dangerouslySetInnerHTML={{__html: project.teaserAbstract}} style={{ marginBottom: '2rem' }} />
+                            <p dangerouslySetInnerHTML={{__html: project.teaserAbstract}}/>
                             <KeyWordPills keywords={keywords} pillClassName={"keyword-pill-white"} />
                             <p className='CTA-intro'><span style={{color: '#E38EAE'}}>Benieuwd</span> of dit iets voor jou kan betekenen?</p>
                             <Link href='/phone/contact' className="projectCTA">Samenwerken</Link>
@@ -160,7 +160,7 @@ export default function PhoneProject({id}){
                     <h2 className='abstractTitle'>Abstract</h2>
                     <p className='abstractText' dangerouslySetInnerHTML={{__html: project.abstract}} />
                     <div className='moreLikeThis'>
-                        <h3>meer zo als dit</h3>
+                        <h2 className="abstractTitle">meer zo als dit</h2>
                         {similarProjects.length > 0 ? (
                             <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
                                 {similarProjects.map(similarProject => (

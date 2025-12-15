@@ -48,20 +48,25 @@ export default function PhoneCard({ project, background, textColor }) {
             }}
         >
             <div style={cardStyle} >
-                <div style={{position: 'relative', height: '150px', width: '100%', overflow: 'hidden'}}>
+                <div style={{
+                    display: 'grid',
+                    height: '150px', 
+                    width: '100%', 
+                    overflow: 'hidden'
+                }}>
                     <div style={{
-                        position: 'absolute',
-                        top: 0,
-                        left: 0,
-                        right: 0,
-                        bottom: 0,
+                        gridArea: '1 / 1',
                         backgroundImage:`url(${project.image || dummyImage})`, 
                         backgroundSize: 'cover', 
                         backgroundPosition: 'center',
                         filter: "brightness(0.8)",
                         zIndex: 0
                     }}></div>
-                    <div style={{position: 'relative', zIndex: 1}}>
+                    <div style={{
+                        gridArea: '1 / 1',
+                        zIndex: 1,
+                        alignSelf: 'end',
+                    }}>
                         <PhoneKeywordPills keywords={keywords} pillClassName="keyword-pill-card" wrapperClassName="keyword-wrapper-card" />
                     </div>
                 </div>

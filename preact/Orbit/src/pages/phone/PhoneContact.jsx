@@ -82,9 +82,9 @@ export default function PhoneContact(){
                 
                 {/* Content */}
                 <div style={{ position: 'relative', zIndex: 2, padding: '7rem 1rem' }}>
-                    <div style={{width: '90%', margin: '0 auto'}}><img src={logo_howestResearch} alt="Howest Research" style={{width: '100%'}} /></div>
+                    <div style={{width: '90%', margin: '1rem auto'}}><img src={logo_howestResearch} alt="Howest Research" style={{width: '100%'}} /></div>
                     <p>Onze research is wat jou bedrijf naar de sterren zal brengen. Interesse of vragen aarzel niet en kom in contact</p>
-                    <Link href='#contactForm' className="projectCTA" style={{backgroundColor: '#332E84'}}>Samenwerken</Link>
+                    <Link href='#contactForm' className="projectCTA" style={{backgroundColor: '#332E84', margin:'1rem auto'}}>Samenwerken</Link>
                     <img src={mobileContactRocket} alt="rocket" style={{width: '60%',  margin: '0 auto'}} />
                 </div>
             </div>
