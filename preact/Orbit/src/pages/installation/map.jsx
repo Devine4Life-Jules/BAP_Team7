@@ -11,7 +11,6 @@ import InstructionModal from '../../components/InstructionModal';
 
 export default function Map() {
     
-    const [selectedIndex, setSelectedIndex] = useState(0)
     const [fps, setFps] = useState(0)
     const [selectedProject, setSelectedProject] = useState(null)
     const [planetPosition, setPlanetPosition] = useState(null)
@@ -24,7 +23,7 @@ export default function Map() {
 
     useReBoot({rebootTime: 100000});
 
-    const { projects, loading } = useContext(ProjectsContext);
+    const { projects, loading, selectedFilterIndex, setSelectedFilterIndex } = useContext(ProjectsContext);
 
     // Check if coming from onboarding
     useEffect(() => {
@@ -53,7 +52,7 @@ export default function Map() {
     
     const PLANET_COUNT = filterShapes.length
 
-    const selectedDomain = filterShapes[selectedIndex].title
+    const selectedDomain = filterShapes[selectedFilterIndex].title
     
     // Filter 
     const filteredProjects = useMemo(() => {
@@ -109,10 +108,10 @@ export default function Map() {
             }
             if (event.key === 'q') {
                 event.preventDefault()
-                setSelectedIndex((prev) => (prev - 1 + PLANET_COUNT) % PLANET_COUNT)
+                setSelectedFilterIndex((prev) => (prev - 1 + PLANET_COUNT) % PLANET_COUNT)
             } else if (event.key === 'e') {
                 event.preventDefault()
-                setSelectedIndex((prev) => (prev + 1) % PLANET_COUNT)
+                setSelectedFilterIndex((prev) => (prev + 1) % PLANET_COUNT)
             }
         }
 
@@ -163,12 +162,12 @@ export default function Map() {
         })
         
         // Set the selected filter's _Active layer to opacity 100%
-        const selectedActiveId = filterActiveIds[selectedIndex]
+        const selectedActiveId = filterActiveIds[selectedFilterIndex]
         const selectedActiveLayer = document.getElementById(selectedActiveId)
         if (selectedActiveLayer) {
             selectedActiveLayer.style.opacity = '1'
         }
-    }, [selectedIndex])
+    }, [selectedFilterIndex])
 
     // Memoize the callback to prevent infinite render loops
     const handleSelectionChange = useCallback((projectId, position) => {

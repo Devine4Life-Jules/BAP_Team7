@@ -7,6 +7,7 @@ export const ProjectsContext = createContext();
 export function ProjectsProvider({ children }) {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [selectedFilterIndex, setSelectedFilterIndex] = useState(0);
 
   useEffect(() => {
     async function fetchProjects() {
@@ -20,10 +21,9 @@ export function ProjectsProvider({ children }) {
     
     fetchProjects();
   }, []);
-    if (loading) return <div class="loaderWrapper"><div class="loader"></div></div>;
 
   return (
-    <ProjectsContext.Provider value={{ projects, loading }}>
+    <ProjectsContext.Provider value={{ projects, loading, selectedFilterIndex, setSelectedFilterIndex }}>
       {children}
     </ProjectsContext.Provider>
   );
