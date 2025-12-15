@@ -42,10 +42,9 @@ function Screen3 () {
                 `}
             </style>
             
-            <p>Wie is</p>
+            <p style={{fontSize:'3rem', marginTop:'10rem', fontWeight:'100'}}>Wie is</p>
             <div style={{width: '45vh'}}><img src={logo_howestResearch} alt="" /></div>
-            <p>Innovatief en missiegedreven onderzoek met impact in 
-vijf domeinen</p>
+            <p style={{fontSize:'2rem', maxWidth:'70%', margin:'1.5rem auto'}}>Innovatief en missiegedreven onderzoek met impact in vijf domeinen</p>
             <div style={{display: 'flex', gap: '20px'}}>
               <Button icon="back" text="back"></Button>
               <Button icon="check" text="Next"></Button>

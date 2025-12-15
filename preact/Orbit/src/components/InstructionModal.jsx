@@ -7,21 +7,21 @@ export default function InstructionModal({onClose}) {
             <style>
                 {`
                 .instruction-modal {
-                    border-radius: 50px;
-                    border: 5px solid #FFF;
+                    border-radius: 20px;
+                    border: 1px solid #FFF;
+                    color: white;
                     display: flex;
                     flex-direction: row;
                     justify-content: space-between;
-                    background: rgba(0, 0, 50, 0.3);
-                    backdrop-filter: blur(150px);
+                    background: rgba(0, 0, 50, 0.8);
                 }
                 `}
             </style>
             <div 
                 className="instruction-modal"
                 style={{
-                    width: '70vh',
-                    height: '40vh',
+                    width: '55vh',
+                    height: '35vh',
                     margin: '0 auto',
                     display: 'flex',
                     flexDirection: 'row',
@@ -43,8 +43,11 @@ export default function InstructionModal({onClose}) {
                         height: '100%',
                         boxSizing: 'border-box',
                         padding: '1.5vh',
+                        borderRight: '1px solid white',
                         minWidth: 0,
-                        overflow: 'hidden'
+                        overflow: 'hidden',
+                        margin: "auto 0",
+                        height: '90%'
                     }}
                 >
                     <RotatingButton width="16vh" />

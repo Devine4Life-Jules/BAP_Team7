@@ -94,8 +94,14 @@ export default function Map() {
     useEffect(() => {
         const handleKeyDown = (event) => {
             if (showInstructionModal) {
-                // Only allow space to close modal
-                if (event.key === ' ' || event.key === 'Spacebar' || event.code === 'Space') {
+                const closingKeys = [
+                    'Spacebar', 'q', 'e', 
+                    'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 
+                    'Backspace'
+                ];
+                const closingCodes = ['Space'];
+
+                if (closingKeys.includes(event.key) || closingCodes.includes(event.code)) {
                     event.preventDefault();
                     setShowInstructionModal(false);
                 }

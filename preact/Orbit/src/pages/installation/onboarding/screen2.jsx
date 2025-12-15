@@ -1,9 +1,8 @@
 import Button from '../../../components/Button';
-import logoHowestResearch from '../../../assets/logo_howestResearch.png'
 import useKeyboardNavigation from "../../../hooks/useNavigation";
 import useReBoot from '../../../hooks/useReBoot';
 import OnboardingProgressBar from '../../../components/OnboardingProgressBar';
-import Joystick from '../../../components/Joystick';
+import noTouchIcon from '../../../assets/noTouchIcon.png'
 
 function Screen2 () {
     useKeyboardNavigation({back: '/', next: '/screen3'});
@@ -11,12 +10,14 @@ function Screen2 () {
     return(
         <div className="onboarding-screen screen2">
           <h1 className="screen2Title"><span style={{fontWeight: "100"}}>Wat is</span> ORBIT ?</h1>
-            <p style={{fontSize: "20px", maxWidth:"75%", fontWeight: "lighter"}}>Orbit is een installatie die laat zien hoe Howest Research jou kan ondersteunen en inspireren.</p>
+            <p style={{fontSize: "30px",margin:"1rem auto 2rem auto", maxWidth:"70%", fontWeight: "lighter"}}>Orbit is een installatie die laat zien hoe Howest Research jou kan ondersteunen en inspireren.</p>
+            <p style={{fontSize: "30px",margin:"1rem auto 2rem auto", maxWidth:"70%", fontWeight: "400"}}>Bedien Orbit met de knoppen onderaan</p>
+            <div style={{width:"7rem", margin: "1rem"}}><img src={noTouchIcon} alt="" /></div>
             <div style={{display: 'flex', gap: '20px', marginBottom: '100px'}}>
               <Button icon="back" text="back"></Button>
               <Button icon="check" text="Next"></Button>
             </div>
-            <OnboardingProgressBar step={1} />
+            <OnboardingProgressBar step={1} style={{alignSelf:"flex-end"}}/>
         </div>
     )
 }
