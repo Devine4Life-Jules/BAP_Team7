@@ -82,8 +82,8 @@ export default function PhoneContact(){
                 
                 {/* Content */}
                 <div style={{ position: 'relative', zIndex: 2, padding: '7rem 1rem' }}>
-                    <div style={{width: '90%', margin: '1rem auto'}}><img src={logo_howestResearch} alt="Howest Research" style={{width: '100%'}} /></div>
-                    <p>Onze research is wat jou bedrijf naar de sterren zal brengen. Interesse of vragen aarzel niet en kom in contact</p>
+                    <div style={{width: '90%', margin: '1rem auto',}}><img src={logo_howestResearch} alt="Howest Research" style={{width: '100%'}} /></div>
+                    <p style={{fontSize: '1.3rem', marginBottom: '2rem'}}>Onze research is wat jou bedrijf naar de sterren zal brengen. Interesse of vragen aarzel niet en kom in contact</p>
                     <Link href='#contactForm' className="projectCTA" style={{backgroundColor: '#332E84', margin:'1rem auto'}}>Samenwerken</Link>
                     <img src={mobileContactRocket} alt="rocket" style={{width: '60%',  margin: '0 auto'}} />
                 </div>
@@ -115,31 +115,32 @@ export default function PhoneContact(){
             )}
 
             <form onSubmit={handleSubmit} id="contactForm" className="contactForm">
-                <label style={{display: 'block'}} htmlFor="companyName">Naam Bedrijf:</label>
+                <label style={{display: 'block', fontSize: '1.3rem'}} htmlFor="companyName">Naam Bedrijf:</label>
                 <input 
                     placeholder='Howest Research'
                     name="companyName" 
                     id="companyName"
-                    style={{display: 'block'}}
+                    style={{display: 'block', fontSize: '1.3rem'}}
                     value={companyName}
                     onChange={(e) => setCompanyName(e.target.value)}
                     required
                 />
                 
-                <label htmlFor="contactName" style={{display: 'block'}}>Naam Contactpersoon:</label>
+                <label htmlFor="contactName" style={{display: 'block', fontSize: '1.3rem'}}>Naam Contactpersoon:</label>
                 <input 
                     name="contactName"
                     id="contactName" 
                     placeholder='John Doe'
+                    style={{fontSize: '1.3rem'}}
                     value={contactName}
                     onChange={(e) => setContactName(e.target.value)}
                     required
                 />
                 
-                <label htmlFor="email" style={{display: 'block'}}>Email:</label>
+                <label htmlFor="email" style={{display: 'block', fontSize: '1.3rem'}}>Email:</label>
                 <input 
                     name="email" 
-                    style={{display: 'block'}}
+                    style={{display: 'block', fontSize: '1.3rem'}}
                     placeholder='john.doe@howest.be'
                     id="email"
                     type="email"
@@ -148,11 +149,11 @@ export default function PhoneContact(){
                     required
                 />
                 
-                <label htmlFor="message" style={{display: 'block'}}>Message:</label>
+                <label htmlFor="message" style={{display: 'block', fontSize: '1.3rem'}}>Message:</label>
                 <textarea 
                     name="message"
                     placeholder='Ik ben geïnteresseerd in jullie research diensten...'
-                    style={{display: 'block'}}
+                    style={{display: 'block', fontSize: '1.3rem'}}
                     id="message" 
                     rows="4"
                     value={message}

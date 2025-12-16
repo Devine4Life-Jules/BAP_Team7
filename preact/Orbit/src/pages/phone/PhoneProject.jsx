@@ -17,7 +17,10 @@ import useDummyImage from '../../hooks/useDummyImage';
 
 
 export default function PhoneProject({id}){
-
+    // Track last visited project in localStorage
+    useEffect(() => {
+        localStorage.setItem('lastVisitedProject', id);
+    }, [id]);
 
     const projects = useGetProjects();
     const project = projects.find(p => String(p.id) === String(id));
