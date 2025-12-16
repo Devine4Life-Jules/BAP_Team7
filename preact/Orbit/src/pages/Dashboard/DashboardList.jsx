@@ -6,13 +6,16 @@ import DashboardNav from '../../components/DashboardNav';
 import DashboardSearch from '../../components/DashboardSearch';
 import './dashboard.css';
 
-export default function DashboardHome() {
+const PROJECTS_PER_PAGE = 10;
+
+export default function DashboardList() {
     const { projects } = useContext(ProjectsContext);
+    
+    const [currentPage, setCurrentPage] = useState(1);
+    const [projectStats, setProjectStats] = useState({});
     
     const [stats, setStats] = useState({
         totalScans: 0,
-        savedProjects: 0,
-        unsavedProjects: 0,
         totalContacts: 0,
         loading: true
     });
@@ -98,6 +101,8 @@ export default function DashboardHome() {
                     console.error('Error fetching contacts:', contactError);
                     console.error('Full error details:', JSON.stringify(contactError, null, 2));
                 }
+
+                setProjectStats({ scanCounts, saveCounts });
                 
                 const finalStats = {
                     scans: scanData?.length || 0,
@@ -124,6 +129,28 @@ export default function DashboardHome() {
         fetchStats();
     }, [projects]);
 
+    // Pagination logic
+    const totalPages = Math.ceil(projects.length / PROJECTS_PER_PAGE);
+    const startIndex = (currentPage - 1) * PROJECTS_PER_PAGE;
+    const endIndex = startIndex + PROJECTS_PER_PAGE;
+    const paginatedProjects = projects.slice(startIndex, endIndex);
+
+    const handleNextPage = () => {
+        if (currentPage < totalPages) {
+            setCurrentPage(currentPage + 1);
+        }
+    };
+
+    const handlePreviousPage = () => {
+        if (currentPage > 1) {
+            setCurrentPage(currentPage - 1);
+        }
+    };
+
+    const handlePageClick = (page) => {
+        setCurrentPage(page);
+    };
+
     return (
         <div class="dashboard-container">
             <DashboardNav />
@@ -133,60 +160,68 @@ export default function DashboardHome() {
                     <DashboardSearch />
                 </header>
                 <main>
-                    <div class="stats-row1">
-                        <section>
-                            <h2 className="dashboard-h2">Artikels Gescanned</h2>
-                            <p className="statsNumber">{stats.loading ? '...' : stats.totalScans}</p>
-                        </section>
-                        <section>
-                            <h2 className="dashboard-h2">Artikels Opgeslagen</h2>
-                            <p className="statsNumber">{stats.loading ? '...' : stats.savedProjects}</p>
-                         </section>
-                        <section>
-                            <h2 className="dashboard-h2">ContactGegevens Opgeslagen</h2>
-                            <p className="statsNumber">{stats.loading ? '...' : stats.totalContacts}</p>
-                        </section>
-                    </div>
-                    <div class="stats-row2">
-                        <section>
-                            <h2 className="dashboard-h2">top gescanned</h2>
-                            <ol>
-                                {stats.loading ? (
-                                    <li>Loading...</li>
-                                ) : topScanned.length > 0 ? (
-                                    topScanned.map(item => (
-                                        <li key={item.id}>
-                                            <Link href={`/dashboardDetail/${item.id}`} className="top-list-link">
-                                                {item.ccode}
-                                            </Link>
-                                            ({item.count}x)
-                                        </li>
-                                    ))
-                                ) : (
-                                    <li>No data</li>
-                                )}
-                            </ol>
-                        </section>
-                        <section>
-                            <h2 className="dashboard-h2">top opgeslagen</h2>
-                            <ol>
-                                {stats.loading ? (
-                                    <li>Loading...</li>
-                                ) : topSaved.length > 0 ? (
-                                    topSaved.map(item => (
-                                        <li key={item.id}>
-                                            <Link href={`/dashboardDetail/${item.id}`} className="top-list-link">
-                                                {item.ccode}
-                                            </Link>
-                                            ({item.count}x)
-                                        </li>
-                                    ))
-                                ) : (
-                                    <li>No data</li>
-                                )}
-                            </ol>
-                        </section>
 
+
+                    {/* Projects List Section */}
+                    <div className="projects-list-section">
+                        <h2 className="dashboard-h2">Alle Projecten</h2>
+                        <div className="projects-list-window">
+                            <div className="projects-grid">
+                                {/* Header Row */}
+                                <div className="projects-grid-header">
+                                    <div className="grid-cell header-cell">ID</div>
+                                    <div className="grid-cell header-cell">CCode</div>
+                                    <div className="grid-cell header-cell">Scans</div>
+                                    <div className="grid-cell header-cell">Saves</div>
+                                </div>
+                                
+                                {/* Data Rows */}
+                                {paginatedProjects.map(project => (
+                                    <Link href={`/dashboardDetail/${project.id}`} key={project.id} style={{ textDecoration: 'none', color: 'inherit', display: 'contents' }}>
+                                        <div className="projects-grid-row">
+                                            <div className="grid-cell">{project.id}</div>
+                                            <div className="grid-cell">{project.ccode}</div>
+                                            <div className="grid-cell">{projectStats.scanCounts?.[project.id] || 0}</div>
+                                            <div className="grid-cell">{projectStats.saveCounts?.[project.id] || 0}</div>
+                                        </div>
+                                    </Link>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* Pagination Controls */}
+                        <div className="pagination-controls">
+                            <button 
+                                className="pagination-btn" 
+                                onClick={handlePreviousPage}
+                                disabled={currentPage === 1}
+                            >
+                                Previous
+                            </button>
+
+                            <div className="pagination-pages">
+                                {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
+                                    <button
+                                        key={page}
+                                        className={`pagination-page ${currentPage === page ? 'active' : ''}`}
+                                        onClick={() => handlePageClick(page)}
+                                    >
+                                        {page}
+                                    </button>
+                                ))}
+                            </div>
+
+                            <button 
+                                className="pagination-btn" 
+                                onClick={handleNextPage}
+                                disabled={currentPage === totalPages}
+                            >
+                                Next
+                            </button>
+                        </div>
+                        <p className="pagination-info">
+                            Page {currentPage} of {totalPages} (Showing {paginatedProjects.length} of {projects.length} projects)
+                        </p>
                     </div>
                 </main>
             </div>

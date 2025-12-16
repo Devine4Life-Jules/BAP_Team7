@@ -24,6 +24,8 @@ export default function MapCanvas({ filteredProjects, onSelectionChange, bottomC
     const [selectedProjectId, setSelectedProjectId] = useState(null)
     const [velocityX, setVelocityX] = useState(0)
     const [velocityY, setVelocityY] = useState(0)
+    const [animatingPlanets, setAnimatingPlanets] = useState(new Set())
+    const previousProjectIdsRef = useRef(new Set())
     const viewportRef = useRef(null)
     const animationFrameRef = useRef(null)
     const isRaspberryPi = useRef(/arm|aarch64/i.test(navigator.userAgent) || navigator.hardwareConcurrency <= 4)
@@ -248,6 +250,50 @@ export default function MapCanvas({ filteredProjects, onSelectionChange, bottomC
         return () => window.removeEventListener('keydown', handleKeyDown)
     }, [selectedProjectId, instructionModalOpen])
 
+    // Create a stable string representation of current project IDs for dependency tracking
+    const projectIdsString = useMemo(() => 
+        filteredProjects.map(p => p.id).sort((a, b) => a - b).join(','),
+        [filteredProjects.length, filteredProjects[0]?.id, filteredProjects[filteredProjects.length - 1]?.id]
+    )
+
+    // Animate only NEW planets when filter changes
+    useEffect(() => {
+        const currentProjectIds = new Set(filteredProjects.map(p => p.id))
+        
+        // Find planets that are new (in current but not in previous)
+        const newPlanetIds = Array.from(currentProjectIds).filter(id => !previousProjectIdsRef.current.has(id))
+        
+        if (newPlanetIds.length > 0) {
+            // Initialize all new planets as animating immediately to prevent opacity flash
+            setAnimatingPlanets(new Set(newPlanetIds))
+            
+            const timeouts = []
+            
+            // Group planets with shared random start times for removal from animation state
+            const groupSize = Math.max(1, Math.ceil(newPlanetIds.length / 3)) // 3 groups
+            newPlanetIds.forEach((id, index) => {
+                // Assign random removal time between 500-700ms (after animation duration of 500ms)
+                const randomDelay = 500 + Math.floor((index % groupSize) * (200 / groupSize) + Math.random() * 100)
+                
+                // Remove planet from animating set after animation completes
+                timeouts.push(
+                    setTimeout(() => {
+                        setAnimatingPlanets(prev => {
+                            const updated = new Set(prev)
+                            updated.delete(id)
+                            return updated
+                        })
+                    }, randomDelay)
+                )
+            })
+            
+            return () => timeouts.forEach(t => clearTimeout(t))
+        }
+        
+        // Update previous project ids for next filter change (using ref, not state)
+        previousProjectIdsRef.current = currentProjectIds
+    }, [projectIdsString])
+
     return (
         <div className="map-viewport" ref={viewportRef}>
             {/* Bottom clouds image - fixed in viewport */}
@@ -331,6 +377,7 @@ export default function MapCanvas({ filteredProjects, onSelectionChange, bottomC
                                 title={project.ccode}
                                 bgColor="linear-gradient(134deg, #44C8F5 16.53%, rgba(73, 71, 129, 0.00) 79.49%)"
                                 opacity={opacityValue}
+                                isAnimating={animatingPlanets.has(project.id)}
                             />
                         </div>
                     )

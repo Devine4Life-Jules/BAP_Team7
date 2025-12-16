@@ -170,7 +170,7 @@ export default function Map() {
                     color: '#white', fontSize: '1rem', fontWeight: 'bold', 
                     textAlign: 'center', marginTop: "-.2rem"
                 }}>
-                    <span style={{ display:'block'}}>zet koers naar</span> 
+                    <span style={{ display:'block'}}>Lanceer een</span> 
                     <span style={{fontSize: '1.5rem'}}>samenwerking</span>
                 </p>
             </div>

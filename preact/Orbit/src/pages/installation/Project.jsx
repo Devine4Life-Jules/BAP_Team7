@@ -120,7 +120,7 @@ export default function Project({id}){
             
 
             {project.teaserAbstract && (
-                <div className="teaser-abstract">
+                <div className="teaser-abstract" style={{lineHeight: '1.7rem'}}>
                     <div dangerouslySetInnerHTML={{__html: project.teaserAbstract}} />
                 </div>
             )}

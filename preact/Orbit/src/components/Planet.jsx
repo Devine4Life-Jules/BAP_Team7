@@ -2,7 +2,7 @@ import { Link } from "preact-router"
 
 import PlanetBg from '../assets/planet.png'
 
-export default function Planet({id, bgColor, title, opacity = 1}) {
+export default function Planet({id, bgColor, title, opacity = 1, isAnimating = false}) {
 
     const TextStyle = {
         textDecoration: 'none',
@@ -29,9 +29,11 @@ export default function Planet({id, bgColor, title, opacity = 1}) {
                     display:'flex', 
                     alignItems:'center', 
                     justifyContent:'center',
-                    opacity: opacity,
+                    opacity: isAnimating ? 0 : opacity,
                     transition: `opacity ${transitionSpeed} ease`,
-                    willChange: 'opacity'
+                    willChange: 'opacity, transform',
+                    animation: isAnimating ? 'planetAppear 0.5s ease-out forwards' : 'none',
+                    '--final-opacity': opacity
                 }}>
                     <h3>{title}</h3>
                 </div>
