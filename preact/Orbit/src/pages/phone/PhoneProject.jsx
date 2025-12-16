@@ -171,7 +171,7 @@ export default function PhoneProject({id}){
                         {similarProjects.length > 0 ? (
                             <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
                                 {similarProjects.map(similarProject => (
-                                    <PhoneCard key={similarProject.id} project={similarProject} textColor={"black"}  />
+                                    <PhoneCard key={similarProject.id} project={similarProject} textColor={"black"} />
                                 ))}
                             </div>
                         ) : (
