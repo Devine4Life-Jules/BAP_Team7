@@ -1,6 +1,5 @@
 import { useState, useEffect,  } from 'preact/hooks'
 import PhoneNav from "../../components/PhoneNav"
-import dummyImage from '../../assets/dummyImage.png'
 import { Link } from "preact-router"
 import './phone.css'
 import SaveIcon from '../../components/SaveIcon'
@@ -13,6 +12,7 @@ import PhoneFooter from '../../components/PhoneFooter'
 import PhoneCard from '../../components/PhoneCard'
 import useGetKeywords from '../../hooks/useGetKeywords'
 import KeyWordPills from '../../components/KeyWordsPills';
+import useDummyImage from '../../hooks/useDummyImage';
 
 
 
@@ -29,6 +29,7 @@ export default function PhoneProject({id}){
     
     const transitiedomeinen = useGetDomains(project);
     const keywords = useGetKeywords(project);
+    const dummyImage = useDummyImage(project.id);
 
     const [isSaved, setIsSaved] = useState(false);
 

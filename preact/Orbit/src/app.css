@@ -47,9 +47,9 @@ p {
 
 .mainTitle {
     font-family: 'Nunito', sans-serif;
-    font-weight: 700;
+    font-weight: 900;
     font-size: 5.5em;
-    margin-top: 100px;
+    margin-top: 10rem;
     justify-self: flex-start;
     padding-bottom: auto;
     text-shadow: 0 16.769px 66.866px #9312FD;
@@ -165,7 +165,7 @@ p {
     font-size: 3.5rem;
     max-width: 30rem;
     text-align: center;
-    margin: 9rem auto .5rem auto;
+    margin: 8rem auto .5rem auto;
 }
 
 .project-detail {
@@ -363,6 +363,8 @@ p {
 
 
 .teaser-abstract {
+  font-size: 1.5rem;
+  text-align: left;
   width: 50%;
   font-weight: 200;
   margin: 2% auto 5% auto;

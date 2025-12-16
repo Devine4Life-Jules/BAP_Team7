@@ -11,13 +11,11 @@ export default function Screen1() {
   return (
     <div className='onboarding-screen screen1' >
       <h1 class="mainTitle">ORBIT</h1>
-      <p style={{fontSize: '1.5rem', marginBottom:'53%', fontWeight:'100'}}>Lanceer je bedrijf naar de sterren</p>
-      <p className='onboardingInstruction'>Druk een Knop om verder te gaan</p>
-      <div className="bottomLogo">
-        <img src={logoHowestResearch} alt="Howest Research Logo" style={{marginBottom:'1rem'}}/>
+      <p style={{fontSize: '1.5rem', fontWeight:'100'}}>Lanceer je bedrijf naar de sterren</p>
+      <p className='onboardingInstruction' style={{marginTop: '33rem'}}>Druk een Knop om verder te gaan</p>
+      <div className="bottomLogo" style={{marginTop: 'auto'}}>
+        <img src={logoHowestResearch} alt="Howest Research Logo" style={{marginBottom:'2.5rem', marginTop:'3rem'}}/>
       </div>
-      
-
     </div>
   );
 }

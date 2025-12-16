@@ -1,17 +1,17 @@
 import { Link } from 'preact-router'
-import dummyImage from '../assets/dummyImage.png';
 import useGetDomains from '../hooks/useGetDomains';
 import PhoneDomainPills from './PhoneDomainPills';
 import useGetKeywords from '../hooks/useGetKeywords';
 import PhoneKeywordPills from '../components/KeyWordsPills';
+import useDummyImage from '../hooks/useDummyImage';
 
 
 
 export default function PhoneCard({ project, background, textColor }) {
-
         const keywords = useGetKeywords(project);
+        const dummyImage = useDummyImage(project.id);
 
-            const cardStyle = {
+        const cardStyle = {
             border: `1px solid ${textColor || '#ccc'}`,
             borderRadius: "10px",
             overflow: "hidden",
