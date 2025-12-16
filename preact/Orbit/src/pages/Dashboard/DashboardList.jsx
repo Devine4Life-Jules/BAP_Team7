@@ -11,7 +11,11 @@ const PROJECTS_PER_PAGE = 10;
 export default function DashboardList() {
     const { projects } = useContext(ProjectsContext);
     
-    const [currentPage, setCurrentPage] = useState(1);
+    // Initialize page from localStorage, default to 1
+    const [currentPage, setCurrentPage] = useState(() => {
+        const savedPage = localStorage.getItem('dashboardListPage');
+        return savedPage ? parseInt(savedPage, 10) : 1;
+    });
     const [projectStats, setProjectStats] = useState({});
     
     const [stats, setStats] = useState({
@@ -22,6 +26,11 @@ export default function DashboardList() {
 
     const [topScanned, setTopScanned] = useState([]);
     const [topSaved, setTopSaved] = useState([]);
+
+    // Save page to localStorage whenever it changes
+    useEffect(() => {
+        localStorage.setItem('dashboardListPage', currentPage.toString());
+    }, [currentPage]);
 
     useEffect(() => {
         async function fetchStats() {
