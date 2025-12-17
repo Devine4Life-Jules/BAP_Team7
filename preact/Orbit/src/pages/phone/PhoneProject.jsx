@@ -45,7 +45,7 @@ export default function PhoneProject({id}){
                 )
             );
         })
-        .slice(0, 3) : []; // Get first 3 matches
+        .slice(0, 3) : []; 
 
     const getSavedProjects = () => {
         const saved = localStorage.getItem('savedProjects');
@@ -63,8 +63,6 @@ export default function PhoneProject({id}){
             savedProjects.push(String(id));
             localStorage.setItem('savedProjects', JSON.stringify(savedProjects));
             setIsSaved(true);
-            
-            // Log to Supabase
             await supabase
                 .from('saved_project_events')
                 .insert({ 
@@ -80,7 +78,6 @@ export default function PhoneProject({id}){
         localStorage.setItem('savedProjects', JSON.stringify(filtered));
         setIsSaved(false);
         
-        // Log to Supabase
         await supabase
             .from('saved_project_events')
             .insert({ 
@@ -91,8 +88,6 @@ export default function PhoneProject({id}){
 
     useEffect(() => {
         setIsSaved(checkIfSaved());
-        
-        // Check if user came from QR code scan
         const urlParams = new URLSearchParams(window.location.search);
         const source = urlParams.get('source');
         

@@ -3,25 +3,24 @@ import Planet from "./Planet"
 import { route } from 'preact-router'
 import './mapCanvas.css'
 
-// Constants for map configuration
 const CONFIG = {
-    VIEWPORT_SCALE: 1, // 90vh as percentage of window height
-    CANVAS_MULTIPLIER: 2, // canvas size relative to viewport
-    PAN_SPEED: 12, // pixels per arrow key press
-    PLANET_RADIUS: 50, // approximate radius of a planet (100px diameter)
-    MIN_DISTANCE: 140, // minimum distance between projects (2x planet radius + padding)
-    SPIRAL_RADIUS_BASE: 200, // starting radius for spiral positioning (increased for better spacing)
-    SPIRAL_RADIUS_INCREMENT: 25, // increment per project in spiral (increased for better spacing)
-    GOLDEN_ANGLE: 137.5, // golden angle for deterministic spiral distribution
-    MAX_POSITIONING_ATTEMPTS: 200, // max attempts to find non-overlapping position (increased)
-    INERTIA_FRICTION: 0.85, // velocity multiplier per frame (reduced for Pi performance)
-    INERTIA_MIN_VELOCITY: 0.1, // minimum velocity threshold before stopping (higher = stops faster)
-    MODAL_OFFSET_X: 120, // horizontal offset for modal relative to planet
-    MODAL_OFFSET_Y: -80, // vertical offset for modal relative to planet
-    OPACITY_FADE_DISTANCE_MULTIPLIER: 0.5, // multiplier for viewport width to calculate fade distance
-    OPACITY_FALLOFF_EXPONENT: 1.5, // exponent for opacity falloff calculation
-    MIN_OPACITY: 0.05, // minimum opacity value for planets
-    OPACITY_STEP: 0.05, // step size for opacity rounding on Raspberry Pi
+    VIEWPORT_SCALE: 1, 
+    CANVAS_MULTIPLIER: 2, 
+    PAN_SPEED: 12, 
+    PLANET_RADIUS: 50, 
+    MIN_DISTANCE: 140, 
+    SPIRAL_RADIUS_BASE: 200,
+    SPIRAL_RADIUS_INCREMENT: 25, 
+    GOLDEN_ANGLE: 137.5, 
+    MAX_POSITIONING_ATTEMPTS: 200,
+    INERTIA_FRICTION: 0.85,
+    INERTIA_MIN_VELOCITY: 0.1, 
+    MODAL_OFFSET_X: 120, 
+    MODAL_OFFSET_Y: -80, 
+    OPACITY_FADE_DISTANCE_MULTIPLIER: 0.5, 
+    OPACITY_FALLOFF_EXPONENT: 1.5, 
+    MIN_OPACITY: 0.05, 
+    OPACITY_STEP: 0.05, 
 }
 
 const degreesToRadians = (degrees) => (degrees * Math.PI) / 180
@@ -47,19 +46,15 @@ export default function MapCanvas({ filteredProjects, onSelectionChange, bottomC
         const positions = {}
         const projects = [...filteredProjects].sort((a, b) => a.id - b.id)
 
-        // Helper function to check if a position overlaps with existing planets
         const isPositionValid = (x, y, existingPositions) => {
-            // Check bounds - ensure planets stay within canvas with padding
             const padding = CONFIG.PLANET_RADIUS * 2
             if (x < padding || x > CANVAS_WIDTH - padding || 
                 y < padding || y > CANVAS_HEIGHT - padding) {
                 return false
             }
 
-            // Check distance from all existing planets
             for (const pos of Object.values(existingPositions)) {
                 const distance = Math.sqrt(Math.pow(x - pos.x, 2) + Math.pow(y - pos.y, 2))
-                // Ensure minimum distance is at least 2 planet radii + padding
                 if (distance < CONFIG.MIN_DISTANCE) {
                     return false
                 }
@@ -71,19 +66,16 @@ export default function MapCanvas({ filteredProjects, onSelectionChange, bottomC
             let positioned = false
             let attempts = 0
 
-            // Try to find a non-overlapping position using spiral pattern
             while (!positioned && attempts < CONFIG.MAX_POSITIONING_ATTEMPTS) {
                 let x, y
 
                 if (attempts < 50) {
-                    // First 50 attempts: use spiral pattern
                     const angle = (index * CONFIG.GOLDEN_ANGLE + attempts * 15) % 360
                     const spiralRadius = CONFIG.SPIRAL_RADIUS_BASE + (index * CONFIG.SPIRAL_RADIUS_INCREMENT) + (attempts * 10)
                     
                     x = CANVAS_WIDTH / 2 + Math.cos(degreesToRadians(angle)) * spiralRadius
                     y = CANVAS_HEIGHT / 2 + Math.sin(degreesToRadians(angle)) * spiralRadius
                 } else {
-                    // Remaining attempts: try random positions in expanding circles
                     const angle = Math.random() * 360
                     const radius = CONFIG.SPIRAL_RADIUS_BASE + (attempts - 50) * 20
                     
@@ -99,7 +91,6 @@ export default function MapCanvas({ filteredProjects, onSelectionChange, bottomC
                 attempts++
             }
 
-            // Fallback: force placement on edge if no position found (should be rare)
             if (!positioned) {
                 console.warn(`Could not find valid position for project ${project.id} after ${CONFIG.MAX_POSITIONING_ATTEMPTS} attempts`)
                 const angle = (index * 45) % 360
@@ -113,11 +104,8 @@ export default function MapCanvas({ filteredProjects, onSelectionChange, bottomC
         return positions
     }, [filteredProjects])
 
-    // Find the most central planet by checking distance from screen center
     const centralProjectId = useMemo(() => {
         if (!viewportRef.current) return null
-
-        // Get the actual center of the viewport in screen coordinates
         const rect = viewportRef.current.getBoundingClientRect()
         const screenCenterX = rect.left + rect.width / 2
         const screenCenterY = rect.top + rect.height / 2
@@ -129,7 +117,6 @@ export default function MapCanvas({ filteredProjects, onSelectionChange, bottomC
         filteredProjects.forEach(project => {
             const pos = projectPositions[project.id]
             if (pos) {
-                // Find the DOM element for this project
                 const element = document.querySelector(`[data-project-id="${project.id}"]`)
                 if (element) {
                     const elemRect = element.getBoundingClientRect()
@@ -141,21 +128,16 @@ export default function MapCanvas({ filteredProjects, onSelectionChange, bottomC
                         Math.pow(elemCenterY - screenCenterY, 2)
                     )
 
-                    // Check if overlapping with center point
                     const isOverlapping = distance < CONFIG.PLANET_RADIUS
 
-                    // Prefer overlapping planets, then closest
                     if (isOverlapping && !overlapFound) {
-                        // First overlapping planet found
                         closestDistance = distance
                         closestId = project.id
                         overlapFound = true
                     } else if (isOverlapping && distance < closestDistance) {
-                        // Closer overlapping planet
                         closestDistance = distance
                         closestId = project.id
                     } else if (!overlapFound && distance < closestDistance) {
-                        // Not overlapping, but closest so far
                         closestDistance = distance
                         closestId = project.id
                     }
@@ -252,32 +234,24 @@ export default function MapCanvas({ filteredProjects, onSelectionChange, bottomC
         return () => window.removeEventListener('keydown', handleKeyDown)
     }, [selectedProjectId, instructionModalOpen])
 
-    // Create a stable string representation of current project IDs for dependency tracking
     const projectIdsString = useMemo(() => 
         filteredProjects.map(p => p.id).sort((a, b) => a - b).join(','),
         [filteredProjects.length, filteredProjects[0]?.id, filteredProjects[filteredProjects.length - 1]?.id]
     )
 
-    // Animate only NEW planets when filter changes
     useEffect(() => {
         const currentProjectIds = new Set(filteredProjects.map(p => p.id))
-        
-        // Find planets that are new (in current but not in previous)
-        const newPlanetIds = Array.from(currentProjectIds).filter(id => !previousProjectIdsRef.current.has(id))
+                const newPlanetIds = Array.from(currentProjectIds).filter(id => !previousProjectIdsRef.current.has(id))
         
         if (newPlanetIds.length > 0) {
-            // Initialize all new planets as animating immediately to prevent opacity flash
             setAnimatingPlanets(new Set(newPlanetIds))
             
             const timeouts = []
             
-            // Group planets with shared random start times for removal from animation state
             const groupSize = Math.max(1, Math.ceil(newPlanetIds.length / 3)) // 3 groups
             newPlanetIds.forEach((id, index) => {
-                // Assign random removal time between 500-700ms (after animation duration of 500ms)
                 const randomDelay = 500 + Math.floor((index % groupSize) * (200 / groupSize) + Math.random() * 100)
                 
-                // Remove planet from animating set after animation completes
                 timeouts.push(
                     setTimeout(() => {
                         setAnimatingPlanets(prev => {
@@ -292,13 +266,11 @@ export default function MapCanvas({ filteredProjects, onSelectionChange, bottomC
             return () => timeouts.forEach(t => clearTimeout(t))
         }
         
-        // Update previous project ids for next filter change (using ref, not state)
         previousProjectIdsRef.current = currentProjectIds
     }, [projectIdsString])
 
     return (
         <div className="map-viewport" ref={viewportRef}>
-            {/* Bottom clouds image - fixed in viewport */}
             {bottomCloudsImg && (
                 <img 
                     src={bottomCloudsImg} 
@@ -316,7 +288,6 @@ export default function MapCanvas({ filteredProjects, onSelectionChange, bottomC
                 />
             )}
             
-            {/* Invisible center point indicator */}
             <div style={{
                 position: 'absolute',
                 top: '50%',
@@ -342,24 +313,17 @@ export default function MapCanvas({ filteredProjects, onSelectionChange, bottomC
                     if (!pos) return null
 
                     const isSelected = project.id === selectedProjectId
-
-                    // Calculate distance from the center point (white dot at viewport center)
-                    // Planet's position on screen after applying canvas offset
                     const planetScreenX = pos.x - CANVAS_WIDTH / 2 - offsetX
                     const planetScreenY = pos.y - CANVAS_HEIGHT / 2 - offsetY
                     
-                    // Distance from planet to viewport center (where the white dot is)
                     const distanceFromCenter = Math.sqrt(
                         planetScreenX * planetScreenX + 
                         planetScreenY * planetScreenY
                     )
                     
-                    // Calculate opacity with dramatic falloff
                     const maxFadeDistance = VIEWPORT_WIDTH * CONFIG.OPACITY_FADE_DISTANCE_MULTIPLIER
                     const normalizedDistance = Math.min(distanceFromCenter / maxFadeDistance, 1)
-                    // Quadratic falloff for dramatic contrast
                     const rawOpacity = Math.max(CONFIG.MIN_OPACITY, 1 - Math.pow(normalizedDistance, CONFIG.OPACITY_FALLOFF_EXPONENT))
-                    // Round to steps to reduce CSS changes
                     const opacityValue = isRaspberryPi.current ? Math.round(rawOpacity / CONFIG.OPACITY_STEP) * CONFIG.OPACITY_STEP : rawOpacity
 
                     return (
@@ -385,7 +349,6 @@ export default function MapCanvas({ filteredProjects, onSelectionChange, bottomC
                     )
                 })}
 
-                {/* Project Details Modal - positioned relative to planet on canvas */}
                 {selectedProject && projectPositions[selectedProject.id] && (
                     <div 
                         style={{

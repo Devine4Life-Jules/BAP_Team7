@@ -12,36 +12,7 @@ function Screen3 () {
     useReBoot({rebootTime: 100000});
     
     return(
-        <div className="onboarding-screen screen3">
-            <style>
-                {`
-
-                    
-                    /* Encoder rotation animation - 72 degrees per step (360/5) */
-                    .encoder-rotating {
-                        animation: encoderRotate 2.5s infinite step-end;
-                    }
-                    
-                    @keyframes encoderRotate {
-                        0%, 20% {
-                            transform: rotate(0deg);
-                        }
-                        20%, 40% {
-                            transform: rotate(45deg);
-                        }
-                        40%, 60% {
-                            transform: rotate(90deg);
-                        }
-                        60%, 80% {
-                            transform: rotate(135deg);
-                        }
-                        80%, 100% {
-                            transform: rotate(180deg);
-                        }
-                    }
-                `}
-            </style>
-            
+        <div className="onboarding-screen screen3">            
             <p style={{fontSize:'3rem', marginTop:'20rem', fontWeight:'100'}}>Wie is</p>
             <div style={{width: '45vh'}}><img src={logo_howestResearch} alt="" /></div>
             <p style={{fontSize:'2rem', maxWidth:'70%', margin:'1.5rem auto',}}>Innovatief en missiegedreven onderzoek met impact in vijf domeinen</p>

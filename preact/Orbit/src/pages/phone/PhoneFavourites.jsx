@@ -18,12 +18,9 @@ export default function PhoneFavourites(){
     const [savedProjects, setSavedProjects] = useState([]);
 
     useEffect(() => {
-        // Get saved project IDs from localStorage
         const saved = localStorage.getItem('savedProjects');
         const savedIds = saved ? JSON.parse(saved) : [];
-        
-        // Filter projects to get only saved ones
-        const savedProjectData = projects.filter(project => 
+                const savedProjectData = projects.filter(project => 
             savedIds.includes(String(project.id))
         );
         
@@ -33,10 +30,7 @@ export default function PhoneFavourites(){
     return(
         <div className="phoneFavourites" style={{ paddingTop: '2rem' }}>
             <div style={{ borderRadius: '30px', background:'linear-gradient(0deg, rgba(73, 71, 129, 0.00) 0%, #6462A7 100%)', padding: '2rem 1rem',width: '85%', margin: '0 auto' }}>
-
                 <h1 class="mainPhoneTitle centerTitle">Opgeslagen</h1>
-                
-                
                 {savedProjects.length === 0 ? (
                     <div className="saved-empty">
                         <p>Je hebt nog niks opgeslagen</p>
@@ -55,7 +49,6 @@ export default function PhoneFavourites(){
                         ))}
                     </div>
                 )}
-                
             </div>
             <PhoneNav />
             <PhoneFooter />

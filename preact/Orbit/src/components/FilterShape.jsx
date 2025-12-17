@@ -1,4 +1,3 @@
-import { Link } from "preact-router"
 import filterShape from '../assets/filterShape.svg'
 
 export default function FilterShape({id,bgColor, title}) {

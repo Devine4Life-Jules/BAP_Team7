@@ -12,7 +12,6 @@ export default function Planet({id, bgColor, title, opacity = 1, isAnimating = f
         backgroundColor:'red',
     };
     
-    // Faster transitions for low-end devices
     const isLowEnd = /arm|aarch64/i.test(navigator.userAgent) || navigator.hardwareConcurrency <= 4
     const transitionSpeed = isLowEnd ? '0.15s' : '0.3s'
 

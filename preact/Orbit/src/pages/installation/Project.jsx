@@ -90,17 +90,8 @@ export default function Project({id}){
                 </p>
             </div>
 
-
-            
-
-
             <div className="project-info">
-               
-
-
                  <h2 className="installation-ProjectTitle">{project.ccode}</h2>
-
-                
                 {project.cluster && project.cluster !== "Clusteroverschrijdend" && (
                     <div className="vakgebieden">
                         <div className="cluster">

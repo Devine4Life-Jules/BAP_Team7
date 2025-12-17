@@ -11,7 +11,6 @@ const PROJECTS_PER_PAGE = 10;
 export default function DashboardList() {
     const { projects } = useContext(ProjectsContext);
     
-    // Initialize page from localStorage, default to 1
     const [currentPage, setCurrentPage] = useState(() => {
         const savedPage = localStorage.getItem('dashboardListPage');
         return savedPage ? parseInt(savedPage, 10) : 1;
@@ -27,7 +26,6 @@ export default function DashboardList() {
     const [topScanned, setTopScanned] = useState([]);
     const [topSaved, setTopSaved] = useState([]);
 
-    // Save page to localStorage whenever it changes
     useEffect(() => {
         localStorage.setItem('dashboardListPage', currentPage.toString());
     }, [currentPage]);
@@ -50,8 +48,6 @@ export default function DashboardList() {
 
                 const saves = savedData?.filter(event => event.action === 'save').length || 0;
                 const unsaves = savedData?.filter(event => event.action === 'unsave').length || 0;
-
-                // Calculate top 5 scanned projects
                 const scanCounts = {};
                 scanData?.forEach(scan => {
                     const pid = scan.project_id;
@@ -72,7 +68,6 @@ export default function DashboardList() {
                 
                 setTopScanned(top5Scanned);
 
-                // Calculate top 5 saved projects (net saves)
                 const saveCounts = {};
                 savedData?.forEach(event => {
                     const pid = event.project_id;
@@ -138,12 +133,10 @@ export default function DashboardList() {
         fetchStats();
     }, [projects]);
 
-    // Pagination logic
     const totalPages = Math.ceil(projects.length / PROJECTS_PER_PAGE);
     const startIndex = (currentPage - 1) * PROJECTS_PER_PAGE;
     const endIndex = startIndex + PROJECTS_PER_PAGE;
     const paginatedProjects = projects.slice(startIndex, endIndex);
-
     const handleNextPage = () => {
         if (currentPage < totalPages) {
             setCurrentPage(currentPage + 1);
@@ -171,12 +164,10 @@ export default function DashboardList() {
                 <main>
 
 
-                    {/* Projects List Section */}
                     <div className="projects-list-section">
                         <h2 className="dashboard-h2">Alle Projecten</h2>
                         <div className="projects-list-window">
                             <div className="projects-grid">
-                                {/* Header Row */}
                                 <div className="projects-grid-header">
                                     <div className="grid-cell header-cell">ID</div>
                                     <div className="grid-cell header-cell">CCode</div>
@@ -184,7 +175,6 @@ export default function DashboardList() {
                                     <div className="grid-cell header-cell">Saves</div>
                                 </div>
                                 
-                                {/* Data Rows */}
                                 {paginatedProjects.map(project => (
                                     <Link href={`/dashboardDetail/${project.id}`} key={project.id} style={{ textDecoration: 'none', color: 'inherit', display: 'contents' }}>
                                         <div className="projects-grid-row">
@@ -198,7 +188,6 @@ export default function DashboardList() {
                             </div>
                         </div>
 
-                        {/* Pagination Controls */}
                         <div className="pagination-controls">
                             <button 
                                 className="pagination-btn" 
