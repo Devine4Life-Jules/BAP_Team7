@@ -153,7 +153,7 @@ export default function DashboardHome() {
                             <img src={mockGraph} alt="Mock Graph" />
                         </div>
                         <section>
-                            <h2 className="dashboard-h2">top gescanned</h2>
+                            <h2 className="detailStatsH2" style={{marginBottom:'.5rem'}}>top gescanned</h2>
                             <ol>
                                 {stats.loading ? (
                                     <li>Loading...</li>
@@ -172,7 +172,7 @@ export default function DashboardHome() {
                             </ol>
                         </section>
                         <section>
-                            <h2 className="dashboard-h2">top opgeslagen</h2>
+                            <h2 className="detailStatsH2" style={{marginBottom:'.5rem'}}>top opgeslagen</h2>
                             <ol>
                                 {stats.loading ? (
                                     <li>Loading...</li>

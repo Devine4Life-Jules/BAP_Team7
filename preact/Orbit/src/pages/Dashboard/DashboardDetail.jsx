@@ -4,6 +4,7 @@ import { supabase } from '../../lib/supabase';
 import { ProjectsContext } from '../../contexts/ProjectsContext';
 import DashboardNav from '../../components/DashboardNav';
 import DashboardSearch from '../../components/DashboardSearch';
+import mockGraph from '../../assets/mockGraph.png';
 import './dashboard.css';
 
 export default function DashboardDetail({ id }) {
@@ -20,7 +21,6 @@ export default function DashboardDetail({ id }) {
     useEffect(() => {
         async function fetchProjectStats() {
             try {
-                // Get all scans for this project
                 const { data: scanData, error: scanError } = await supabase
                     .from('qr_scan_events')
                     .select('*')
@@ -28,7 +28,6 @@ export default function DashboardDetail({ id }) {
                 
                 if (scanError) console.error('Error fetching project scans:', scanError);
 
-                // Get all save/unsave events for this project
                 const { data: savedData, error: savedError } = await supabase
                     .from('saved_project_events')
                     .select('action')
@@ -77,10 +76,8 @@ export default function DashboardDetail({ id }) {
             <div className="dashboard-home">
                 <header className="dashboard-header">
                     <div>
-                        <h1 className="dashboard-title">{project.name}</h1>
-                        <p className="dashboard-subtitle" style={{ color: '#999', marginTop: '0.5rem' }}>
-                            CCode: {project.ccode}
-                        </p>
+                        <h1 className="dashboard-title">{project.ccode}</h1>
+
                     </div>
                     <DashboardSearch />
                 </header>
@@ -100,22 +97,36 @@ export default function DashboardDetail({ id }) {
                         </section>
                     </div>
 
-                    <div className="project-detail-section">
-                        <h2 className="dashboard-h2">Project Details</h2>
-                        <div className="project-info-box">
-                            <div className="info-item">
-                                <label>Description:</label>
-                                <p>{project.description || 'No description available'}</p>
-                            </div>
-                            <div className="info-item">
-                                <label>Project ID:</label>
-                                <p>{project.id}</p>
-                            </div>
-                            <div className="info-item">
-                                <label>Code:</label>
-                                <p>{project.ccode}</p>
-                            </div>
+                    <div className="stats-row2">
+                       <div className='mock-graph-section'><img src={mockGraph} alt="" /></div>
+                        <div className='detailPage-stats'>
+                           
+                                <div>
+                                    <h2 className='detailStatsH2'>Wanneer Gescanned</h2>
+                                    <h3 className='detailStatsH3'>Meest Gescanned</h3>
+                                    <p>2026-05-15 (12x)</p>
+                                    <h3 className='detailStatsH3'>Laatst Gescanned</h3>
+                                    <p>2026-06-01 (2x)</p>
+                                </div>
+                                 <div>
+                                    <h2 className='detailStatsH2'>Wanneer Opgeslagen</h2>
+                                    <h3 className='detailStatsH3'>Meest Opgeslagen</h3>
+                                    <p>2026-04-12 (18x)</p>
+                                    <h3 className='detailStatsH3'>Laatst Opgeslagen</h3>
+                                    <p>2025-12-3 (5x)</p>
+                                </div>
+                           
                         </div>
+                    </div>
+                    <div class="stats-row1">
+                        <section>
+                            <h2 className="dashboard-h2">Meest Gescanned</h2>
+                            <p className="statsNumber">14u45</p>
+                        </section>
+                        <section>
+                            <h2 className="dashboard-h2">Opgeslagen</h2>
+                            <p className="statsNumber">18u30</p>
+                        </section>
                     </div>
                 </main>
             </div>
