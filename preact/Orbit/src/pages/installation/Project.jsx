@@ -61,7 +61,7 @@ export default function Project({id}){
             <div
                 style={{
                     position: 'absolute',
-                    top: '73vh',
+                    top: '70vh',
                     left: '50%',
                     transform: 'translateX(-50%)',
                     display: 'flex',
@@ -74,13 +74,7 @@ export default function Project({id}){
                 <div 
                     ref={qrcodeRef}
                     id="qrcode"
-                    style={{
-                        background: 'white',
-                        width: '10vh',
-                        padding: '8px',
-                        borderRadius: '12px',
-                        boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)'
-                    }}
+                    className="qrcode-container"
                 >
                 </div>
                 <p 

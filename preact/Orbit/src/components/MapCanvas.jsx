@@ -30,13 +30,11 @@ export default function MapCanvas({ filteredProjects, onSelectionChange, bottomC
     const animationFrameRef = useRef(null)
     const isRaspberryPi = useRef(/arm|aarch64/i.test(navigator.userAgent) || navigator.hardwareConcurrency <= 4)
 
-    // Using 90vh as viewport size (matches app container)
     const VIEWPORT_WIDTH = window.innerHeight * CONFIG.VIEWPORT_SCALE
     const VIEWPORT_HEIGHT = window.innerHeight * CONFIG.VIEWPORT_SCALE
     const CANVAS_WIDTH = VIEWPORT_WIDTH * CONFIG.CANVAS_MULTIPLIER
     const CANVAS_HEIGHT = VIEWPORT_HEIGHT * CONFIG.CANVAS_MULTIPLIER
 
-    // Generate non-overlapping positions for all projects
     const projectPositions = useMemo(() => {
         const positions = {}
         const projects = [...filteredProjects].sort((a, b) => a.id - b.id)
@@ -160,17 +158,14 @@ export default function MapCanvas({ filteredProjects, onSelectionChange, bottomC
         return closestId
     }, [offsetX, offsetY, filteredProjects, projectPositions])
 
-    // Update selected when central changes
     useEffect(() => {
         setSelectedProjectId(centralProjectId)
     }, [centralProjectId])
 
-    // Notify parent of selection change (only when centralProjectId changes)
     useEffect(() => {
         if (onSelectionChange && centralProjectId) {
             const position = projectPositions[centralProjectId]
             if (position) {
-                // Calculate screen position of the planet (center of viewport)
                 const screenX = VIEWPORT_WIDTH / 2
                 const screenY = VIEWPORT_HEIGHT / 2
                 onSelectionChange(centralProjectId, { x: screenX, y: screenY })
@@ -178,7 +173,6 @@ export default function MapCanvas({ filteredProjects, onSelectionChange, bottomC
         }
     }, [centralProjectId, onSelectionChange])
 
-    // Apply inertia/momentum to panning
     useEffect(() => {
         const animate = () => {
             setOffsetX(prev => {

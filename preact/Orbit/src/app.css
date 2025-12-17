@@ -34,6 +34,33 @@ p {
   width: 100vw;
 }
 
+/* Filter SVG layer visibility based on selected filter */
+.filter-svg #gezond_x5F_Active,
+.filter-svg #sociaal_x5F_Active,
+.filter-svg #ecologisch_x5F_Active,
+.filter-svg #digitaal_x5F_Active,
+.filter-svg #leren_x5F_Active {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.filter-index-0 #gezond_x5F_Active,
+.filter-index-1 #sociaal_x5F_Active,
+.filter-index-2 #ecologisch_x5F_Active,
+.filter-index-3 #digitaal_x5F_Active,
+.filter-index-4 #leren_x5F_Active {
+  opacity: 1;
+}
+
+/* Shared QR Code Styling */
+.qrcode-container {
+  background: white;
+  width: 10vh;
+  border-radius: 20px;
+  padding: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
 
 #checkIcon {
   background-color: #488948;

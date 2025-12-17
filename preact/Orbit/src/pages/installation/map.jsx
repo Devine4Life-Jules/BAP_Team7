@@ -106,21 +106,6 @@ export default function Map() {
         }
     }, [url])
 
-    useEffect(() => {
-        const filterActiveIds = ['gezond_x5F_Active', 'sociaal_x5F_Active', 'ecologisch_x5F_Active', 'digitaal_x5F_Active', 'leren_x5F_Active']
-        filterActiveIds.forEach(id => {
-            const activeLayer = document.getElementById(id)
-            if (activeLayer) {
-                activeLayer.style.opacity = '0'
-                activeLayer.style.transition = 'opacity 0.3s ease'
-            }
-        })
-        const selectedActiveLayer = document.getElementById(filterActiveIds[selectedFilterIndex])
-        if (selectedActiveLayer) {
-            selectedActiveLayer.style.opacity = '1'
-        }
-    }, [selectedFilterIndex])
-
     const handleSelectionChange = useCallback((projectId) => {
         setSelectedProject(projects.find(p => p.id === projectId))
     }, [projects])
@@ -162,10 +147,7 @@ export default function Map() {
                 position: 'absolute', top: '70vh', left: '50%', transform: 'translateX(-50%)',
                 display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px', zIndex: 1000
             }}>
-                <div ref={qrcodeRef} style={{
-                    background: 'white', width: '10vh', borderRadius: '25px', 
-                    padding: '10px', boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)'
-                }} />
+                <div ref={qrcodeRef} className="qrcode-container" />
                 <p style={{
                     color: '#white', fontSize: '1rem', fontWeight: 'bold', 
                     textAlign: 'center', marginTop: "-.2rem"
@@ -175,10 +157,14 @@ export default function Map() {
                 </p>
             </div>
             
-            <div style={{
-                position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)',
-                width: '100%', height: '100%', maxWidth: '90vh', maxHeight: '90vh', pointerEvents: 'none'
-            }} dangerouslySetInnerHTML={{__html: FilterShapeSVG}} />
+            <div 
+                style={{
+                    position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)',
+                    width: '100%', height: '100%', maxWidth: '90vh', maxHeight: '90vh', pointerEvents: 'none'
+                }} 
+                className={`filter-svg filter-index-${selectedFilterIndex}`}
+                dangerouslySetInnerHTML={{__html: FilterShapeSVG}} 
+            />
         </div>
     )
 }
