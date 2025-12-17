@@ -160,8 +160,8 @@ export default function DashboardHome() {
                                 ) : topScanned.length > 0 ? (
                                     topScanned.map(item => (
                                         <li key={item.id}>
-                                            <Link href={`/dashboardDetail/${item.id}`} className="top-list-link">
-                                                {item.ccode}
+                                            <Link href={`/dashboardDetail/${item.id}`} className="top-list-link" style={{ display: 'contents' }}>
+                                                <span>{item.ccode}</span>
                                             </Link>
                                             ({item.count}x)
                                         </li>
@@ -179,8 +179,8 @@ export default function DashboardHome() {
                                 ) : topSaved.length > 0 ? (
                                     topSaved.map(item => (
                                         <li key={item.id}>
-                                            <Link href={`/dashboardDetail/${item.id}`} className="top-list-link">
-                                                {item.ccode}
+                                            <Link href={`/dashboardDetail/${item.id}`} className="top-list-link" style={{ display: 'contents' }}>
+                                                <span>{item.ccode}</span>
                                             </Link>
                                             ({item.count}x)
                                         </li>
