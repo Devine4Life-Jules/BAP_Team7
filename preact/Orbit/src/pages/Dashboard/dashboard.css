@@ -73,8 +73,11 @@ header {
 }
 
 main{
-    width: 60vw;
+    width: 80vw;
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .stats-row1 {
@@ -86,9 +89,10 @@ main{
     background: linear-gradient(180deg, #494781 0%, rgba(73, 71, 129, 0.00) 100%);
     padding: 1rem;
     margin: 1rem;
+    width: 100%;
 }
 
-.stats-row1 section {
+.stats-row1 section{
     text-align: center;
     display: flex;
     flex-direction:column-reverse
@@ -102,11 +106,12 @@ main{
 
 .stats-row2 {
     display: flex;
-    justify-content: space-around;
-    
+    justify-content: space-between;
+    width: 100%;
+    gap: 1rem;    
 }
 
-.stats-row2 section {
+.stats-row2 section, .mock-graph-section {
     width: 45%;
     border-radius: 20px;
     border: 2px solid rgba(243, 243, 247, 0.50);

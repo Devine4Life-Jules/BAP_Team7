@@ -85,6 +85,10 @@ h1 {
     
 }
 
+.CTA-intro {
+    margin-bottom: 1rem;
+}
+
 .projectCTA {
     border-radius: 34.453px;
     background: rgba(255, 255, 255, 0.20);

@@ -160,6 +160,8 @@ export default function PhoneContact(){
                     onChange={(e) => setMessage(e.target.value)}
                     required
                 />
+
+                <input required style={{textAlign:'left', display:'inline', margin:'0 .5rem 2rem 0', width:"1rem"}} type="checkbox" /><span style={{fontSize: '0.9rem', color:"white", marginLeft:'0'}}>Ik ga akkoord met de <a href='#' style={{textDecoration:'underline'}}>privacyverklaring</a>.</span>
                 
                 <button 
                     type="submit" 

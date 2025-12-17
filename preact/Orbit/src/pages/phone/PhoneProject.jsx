@@ -17,7 +17,6 @@ import useDummyImage from '../../hooks/useDummyImage';
 
 
 export default function PhoneProject({id}){
-    // Track last visited project in localStorage
     useEffect(() => {
         localStorage.setItem('lastVisitedProject', id);
     }, [id]);
@@ -36,13 +35,10 @@ export default function PhoneProject({id}){
 
     const [isSaved, setIsSaved] = useState(false);
 
-    // Get 3 similar projects from the same domain
     const similarProjects = project ? projects
         .filter(p => {
-            // Exclude current project
             if (String(p.id) === String(id)) return false;
             
-            // Check if project has any matching transitiedomein
             return p.transitiedomeinen?.some(td => 
                 transitiedomeinen.some(currentTd => 
                     td.label === currentTd.label && td.category === "Transitiedomein"
@@ -131,16 +127,17 @@ export default function PhoneProject({id}){
                          <div>
                              <h1 className="mainPhoneTitle">{project.ccode}</h1>
                             {transitiedomeinen.length > 0 && (
-                            <div>
+                            <div style={{marginTop: '0.5rem'}}>
                                 <PhoneDomainPills domains={transitiedomeinen} />
                             </div>
                             )}
                          </div>
-                         <div>
+                         <div style={{textAlign:'center',  width:'5rem'}}>
                             <button
                             onClick={isSaved ? unsaveProject : saveProject}
                             style={{
                             padding:'0',
+
                             backgroundColor: 'transparent',
                             border: 'none',
                             transition: 'opacity 0.3s'
@@ -148,6 +145,7 @@ export default function PhoneProject({id}){
                         >
                             <SaveIcon isSaved={isSaved} />
                         </button>
+                        <p>{isSaved ? 'Opgeslagen' : 'Sla op'}</p>
                          </div>
                      </div>
                      <div className="teaser">

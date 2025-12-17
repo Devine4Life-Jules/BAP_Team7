@@ -4,6 +4,7 @@ import { supabase } from '../../lib/supabase';
 import { ProjectsContext } from '../../contexts/ProjectsContext';
 import DashboardNav from '../../components/DashboardNav';
 import DashboardSearch from '../../components/DashboardSearch';
+import mockGraph from '../../assets/mockGraph.png';
 import './dashboard.css';
 
 export default function DashboardHome() {
@@ -148,6 +149,9 @@ export default function DashboardHome() {
                         </section>
                     </div>
                     <div class="stats-row2">
+                        <div class="mock-graph-section">
+                            <img src={mockGraph} alt="Mock Graph" />
+                        </div>
                         <section>
                             <h2 className="dashboard-h2">top gescanned</h2>
                             <ol>
@@ -187,6 +191,20 @@ export default function DashboardHome() {
                             </ol>
                         </section>
 
+                    </div>
+                    <div class="stats-row1">
+                        <section>
+                            <h2 className="dashboard-h2">Meest gescanned</h2>
+                            <p className="statsNumber">17u30</p>
+                        </section>
+                        <section>
+                            <h2 className="dashboard-h2">Meest opgeslagen</h2>
+                            <p className="statsNumber">16u45</p>
+                         </section>
+                        <section>
+                            <h2 className="dashboard-h2"> Meest Contactgegevens opgeslagen</h2>
+                            <p className="statsNumber">20u</p>
+                        </section>
                     </div>
                 </main>
             </div>
