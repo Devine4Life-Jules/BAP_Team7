@@ -16,7 +16,15 @@ const CONFIG = {
     MAX_POSITIONING_ATTEMPTS: 200, // max attempts to find non-overlapping position (increased)
     INERTIA_FRICTION: 0.85, // velocity multiplier per frame (reduced for Pi performance)
     INERTIA_MIN_VELOCITY: 0.1, // minimum velocity threshold before stopping (higher = stops faster)
+    MODAL_OFFSET_X: 120, // horizontal offset for modal relative to planet
+    MODAL_OFFSET_Y: -80, // vertical offset for modal relative to planet
+    OPACITY_FADE_DISTANCE_MULTIPLIER: 0.5, // multiplier for viewport width to calculate fade distance
+    OPACITY_FALLOFF_EXPONENT: 1.5, // exponent for opacity falloff calculation
+    MIN_OPACITY: 0.05, // minimum opacity value for planets
+    OPACITY_STEP: 0.05, // step size for opacity rounding on Raspberry Pi
 }
+
+const degreesToRadians = (degrees) => (degrees * Math.PI) / 180
 
 export default function MapCanvas({ filteredProjects, onSelectionChange, bottomCloudsImg, selectedProject, instructionModalOpen }) {
     const [offsetX, setOffsetX] = useState(0)
@@ -72,15 +80,15 @@ export default function MapCanvas({ filteredProjects, onSelectionChange, bottomC
                     const angle = (index * CONFIG.GOLDEN_ANGLE + attempts * 15) % 360
                     const spiralRadius = CONFIG.SPIRAL_RADIUS_BASE + (index * CONFIG.SPIRAL_RADIUS_INCREMENT) + (attempts * 10)
                     
-                    x = CANVAS_WIDTH / 2 + Math.cos((angle * Math.PI) / 180) * spiralRadius
-                    y = CANVAS_HEIGHT / 2 + Math.sin((angle * Math.PI) / 180) * spiralRadius
+                    x = CANVAS_WIDTH / 2 + Math.cos(degreesToRadians(angle)) * spiralRadius
+                    y = CANVAS_HEIGHT / 2 + Math.sin(degreesToRadians(angle)) * spiralRadius
                 } else {
                     // Remaining attempts: try random positions in expanding circles
                     const angle = Math.random() * 360
                     const radius = CONFIG.SPIRAL_RADIUS_BASE + (attempts - 50) * 20
                     
-                    x = CANVAS_WIDTH / 2 + Math.cos((angle * Math.PI) / 180) * radius
-                    y = CANVAS_HEIGHT / 2 + Math.sin((angle * Math.PI) / 180) * radius
+                    x = CANVAS_WIDTH / 2 + Math.cos(degreesToRadians(angle)) * radius
+                    y = CANVAS_HEIGHT / 2 + Math.sin(degreesToRadians(angle)) * radius
                 }
 
                 if (isPositionValid(x, y, positions)) {
@@ -96,8 +104,8 @@ export default function MapCanvas({ filteredProjects, onSelectionChange, bottomC
                 console.warn(`Could not find valid position for project ${project.id} after ${CONFIG.MAX_POSITIONING_ATTEMPTS} attempts`)
                 const angle = (index * 45) % 360
                 const radius = Math.max(CANVAS_WIDTH, CANVAS_HEIGHT) * 0.4
-                const x = CANVAS_WIDTH / 2 + Math.cos((angle * Math.PI) / 180) * radius
-                const y = CANVAS_HEIGHT / 2 + Math.sin((angle * Math.PI) / 180) * radius
+                const x = CANVAS_WIDTH / 2 + Math.cos(degreesToRadians(angle)) * radius
+                const y = CANVAS_HEIGHT / 2 + Math.sin(degreesToRadians(angle)) * radius
                 positions[project.id] = { x, y }
             }
         })
@@ -347,12 +355,12 @@ export default function MapCanvas({ filteredProjects, onSelectionChange, bottomC
                     )
                     
                     // Calculate opacity with dramatic falloff
-                    const maxFadeDistance = VIEWPORT_WIDTH * 0.5
+                    const maxFadeDistance = VIEWPORT_WIDTH * CONFIG.OPACITY_FADE_DISTANCE_MULTIPLIER
                     const normalizedDistance = Math.min(distanceFromCenter / maxFadeDistance, 1)
                     // Quadratic falloff for dramatic contrast
-                    const rawOpacity = Math.max(0.05, 1 - Math.pow(normalizedDistance, 1.5))
-                    // Round to 0.05 increments to reduce CSS changes (0.05, 0.10, 0.15, etc.)
-                    const opacityValue = isRaspberryPi.current ? Math.round(rawOpacity * 20) / 20 : rawOpacity
+                    const rawOpacity = Math.max(CONFIG.MIN_OPACITY, 1 - Math.pow(normalizedDistance, CONFIG.OPACITY_FALLOFF_EXPONENT))
+                    // Round to steps to reduce CSS changes
+                    const opacityValue = isRaspberryPi.current ? Math.round(rawOpacity / CONFIG.OPACITY_STEP) * CONFIG.OPACITY_STEP : rawOpacity
 
                     return (
                         <div
@@ -382,8 +390,8 @@ export default function MapCanvas({ filteredProjects, onSelectionChange, bottomC
                     <div 
                         style={{
                             position: 'absolute',
-                            left: `${projectPositions[selectedProject.id].x + 120}px`, // 120px to the right of planet
-                            top: `${projectPositions[selectedProject.id].y - 80}px`, // 80px above planet
+                            left: `${projectPositions[selectedProject.id].x + CONFIG.MODAL_OFFSET_X}px`,
+                            top: `${projectPositions[selectedProject.id].y + CONFIG.MODAL_OFFSET_Y}px`,
                             background: 'white',
                             color: 'black',
                             padding: '15px 20px',
